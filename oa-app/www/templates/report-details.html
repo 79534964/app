@@ -1,0 +1,62 @@
+<ion-modal-view>
+  <ion-header-bar align-title="center">
+    <a ng-click="modal.hide()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+    <h1 class="title">订单详情</h1>
+  </ion-header-bar>
+  <ion-content class="report-details">
+    <ul class="list">
+      <li class="item">
+        <p>订单编号</p>
+        <p>{{cx.options.orderDetails.orderid}}</p>
+      </li>
+      <li class="item">
+        <p>订单状态</p>
+        <p>{{cx.options.orderDetails.status}}</p>
+      </li>
+      <li class="item">
+        <p>用户类型</p>
+        <p>{{cx.options.orderDetails.usertype}}</p>
+      </li>
+      <li class="item" ng-if="cx.options.orderDetails.nickname">
+        <p>用户昵称</p>
+        <p>{{cx.options.orderDetails.nickname}}</p>
+      </li>
+      <li class="item" ng-if="cx.options.orderDetails.mobile">
+        <p>用户手机号</p>
+        <p>{{cx.options.orderDetails.mobile}}</p>
+      </li>
+      <li class="item">
+        <p>商品名称</p>
+        <p>{{cx.options.orderDetails.productname}}</p>
+      </li>
+      <li class="item">
+        <p>下单时间</p>
+        <p>{{cx.options.orderDetails.createtime}}</p>
+      </li>
+      <li class="item">
+        <p>下单机器</p>
+        <p>{{cx.options.orderDetails.machinename}}</p>
+      </li>
+      <li class="item" ng-if="cx.options.orderDetails.rulename">
+        <p>使用优惠劵</p>
+        <p>{{cx.options.orderDetails.rulename}}</p>
+      </li>
+      <li class="item">
+        <p>优惠金额</p>
+        <p>{{cx.options.orderDetails.productcouponprice | number:2}}</p>
+      </li>
+      <li class="item">
+        <p>支付金额</p>
+        <p>{{cx.options.orderDetails.payprice | number:2}}</p>
+      </li>
+      <li class="item" ng-if="cx.options.orderDetails.paychannel">
+        <p>支付方式</p>
+        <p>{{cx.options.orderDetails.paychannel}}</p>
+      </li>
+      <li class="item" ng-if="cx.options.orderDetails.paytime">
+        <p>支付时间</p>
+        <p>{{cx.options.orderDetails.paytime}}</p>
+      </li>
+    </ul>
+  </ion-content>
+</ion-modal-view>

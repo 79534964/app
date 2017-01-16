@@ -1,0 +1,25 @@
+<ion-header-bar>
+  <img src="img/logo.png"/>
+</ion-header-bar>
+<ion-view view-title="report" class="main-report">
+  <ion-content>
+    <div class="h4 title"><p class="ion-android-search"> 查询订单</p></div>
+    <div class="radio clearfix">
+      <ion-radio ng-value="cx.radioVale.orderid" ng-model="cx.radioVale.value">订单编号</ion-radio>
+      <ion-radio ng-value="cx.radioVale.nickname" ng-model="cx.radioVale.value">用户昵称</ion-radio>
+      <ion-radio ng-value="cx.radioVale.mobile" ng-model="cx.radioVale.value">用户手机号</ion-radio>
+      <ion-radio ng-value="cx.radioVale.machineid" ng-model="cx.radioVale.value">机器编号</ion-radio>
+      <ion-radio ng-value="cx.radioVale.machinename" ng-model="cx.radioVale.value">机器名称</ion-radio>
+    </div>
+    <div class="content">
+      <div class="list">
+        <i ng-class="{true:'show',false:'remove-show'}[cx.curOptions.curClass]" ng-click="cx.clearInput()"
+           class="ion-close-circled"></i>
+        <label class="item item-input">
+          <input ng-model="$parent.inputValue" ng-change="cx.changeInput()" type="text" placeholder="用户昵称、订单编号、机器名称或编号">
+        </label>
+      </div>
+      <button class="button button-positive" ng-click="cx.queryData()">查　询</button>
+    </div>
+  </ion-content>
+</ion-view>

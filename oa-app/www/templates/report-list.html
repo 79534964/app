@@ -1,0 +1,27 @@
+<ion-view hide-tabs="true">
+  <ion-header-bar align-title="center">
+    <a ng-click="$ionicGoBack()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+    <h1 class="title">订单列表</h1>
+  </ion-header-bar>
+  <ion-content class="report-list">
+    <span>{{title}}</span>
+    <ion-list>
+      <ion-item ng-repeat="e in cx.options.dataList" ng-click="cx.orderDetails({{$index}});modal.show();">
+        <div class="clearfix list-top">
+          <i>
+            <p>订单编号:{{e.orderid}}</p>
+            <p>{{e.productname}}</p>
+          </i>
+          <p>{{e.status}}</p>
+          <p>￥{{e.payprice | number:2}}
+          <p>
+          <p class="text">{{e.createtime}}</p>
+          <i class="ion-ios-arrow-right icon">详情</i>
+        </div>
+      </ion-item>
+      <span class="no-more" ng-if="cx.options.pageFlag">没有更多数据</span>
+    </ion-list>
+    <ion-infinite-scroll ng-if="!cx.options.pageFlag" on-infinite="$parent.loadMore()"
+                         distance="1%"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('font/iconfont.eot?t=1479969702844'); /* IE9*/
+  src: url('font/iconfont.eot?t=1479969702844#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('font/iconfont.woff?t=1479969702844') format('woff'), /* chrome, firefox */
+  url('font/iconfont.ttf?t=1479969702844') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('font/iconfont.svg?t=1479969702844#iconfont') format('svg'); /* iOS 4.1- */
+}
+/*!!! 这个类名必须是icon*/
+.icon{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon:before {
+    line-height: 1;
+}
+.icon-tongji:before { content: "\f0027"; font-size: 29px;position: relative; top: 2px}
+
+.icon-shouye:before { content: "\e607"; font-size: 23px;position: relative; top: 3.5px}
+
+.icon-baobiao-copy:before { content: "\e601"; font-size: 27px;position: relative; top: 3.5px}
+
+.icon-yunwei:before { content: "\e648"; font-size: 27px;position: relative; top: 3.5px}

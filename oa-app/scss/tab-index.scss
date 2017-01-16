@@ -1,0 +1,21 @@
+.tab-index {
+  opacity: 0;
+  animation: show 0.4s forwards;
+  .row:nth-child(1) {
+    padding-top: 8%;
+  }
+  .row {
+    padding: 0% 6%;
+    .col {
+      padding: 5%;
+      text-align: center;
+      img {
+        width: 100%;
+        padding: 5%;
+      }
+      span {
+        color: $color;
+      }
+    }
+  }
+}

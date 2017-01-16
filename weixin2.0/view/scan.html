@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+    (function(){
+        if(isWeiXin()){
+            local("http://org.oa.mattburg.cn/jeewxmb/productController.do?scanCommitOrder&");
+        }else{
+            local("http://org.oa.mattburg.cn/coffeealipay/pay?");
+        }
+    })();
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{ 
+                return false;
+            }
+    }
+    function local(url){
+        var str=window.location.href;
+        str=str.substring(str.indexOf("&")+1,str.length);
+        return window.location.href=url+str;
+    }
+    </script>
+</head>
+<body>
+</body>
+</html>

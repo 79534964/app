@@ -1,0 +1,112 @@
+.back-icon {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: fixed;
+  top: 80%;
+  width: 1.3rem;
+  height: 1.3rem;
+  z-index: 99; }
+  .back-icon img {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0.03rem 0.1rem #696969; }
+
+.back-icon-go {
+  right: 5%; }
+
+.back-icon-back {
+  right: -20%; }
+
+body {
+  background-color: #52aaa9; }
+
+header {
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  position: fixed;
+  height: 0.9rem;
+  background-color: #449493;
+  left: 0;
+  color: #fff;
+  font-size: 0.3rem;
+  text-align: center;
+  line-height: 3; }
+  header .cur {
+    background-color: #52aaa9; }
+  header > div {
+    width: 33.3333%;
+    float: left;
+    height: 100%; }
+
+.swiper-container {
+  line-height: 0.4rem;
+  font-size: 0.2rem;
+  padding: 0.2rem;
+  padding-top: 0.7rem; }
+  .swiper-container p {
+    padding: 0 3%; }
+  .swiper-container img {
+    width: 100%;
+    margin-top: 0.4rem; }
+  .swiper-container .new {
+    display: none; }
+    .swiper-container .new .title {
+      margin-top: 5%; }
+    .swiper-container .new .text1 {
+      margin-top: 4%;
+      text-align: justify;
+      word-break: break-word;
+      text-indent: 2em; }
+  .swiper-container .culture {
+    display: none; }
+    .swiper-container .culture img:nth-child(2) {
+      margin-top: 0.2rem;
+      width: 24%;
+      float: left; }
+    .swiper-container .culture .title {
+      margin-top: 5%; }
+    .swiper-container .culture .text1 {
+      margin-top: 5%;
+      text-align: justify;
+      word-break: break-word;
+      text-indent: 2em; }
+    .swiper-container .culture p:first-of-type {
+      margin-top: 0.2rem;
+      width: 70%;
+      margin-left: 24%; }
+  .swiper-container .activity {
+    display: none;
+    width: 100%; }
+    .swiper-container .activity p {
+      text-align: center; }
+    .swiper-container .activity p:first-of-type {
+      margin: 0.5rem 0;
+      font-size: 0.3rem; }
+    .swiper-container .activity .title {
+      margin: 0.2rem 0; }
+    .swiper-container .activity .text {
+      margin-top: 0.4rem; }
+
+.go {
+  display: block !important;
+  -webkit-animation: fadeInRight 0.5s forwards;
+          animation: fadeInRight 0.5s forwards; }
+
+.back {
+  display: none; }
+
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }

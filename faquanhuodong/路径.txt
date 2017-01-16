@@ -1,0 +1,2 @@
+usr/local/apache-tomcat-7.0.69/webapps/activity/webapp
+http://oa.managerment.mattburg.cn/activity/share?groupid=qwedsfsa2223

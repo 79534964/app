@@ -1,0 +1,162 @@
+.index-content{
+    display:none;
+    >div{
+        width:100%;
+        height:4rem;
+        position:relative;
+        h3{
+            position: absolute;
+            color: #fff;
+            font-size: 0.3rem;
+            font-weight: 500;
+        }
+        p{
+            position: absolute;
+            text-align: justify;
+            text-indent: 0.4rem;
+            font-size: 0.2rem;
+            word-break: break-word;
+            color: #fff;
+        }
+        img{
+             position: absolute;
+        }
+    }
+    >div:nth-child(1){
+        background-color:#175d9b;
+        img{
+            width: 50%;
+            left: 29%;
+            top: 15%;
+        }
+        p{
+            width: 65%;
+            left: 20%;
+            top: 49%;
+        }
+    }
+    >div:nth-child(2){
+        background-color:#49aaa8;
+        img{
+            width: 40%;
+            left: 20%;
+        }
+        h3{
+            left: 60%;
+            top: 20%;
+        }
+        p{
+            width: 33%;
+            left: 60%;
+            top: 33%;
+        }
+    }
+    >div:nth-child(3){
+        background-color:#f6c65d;
+        img{
+            width: 47%;
+            top: 6%;
+            left: 15%;
+        }
+        h3{
+            left: 59%;
+            top: 13%;
+        }
+        p{
+            width: 33%;
+            left: 60%;
+            top: 25%;
+        }
+    }
+    >div:nth-child(4){
+        background-color:#b5cb6b;
+        img{
+            width: 35%;
+            top: 3%;
+            left: 50%;
+        }
+        h3{
+            left: 15%;
+            top: 26%;
+        }
+        p{
+            width: 34%;
+            top: 41%;
+            left: 16%;
+        }
+    }
+}
+.index-ani{
+    h3,p{
+        animation: bounceInRight 1s;
+    }
+    img{
+        animation: bounceInLeft 1s;
+    }
+}
+@keyframes bounceInLeft {
+    0%,100%,60%,75%,90% {
+        -webkit-animation-timing-function: cubic-bezier(0.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(0.215,.61,.355,1)
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-3000px,0,0);
+        transform: translate3d(-3000px,0,0)
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(25px,0,0);
+        transform: translate3d(25px,0,0)
+    }
+
+    75% {
+        -webkit-transform: translate3d(-10px,0,0);
+        transform: translate3d(-10px,0,0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(5px,0,0);
+        transform: translate3d(5px,0,0)
+    }
+
+    100% {
+        -webkit-transform: none;
+        transform: none
+    }
+}
+@keyframes bounceInRight {
+    0%,100%,60%,75%,90% {
+        -webkit-animation-timing-function: cubic-bezier(0.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(0.215,.61,.355,1)
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(3000px,0,0);
+        transform: translate3d(3000px,0,0)
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(-25px,0,0);
+        transform: translate3d(-25px,0,0)
+    }
+
+    75% {
+        -webkit-transform: translate3d(10px,0,0);
+        transform: translate3d(10px,0,0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(-5px,0,0);
+        transform: translate3d(-5px,0,0)
+    }
+
+    100% {
+        -webkit-transform: none;
+        transform: none
+    }
+}

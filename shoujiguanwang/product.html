@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最新活动</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<link rel="stylesheet" href="css/mobile-reset.css">
+<link rel="stylesheet" href="css/product.css">
+<body>
+<a href="javascript:history.back();"class="back-icon back-icon-go" id="backIcon">
+    <img src="images/back.png"/>
+</a>
+<header class="clearfix" id="nav">
+    <div class="cur">
+        <p>智能咖啡机</p>
+    </div>
+    <div>
+        <p>咖啡豆</p>
+    </div>
+    <div>
+        <p>饮品系列</p>
+    </div>
+</header>
+<div class="swiper-container">
+    <div class="new">
+        <img src="images/product/product-img1.jpg">
+    </div>
+    <div class="culture">
+        <img src="images/product/product-img2.jpg">
+        <p>阿拉比卡（Arabica）是商业咖啡产业中两个非常重要的品种之一。阿拉比卡咖啡豆的特色：</p>
+        <p>口感馥郁细腻、气味香浓，酸性度较高，质感幼滑，不容易有苦涩味。</p>
+        <p>在所有咖啡的产量中，阿拉比卡种咖啡占据了70%-80%，它绝佳的风味和香气使其成为所有咖啡原生种中唯一能够直接饮用的咖啡。</p>
+        <p>原来世界上的商品咖啡都是小粒咖啡，只是到了19世纪末因为叶锈病的肆虐导致大量咖啡庄园的倒闭，种植者才开始寻找其他抗病的品种。小粒咖啡仍然是最主要的咖啡品种，约占世界咖啡总产量的3/4.主要在拉丁美洲各国种植，也有部分在印度尼西亚和太平洋岛屿种植。</p>
+        <p>世界最大的咖啡产地巴西的地理气候条件非常适合小粒咖啡的生长，种植的主要咖啡品种也是小粒咖啡，巴西的咖啡产量占世界总产量的1/3以上。小粒咖啡的果实比中粒咖啡和大粒咖啡要小，浆果椭圆型，一般内有两粒种子，即所谓的“咖啡豆”。</p>
+    </div>
+    <div class="activity">
+        <img src="images/product/product-img3.jpg"/>
+    </div>
+</div>
+<script src="js/rem.min.js"></script>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.min.js"></script>
+<script type="text/javascript">
+$("#nav").children().on("tap",function() {
+    $(this).addClass("cur").siblings().removeClass("cur");
+    var contextNodes=$(".swiper-container").children();
+    contextNodes.eq($(this).index()).removeClass("back").addClass("go").siblings().removeClass("go").addClass("back");
+})
+var index=(window.location.href).substr((window.location.href).indexOf("?")+1);
+$("#nav").children().eq(index).trigger("tap");
+</script>
+</body>
+</html>

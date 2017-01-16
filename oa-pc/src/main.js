@@ -1,0 +1,41 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import VueResource from 'vue-resource';
+import Element from 'element-ui';
+import App from './App';
+import routes from './routes';
+import store from './vuex/store';
+
+import 'element-ui/lib/theme-default/index.css';
+import 'common/stylus/index.styl';
+
+Vue.use(VueRouter);
+Vue.use(VueResource);
+Vue.use(Element);
+
+const router = new VueRouter({
+  routes
+});
+
+// 监听路由跳转
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    if (window.localStorage.userInfo || window.sessionStorage.userInfo) {
+      router.push('/product');
+    } else {
+      next();
+    }
+  } else {
+    if (window.localStorage.userInfo || window.sessionStorage.userInfo) {
+      next();
+    } else {
+      router.push('/login');
+    }
+  }
+});
+
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#App');

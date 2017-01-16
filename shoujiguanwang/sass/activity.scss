@@ -1,0 +1,105 @@
+@import "back";
+body{
+    background-color: #52aaa9;
+}
+header{
+    left:0;
+    z-index: 99; 
+    width: 100%;
+    position: fixed;
+    height: 0.9rem;
+    background-color: #449493;
+    left: 0;
+    color: #fff;
+    font-size: 0.3rem;
+    text-align: center;
+    line-height: 3;
+    .cur{
+        background-color: #52aaa9;
+    }
+    >div{
+        width:33.3333%;
+        float: left;
+        height: 100%;
+    }
+}
+.swiper-container{
+    line-height: 0.4rem;
+    font-size: 0.2rem;
+    padding: 0.2rem;
+    padding-top: 0.7rem;
+    p{
+        padding:0 3%;
+    }
+    img{
+        width:100%;
+        margin-top: 0.4rem;
+    }
+    .new{
+        display: none;
+        .title{
+            margin-top: 5%;
+        }
+        .text1{
+            margin-top: 4%;
+            text-align: justify;
+            word-break: break-word;
+            text-indent: 2em;
+        }
+    }
+    .culture{
+        display:none;
+        img:nth-child(2){
+            margin-top: 0.2rem;
+            width:24%;
+            float:left;
+        }
+        .title{
+            margin-top: 5%;
+        }
+        .text1{
+            margin-top: 5%;
+            text-align: justify;
+            word-break: break-word;
+            text-indent: 2em;
+        }
+        p:first-of-type{
+            margin-top: 0.2rem;
+            width:70%;
+            margin-left:24%;
+        }
+    }
+    .activity{
+        display:none;
+        width:100%;
+        p{
+            text-align: center;
+        }
+        p:first-of-type{
+            margin:0.5rem 0;
+            font-size: 0.3rem;
+        }
+        .title{
+            margin:0.2rem 0;
+        }
+        .text{
+            margin-top: 0.4rem;
+        }
+    }
+}
+.go{
+    display:block!important;
+    animation: fadeInRight 0.5s forwards;
+}
+.back{
+    display:none;
+}
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

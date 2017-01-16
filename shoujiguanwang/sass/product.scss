@@ -1,0 +1,66 @@
+@import "back";
+body{
+    background-color: rgb(245, 198, 92);
+    width:100%;
+}
+header{
+    z-index: 99; 
+    width: 100%;
+    position: fixed;
+    height: 0.9rem;
+    background-color: #edb441;
+    left: 0;
+    color: black;
+    font-size: 0.3rem;
+    text-align: center;
+    line-height: 3;
+    .cur{
+        background-color:rgb(245, 198, 92);
+    }
+    >div{
+        width:33.3333%;
+        float: left;
+        height: 100%;
+    }
+}
+.swiper-container{
+    width:100%;
+    line-height: 0.4rem;
+    font-size: 0.2rem;
+    p{
+        padding:0 3%;
+    }
+    img{
+        width:100%;
+    }
+    .culture{
+        display:none;
+        padding: 0.2rem;
+        padding-top: 1.05rem;
+        p{
+            margin-top: 7%;
+            text-align: justify;
+            word-break: break-word;
+            text-indent: 2em;
+        }
+    }
+    .activity{
+        display:none;
+    }
+}
+.go{
+    display:block!important;
+    animation: fadeInRight 0.5s forwards;
+}
+.back{
+    display:none;
+}
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,24 @@
+<ion-view hide-tabs="true">
+  <ion-header-bar align-title="center">
+    <a ng-click="$ionicGoBack()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
+    <h1 class="title">故障列表</h1>
+  </ion-header-bar>
+  <ion-content class="index-errorNotify">
+    <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <table ng-class="{true:'show'}[classFlag1]">
+      <tr>
+        <td>机器地址</td>
+        <td>机器编号</td>
+        <td>机器状态</td>
+      </tr>
+      <tr ng-repeat="e in errorList">
+        <td>{{e.machine_name}}</td>
+        <td>{{e.machine_number}}</td>
+        <td>{{e.status}}</td>
+      </tr>
+    </table>
+    <div>
+      <h4 class="title" ng-class="{true:'show'}[classFlag2]"><i class="ion-happy-outline"></i> 您的机器一切良好</h4>
+    </div>
+  </ion-content>
+</ion-view>

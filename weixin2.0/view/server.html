@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>常见问题</title>
+    <link rel="stylesheet" href="css/server.css">
+    <script src="build/rem.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="scroller">
+        <ul>
+            <li>
+                <img src="server-img/server1.jpg">
+                <div class="p-box">
+                    <p>冲</p>
+                    <p>泡</p>
+                    <p>出</p>
+                    <p>问</p>
+                    <p>题</p>
+                    <p>?</p>    
+                </div>
+                <span>小咖帮你解答</span>
+            </li>
+            <li style="margin-top:0;">
+                <i>问题一</i>
+                <div>
+                    <span>Q</span>
+                    <p>一键冲泡后机器没反应</p>
+                </div>
+                <div>
+                    <span>A</span>
+                    <p>请您确认机器地址是否有误,如果无误,请您直接联系该区域负责人</p>
+                </div>
+                <img src="server-img/server2.jpg"/>
+                <div>
+                    <p>小咖提醒:区域负责人信息在机器左上角哦！</p>
+                </div>
+            </li>
+            <li>
+                <i>问题二</i>
+                <div>
+                    <span>Q</span>
+                    <p>选错机器地址</p>
+                </div>
+                <div>
+                    <span>A</span>
+                    <p>您附近可能有不止一台机器,请您确认机器地址。</p>
+                </div>
+                <img src="server-img/server3.jpg"/>
+                <div>
+                    <p>小咖提醒:看机器屏幕右上角地址,重新选择地址。</p>
+                </div>
+            </li>
+            <li>
+                <i>问题三</i>
+                <div>
+                    <span>Q</span>
+                    <p>饮品出来白开水、牛奶</p>
+                </div>
+                <div>
+                    <span>A</span>
+                    <p>很抱歉,订单量较多,物料暂时缺乏,我们会及时安排配送人员前去添置。</p>
+                </div>
+                <img src="server-img/server4.jpg"/>
+                <div>
+                    <p>小咖提醒:你可以直接联系区域负责人。</p>
+                </div>
+            </li>
+            <li>
+                <i>问题四</i>
+                <div>
+                    <span>Q</span>
+                    <p>无法下单</p>
+                </div>
+                <div>
+                    <span>A</span>
+                    <p>请您检查网络设置</p>
+                </div>
+                <img src="server-img/server5.jpg"/>
+                <div>
+                    <p>小咖提醒:网络无误就可以重新下单啦！</p>
+                </div>
+            </li>
+            <li>
+                <i>问题五</i>
+                <div>
+                    <span>Q</span>
+                    <p>落杯失败,咖啡洒了</p>
+                </div>
+                <div>
+                    <span>A</span>
+                    <p>机器出现故障,请您直接联系该区域负责人</p>
+                </div>
+                <img src="server-img/server6.jpg"/>
+                <div>
+                    <p>小咖提醒:区域负责人信息在机器左上角哦！</p>
+                </div>
+            </li>
+            <li>
+                <i>问题六</i>
+                <div>
+                    <span>Q</span>
+                    <p>我要退款</p>
+                </div>
+                <div>
+                    <span>A</span>
+                    <p>请您按以下格式(退款+订单编号+所遇问题)发送至微信后台</p>
+                </div>
+                <img src="server-img/server7.jpg"/>
+                <div>
+                    <p>小咖提醒:退款到您原账户需1-3个工作日！</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="build/zepto.min.js"></script>
+<script src="build/iscroll.min.js"></script>
+<script src="build/touch.min.js"></script>
+<script>
+window.onload=function(){
+    new iScroll('wrapper');
+    $("#scroller ul").addClass("header-ani");
+    var flag=true;
+    $("#scroller img").on("tap",function(){
+        if($(this).index()!=0){
+            if(flag){
+                flag=false;
+                if($(this).attr("class")=="img-ani"){
+                    setTimeout(function(){flag=true;},1000);
+                    $(this).removeClass("img-ani").addClass("img-ani1");
+                }else{
+                    setTimeout(function(){flag=true;},1000);
+                    $(this).removeClass("img-ani1").addClass("img-ani");
+                }  
+            }
+        }
+    });
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-class="{'tabs-item-hide': $root.hideTabs}">
+  <!-- index Tab -->
+  <ion-tab title="运维首页" icon-off="icon-shouye" icon-on="icon-shouye" href="#/main/index">
+    <ion-nav-view name="main-index"></ion-nav-view>
+  </ion-tab>
+  <!-- report Tab -->
+  <ion-tab title="查询订单" icon-off="icon-baobiao-copy" icon-on="icon-baobiao-copy" href="#/main/report">
+    <ion-nav-view name="main-report"></ion-nav-view>
+  </ion-tab>
+  <!-- count Tab -->
+  <ion-tab title="报表统计" icon-off="icon-tongji" icon-on="icon-tongji" href="#/main/count">
+    <ion-nav-view name="main-count"></ion-nav-view>
+  </ion-tab>
+  <!-- operative Tab -->
+  <ion-tab title="运维系统" icon-off="icon-yunwei" icon-on="icon-yunwei" href="#/main/operative">
+    <ion-nav-view name="main-operative"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>
