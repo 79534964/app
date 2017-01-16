@@ -1,37 +1,46 @@
 import * as types from '../mutation-types';
+import module from '../module';
 
 const state = {
-  machineList: []
+  machineList: [],
+  timeValue: ''
 };
 
 const getters = {
   getDataMachineMachineList: (state) => {
     return state.machineList;
+  },
+  getDataMachineTimeValue: (state) => {
+    return state.timeValue;
   }
 };
 
 const actions = {
   dataMachine ({state, commit, rootState}, params) {
     let Vue = params.vue;
-    Vue.loading = true;
-    Vue.$http({
-      url: rootState.dataMachineUrl,
-      method: 'POST',
-      emulateJSON: true,
-      params: {
-        usertoken: rootState.login.token,
-        starttime: params.starttime,
-        endtime: params.endtime
-      }
-    }).then((res) => {
-      Vue.loading = false;
-      let data = res.body;
-      if (data.code === rootState.ok) {
-        commit(types.SET_DATAMACHINE_MACHINELIST, data.content);
-      } else {
-        Vue.$message.error(data.msg);
-      }
-    });
+    if (state.timeValue) {
+      Vue.loading = true;
+      Vue.$http({
+        url: rootState.dataMachineUrl,
+        method: 'POST',
+        emulateJSON: true,
+        params: {
+          usertoken: rootState.login.token,
+          starttime: module.getDateTime(new Date(state.timeValue[0]), 'start'),
+          endtime: module.getDateTime(new Date(state.timeValue[1]), 'end')
+        }
+      }).then((res) => {
+        Vue.loading = false;
+        let data = res.body;
+        if (data.code === rootState.ok) {
+          commit(types.SET_DATAMACHINE_MACHINELIST, data.content);
+        } else {
+          Vue.$message.error(data.msg);
+        }
+      });
+    } else {
+      Vue.$message.warning('请选择查询时间区间');
+    }
   }
 };
 
@@ -60,6 +69,9 @@ const mutations = {
     object.totalPay = parseInt(object.totalPay * 100) / 100;
     object.perticket = object.totalCount - object.free ? (object.totalPay / (object.totalCount - object.free)).toFixed(2) : 0;
     state.machineList = [...list, object];
+  },
+  [types.SET_DATAMACHINE_TIMEVALUE] (state, time) {
+    state.timeValue = time;
   }
 };
 

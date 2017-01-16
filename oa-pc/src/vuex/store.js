@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as actions from './actions';
-import * as mutations from './mutations';
+// store模块
+import login from './modules/login';
+import orderQuery from './modules/orderQuery';
+import dataMachine from './modules/dataMachine';
 
 Vue.use(Vuex);
 
@@ -14,16 +16,11 @@ const state = {
   dataMachineUrl: `${HOST}order/getreport?`
 };
 
-import login from './modules/login';
-import orderQuery from './modules/orderQuery';
-import dataMachine from './modules/dataMachine';
 // 至此，这个 store 就可以连接到我们的应用中
 export default new Vuex.Store({
   // 在部署生产时，不要启用严格模式！
   strict: process.env.NODE_ENV !== 'production',
   state,
-  actions,
-  mutations,
   modules: {
     login,
     orderQuery,

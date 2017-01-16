@@ -79,8 +79,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import module from 'common/js/module';
-
   export default {
     data() {
       return {
@@ -111,27 +109,27 @@
             }
           }]
         },
-        timeValue: '',
         loading: false
       };
     },
     methods: {
       query() {
-        if (this.timeValue[0] && this.timeValue[1]) {
-          this.loading = true;
-          this.$store.dispatch('dataMachine', {
-            vue: this,
-            starttime: module.getDateTime(new Date(this.timeValue[0]), 'start'),
-            endtime: module.getDateTime(new Date(this.timeValue[0]), 'end')
-          });
-        } else {
-          this.$message.warning('请选择查询时间区间');
-        }
+        this.$store.dispatch('dataMachine', {
+          vue: this
+        });
       }
     },
     computed: {
       machineList () {
         return this.$store.getters.getDataMachineMachineList;
+      },
+      timeValue: {
+        get () {
+          return this.$store.getters.getDataMachineTimeValue;
+        },
+        set (value) {
+          this.$store.commit('SET_DATAMACHINE_TIMEVALUE', value);
+        }
       }
     }
   };

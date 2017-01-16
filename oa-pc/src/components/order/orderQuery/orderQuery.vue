@@ -22,7 +22,7 @@
         <el-input size="large" placeholder="请输入:用户昵称、订单编号、机器名称或编号" v-model="inputValue">
         </el-input>
       </div>
-      <el-button type="primary" size="large" @click="check()">查询</el-button>
+      <el-button type="primary" size="large" @click="query()">查询</el-button>
     </div>
     <div class="content-wrapper">
       <el-table :data="orderList" border height=100%>
@@ -55,42 +55,40 @@
   export default {
     data() {
       return {
-        radioValue: 'orderid',
-        loading: false,
-        inputValue: ''
+        loading: false
       };
     },
     methods: {
-      check() {
-        if (this.inputValue) {
-          if (this.radioValue === 'orderid' || this.radioValue === 'machineid' || this.radioValue === 'mobile') {
-            if (isNaN(this.inputValue)) {
-              this.$message.warning('输入的值必须为数字');
-            } else {
-              this.$store.dispatch('setOrderQueryPageNumber', 1);
-              this.query();
-            }
-          } else {
-            this.$store.dispatch('setOrderQueryPageNumber', 1);
-            this.query();
-          }
-        } else {
-          this.$message.warning('请您输入查询内容');
-        }
-      },
       query() {
         this.$store.dispatch('orderQuery', {
           vue: this,
-          radioValue: this.radioValue,
-          inputValue: this.inputValue
+          page: 1
         });
       },
       handleCurrentChange(val) {
-        this.$store.dispatch('setOrderQueryPageNumber', val);
-        this.query();
+        this.$store.dispatch('orderQuery', {
+          vue: this,
+          page: val
+        });
       }
     },
     computed: {
+      radioValue: {
+        get () {
+          return this.$store.getters.getOrderQueryRadioValue;
+        },
+        set (value) {
+          this.$store.commit('SET_ORDERQUERY_RADIOVALUE', value);
+        }
+      },
+      inputValue: {
+        get () {
+          return this.$store.getters.getOrderQueryInputValue;
+        },
+        set (value) {
+          this.$store.commit('SET_ORDERQUERY_INPUTVALUE', value);
+        }
+      },
       total () {
         return this.$store.getters.getOrderQueryTotal;
       },
