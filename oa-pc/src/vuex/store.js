@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+// actions全局得
+import actions from './actions';
 // store模块
 import login from './modules/login';
 import orderQuery from './modules/orderQuery';
@@ -11,6 +13,7 @@ const HOST = 'http://test.wx.mattburg.cn/managerment/';
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   ok: '01',
+  noToken: '300',
   loginUrl: `${HOST}login?`,
   orderQueryUrl: `${HOST}order/getorderinfo?`,
   dataMachineUrl: `${HOST}order/getreport?`
@@ -20,6 +23,7 @@ const state = {
 export default new Vuex.Store({
   // 在部署生产时，不要启用严格模式！
   strict: process.env.NODE_ENV !== 'production',
+  actions,
   state,
   modules: {
     login,

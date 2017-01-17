@@ -16,8 +16,7 @@ const getters = {
 };
 
 const actions = {
-  dataMachine ({state, commit, rootState}, params) {
-    let Vue = params.vue;
+  dataMachine ({state, commit, rootState}, {Vue}) {
     if (state.timeValue) {
       Vue.loading = true;
       Vue.$http({
@@ -32,11 +31,9 @@ const actions = {
       }).then((res) => {
         Vue.loading = false;
         let data = res.body;
-        if (data.code === rootState.ok) {
+        Vue.$store.dispatch('checkHttpData', {Vue, data}).then(() => {
           commit(types.SET_DATAMACHINE_MACHINELIST, data.content);
-        } else {
-          Vue.$message.error(data.msg);
-        }
+        });
       });
     } else {
       Vue.$message.warning('请选择查询时间区间');

@@ -115,7 +115,7 @@
     methods: {
       query() {
         this.$store.dispatch('dataMachine', {
-          vue: this
+          Vue: this
         });
       }
     },

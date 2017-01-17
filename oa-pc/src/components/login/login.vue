@@ -45,7 +45,7 @@
       loginFun() {
         if (this.user && this.password) {
           this.$store.dispatch('login', {
-            vue: this,
+            Vue: this,
             user: this.user,
             password: this.password,
             radioValue: this.radio

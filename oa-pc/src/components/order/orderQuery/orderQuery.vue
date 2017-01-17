@@ -61,13 +61,13 @@
     methods: {
       query() {
         this.$store.dispatch('orderQuery', {
-          vue: this,
+          Vue: this,
           page: 1
         });
       },
       handleCurrentChange(val) {
         this.$store.dispatch('orderQuery', {
-          vue: this,
+          Vue: this,
           page: val
         });
       }

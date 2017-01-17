@@ -27,8 +27,7 @@ const getters = {
 };
 
 const actions = {
-  orderQuery({state, commit, rootState}, params) {
-    let Vue = params.vue;
+  orderQuery({state, commit, rootState}, {Vue, page}) {
     if (state.inputValue) {
       if (state.radioValue === 'orderid' || state.radioValue === 'machineid' || state.radioValue === 'mobile') {
         if (isNaN(state.inputValue)) {
@@ -36,14 +35,14 @@ const actions = {
           return '';
         }
       }
-      commit('SET_ORDERQUERY_PAGENUMBER', params.page);
+      commit('SET_ORDERQUERY_PAGENUMBER', page);
       Vue.loading = true;
       Vue.$http({
         url: rootState.orderQueryUrl,
         method: 'POST',
         emulateJSON: true,
         params: {
-          userid: rootState.login.token,
+          usertoken: rootState.login.token,
           pagenumber: state.pagenumber,
           pagesize: 10,
           [state.radioValue]: state.inputValue
@@ -51,15 +50,13 @@ const actions = {
       }).then((res) => {
         Vue.loading = false;
         let data = res.body;
-        if (data.code === rootState.ok) {
+        Vue.$store.dispatch('checkHttpData', {Vue, data}).then(() => {
           if (data.content.list.length === 0) {
             Vue.$alert('我们查不到您要的订单内容，请核实您的查询条件', '提示');
           }
           commit(types.SET_ORDERQUERY_ORDERLIST, data.content.list);
           commit(types.SET_ORDERQUERY_TOTAL, data.content.totalRow);
-        } else {
-          Vue.$message.error(data.msg);
-        }
+        });
       });
     } else {
       Vue.$message.warning('请您输入查询内容');
