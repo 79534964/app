@@ -1,4 +1,4 @@
-// 所有http后共同的act
+// 所有http后共用的act
 export const ACT_ALL_CHECKHTTPDATA = 'all/act/checkHttpData';
 
 // login

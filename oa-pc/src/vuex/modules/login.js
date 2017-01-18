@@ -28,12 +28,12 @@ const actions = {
       }).then((res) => {
         commit('login/set/FLAG', true);
         let data = res.body;
-        Vue.$store.dispatch('checkHttpData', {Vue, data}).then(() => {
+        Vue.$store.dispatch('all/act/checkHttpData', {Vue, data}).then(() => {
           let info = JSON.stringify(data.content);
           if (radioValue) {
             window.localStorage.userInfo = info;
           } else {
-            // 关闭浏览器注销
+            // 关闭浏览器注销token
             window.onunload = () => {
 
             };
