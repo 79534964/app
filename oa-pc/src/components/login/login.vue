@@ -44,7 +44,7 @@
     methods: {
       loginFun() {
         if (this.user && this.password) {
-          this.$store.dispatch('login', {
+          this.$store.dispatch('login/act/LOGIN', {
             Vue: this,
             user: this.user,
             password: this.password,

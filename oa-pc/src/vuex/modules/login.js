@@ -8,15 +8,15 @@ const state = {
 };
 
 const getters = {
-  getUserName: (state) => {
+  [types.GET_LOGIN_USERNAME]: (state) => {
     return state.userName;
   }
 };
 
 const actions = {
-  login ({state, commit, rootState}, {Vue, user, password, radioValue}) {
+  [types.ACT_LOGIN_LOGIN] ({state, commit, rootState}, {Vue, user, password, radioValue}) {
     if (state.loginFlag) {
-      commit(types.SET_LOGINFLAG, false);
+      commit('login/set/FLAG', false);
       Vue.$http({
         url: rootState.loginUrl,
         method: 'POST',
@@ -26,16 +26,20 @@ const actions = {
           password: password
         }
       }).then((res) => {
-        commit(types.SET_LOGINFLAG, true);
+        commit('login/set/FLAG', true);
         let data = res.body;
         Vue.$store.dispatch('checkHttpData', {Vue, data}).then(() => {
           let info = JSON.stringify(data.content);
           if (radioValue) {
             window.localStorage.userInfo = info;
           } else {
+            // 关闭浏览器注销
+            window.onunload = () => {
+
+            };
             window.sessionStorage.userInfo = info;
           }
-          commit(types.SET_USERINFO, info);
+          commit('login/set/USERINFO', info);
           Vue.$router.push('/product');
         });
       });
@@ -43,21 +47,18 @@ const actions = {
       Vue.$alert('正在登陆中，请稍后', '温馨提示');
     }
   },
-  setLoginFlag ({commit}, flag) {
-    commit(types.SET_LOGINFLAG, flag);
-  },
-  initInfo ({commit}) {
-    commit(types.SET_USERINFO);
+  [types.ACT_LOGIN_USERINFO] ({commit}) {
+    commit('login/set/USERINFO');
   }
 };
 
 const mutations = {
-  [types.SET_USERINFO] (state, userInfo = window.localStorage.userInfo || window.sessionStorage.userInfo || '{}') {
+  [types.SET_LOGIN_USERINFO] (state, userInfo = window.localStorage.userInfo || window.sessionStorage.userInfo || '{}') {
     state.userInfo = JSON.parse(userInfo);
     state.userName = state.userInfo.name;
     state.token = state.userInfo.usertoken;
   },
-  [types.SET_LOGINFLAG] (state, flag) {
+  [types.SET_LOGIN_FLAG] (state, flag) {
     state.loginFlag = flag;
   }
 };

@@ -60,13 +60,13 @@
     },
     methods: {
       query() {
-        this.$store.dispatch('orderQuery', {
+        this.$store.dispatch('orderQuery/act/ORDERQUERY', {
           Vue: this,
           page: 1
         });
       },
       handleCurrentChange(val) {
-        this.$store.dispatch('orderQuery', {
+        this.$store.dispatch('orderQuery/act/ORDERQUERY', {
           Vue: this,
           page: val
         });
@@ -75,28 +75,28 @@
     computed: {
       radioValue: {
         get () {
-          return this.$store.getters.getOrderQueryRadioValue;
+          return this.$store.getters['orderQuery/get/RADIOVALUE'];
         },
         set (value) {
-          this.$store.commit('SET_ORDERQUERY_RADIOVALUE', value);
+          this.$store.commit('orderQuery/set/RADIOVALUE', value);
         }
       },
       inputValue: {
         get () {
-          return this.$store.getters.getOrderQueryInputValue;
+          return this.$store.getters['orderQuery/get/INPUTVALUE'];
         },
         set (value) {
-          this.$store.commit('SET_ORDERQUERY_INPUTVALUE', value);
+          this.$store.commit('orderQuery/set/INPUTVALUE', value);
         }
       },
       total () {
-        return this.$store.getters.getOrderQueryTotal;
+        return this.$store.getters['orderQuery/get/TOTAL'];
       },
       orderList () {
-        return this.$store.getters.getOrderQueryList;
+        return this.$store.getters['orderQuery/get/ORDERLIST'];
       },
       currentPage () {
-        return this.$store.getters.getOrderQueryPageNumber;
+        return this.$store.getters['orderQuery/get/PAGENUMBER'];
       }
     }
   };

@@ -1,5 +1,7 @@
+import * as types from './mutation-types';
+
 export default {
-  checkHttpData({state, commit, rootState}, {Vue, data}) {
+  [types.ACT_ALL_CHECKHTTPDATA] ({state, commit, rootState}, {Vue, data}) {
     return new Promise((resolve, reject) => {
       if (data.code === rootState.ok) {
         resolve();

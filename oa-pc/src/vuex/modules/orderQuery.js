@@ -9,25 +9,25 @@ const state = {
 };
 
 const getters = {
-  getOrderQueryList: (state) => {
+  [types.GET_ORDERQUERY_ORDERLIST]: (state) => {
     return state.orderList;
   },
-  getOrderQueryTotal: (state) => {
+  [types.GET_ORDERQUERY_TOTAL]: (state) => {
     return state.total;
   },
-  getOrderQueryPageNumber: (state) => {
+  [types.GET_ORDERQUERY_PAGENUMBER]: (state) => {
     return state.pagenumber;
   },
-  getOrderQueryRadioValue: (state) => {
+  [types.GET_ORDERQUERY_RADIOVALUE]: (state) => {
     return state.radioValue;
   },
-  getOrderQueryInputValue: (state) => {
+  [types.GET_ORDERQUERY_INPUTVALUE]: (state) => {
     return state.inputValue;
   }
 };
 
 const actions = {
-  orderQuery({state, commit, rootState}, {Vue, page}) {
+  [types.ACT_ORDERQUERY_ORDERQUERY] ({state, commit, rootState}, {Vue, page}) {
     if (state.inputValue) {
       if (state.radioValue === 'orderid' || state.radioValue === 'machineid' || state.radioValue === 'mobile') {
         if (isNaN(state.inputValue)) {
@@ -35,7 +35,7 @@ const actions = {
           return '';
         }
       }
-      commit('SET_ORDERQUERY_PAGENUMBER', page);
+      commit('orderQuery/set/PAGENUMBER', page);
       Vue.loading = true;
       Vue.$http({
         url: rootState.orderQueryUrl,
@@ -50,12 +50,12 @@ const actions = {
       }).then((res) => {
         Vue.loading = false;
         let data = res.body;
-        Vue.$store.dispatch('checkHttpData', {Vue, data}).then(() => {
+        Vue.$store.dispatch('all/act/checkHttpData', {Vue, data}).then(() => {
           if (data.content.list.length === 0) {
             Vue.$alert('我们查不到您要的订单内容，请核实您的查询条件', '提示');
           }
-          commit(types.SET_ORDERQUERY_ORDERLIST, data.content.list);
-          commit(types.SET_ORDERQUERY_TOTAL, data.content.totalRow);
+          commit('orderQuery/set/ORDERLIST', data.content.list);
+          commit('orderQuery/set/TOTAL', data.content.totalRow);
         });
       });
     } else {

@@ -7,16 +7,16 @@ const state = {
 };
 
 const getters = {
-  getDataMachineMachineList: (state) => {
+  [types.GET_DATAMACHINE_MACHINELIST]: (state) => {
     return state.machineList;
   },
-  getDataMachineTimeValue: (state) => {
+  [types.GET_DATAMACHINE_TIMEVALUE]: (state) => {
     return state.timeValue;
   }
 };
 
 const actions = {
-  dataMachine ({state, commit, rootState}, {Vue}) {
+  [types.ACT_DATAMACHINE_DATAMACHINE] ({state, commit, rootState}, {Vue}) {
     if (state.timeValue) {
       Vue.loading = true;
       Vue.$http({
@@ -31,8 +31,8 @@ const actions = {
       }).then((res) => {
         Vue.loading = false;
         let data = res.body;
-        Vue.$store.dispatch('checkHttpData', {Vue, data}).then(() => {
-          commit(types.SET_DATAMACHINE_MACHINELIST, data.content);
+        Vue.$store.dispatch('all/act/checkHttpData', {Vue, data}).then(() => {
+          commit('dataMachine/set/MACHINELIST', data.content);
         });
       });
     } else {

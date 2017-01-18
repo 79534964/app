@@ -50,11 +50,11 @@
     },
     computed: {
       userName () {
-        return this.$store.getters.getUserName;
+        return this.$store.getters['login/get/UERNAME'];
       }
     },
     created() {
-      this.$store.dispatch('initInfo');
+      this.$store.dispatch('login/act/USERINFO');
     }
   };
 

@@ -114,21 +114,21 @@
     },
     methods: {
       query() {
-        this.$store.dispatch('dataMachine', {
+        this.$store.dispatch('dataMachine/act/DATAMACHINE', {
           Vue: this
         });
       }
     },
     computed: {
       machineList () {
-        return this.$store.getters.getDataMachineMachineList;
+        return this.$store.getters['dataMachine/get/MACHINELIST'];
       },
       timeValue: {
         get () {
-          return this.$store.getters.getDataMachineTimeValue;
+          return this.$store.getters['dataMachine/get/TIMEVALUE'];
         },
         set (value) {
-          this.$store.commit('SET_DATAMACHINE_TIMEVALUE', value);
+          this.$store.commit('dataMachine/set/TIMEVALUE', value);
         }
       }
     }

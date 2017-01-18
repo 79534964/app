@@ -1,20 +1,56 @@
-// (login) 设置用户信息
-export const SET_USERINFO = 'SET_USERINFO';
-// login请求状态中
-export const SET_LOGINFLAG = 'SET_LOGINFLAG';
+// 所有http后共同的act
+export const ACT_ALL_CHECKHTTPDATA = 'all/act/checkHttpData';
 
-// (orderQuery) 设置页数
-export const SET_ORDERQUERY_PAGENUMBER = 'SET_ORDERQUERY_PAGENUMBER';
+// login
+// 设置用户信息
+export const SET_LOGIN_USERINFO = 'login/set/USERINFO';
+// 设置login请求状态中
+export const SET_LOGIN_FLAG = 'login/set/FLAG';
+
+// 获取用户名字
+export const GET_LOGIN_USERNAME = 'login/get/UERNAME';
+
+// 执行登陆
+export const ACT_LOGIN_LOGIN = 'login/act/LOGIN';
+// 执行设置用户信息
+export const ACT_LOGIN_USERINFO = 'login/act/USERINFO';
+
+// orderQuery
+// 设置页数
+export const SET_ORDERQUERY_PAGENUMBER = 'orderQuery/set/PAGENUMBER';
 // 设置订单列表
-export const SET_ORDERQUERY_ORDERLIST = 'SET_ORDERQUERY_ORDERLIST';
+export const SET_ORDERQUERY_ORDERLIST = 'orderQuery/set/ORDERLIST';
 // 设置总页数
-export const SET_ORDERQUERY_TOTAL = 'SET_ORDERQUERY_TOTAL';
+export const SET_ORDERQUERY_TOTAL = 'orderQuery/set/TOTAL';
 // 设置选择查询的条件
-export const SET_ORDERQUERY_RADIOVALUE = 'SET_ORDERQUERY_RADIOVALUE';
+export const SET_ORDERQUERY_RADIOVALUE = 'orderQuery/set/RADIOVALUE';
 // 设置查询的内容
-export const SET_ORDERQUERY_INPUTVALUE = 'SET_ORDERQUERY_INPUTVALUE';
+export const SET_ORDERQUERY_INPUTVALUE = 'orderQuery/set/INPUTVALUE';
 
-// (dataMachine) 设置机列表
-export const SET_DATAMACHINE_MACHINELIST = 'SET_DATAMACHINE_MACHINELIST';
-// 时间值
-export const SET_DATAMACHINE_TIMEVALUE = 'SET_DATAMACHINE_TIMEVALUE';
+// 设置订单列表
+export const GET_ORDERQUERY_ORDERLIST = 'orderQuery/get/ORDERLIST';
+// 获取总页数
+export const GET_ORDERQUERY_TOTAL = 'orderQuery/get/TOTAL';
+// 获取当前页数
+export const GET_ORDERQUERY_PAGENUMBER = 'orderQuery/get/PAGENUMBER';
+// 获取查询的条件
+export const GET_ORDERQUERY_RADIOVALUE = 'orderQuery/get/RADIOVALUE';
+// 获取查询的内容
+export const GET_ORDERQUERY_INPUTVALUE = 'orderQuery/get/INPUTVALUE';
+
+// 执行查询操作
+export const ACT_ORDERQUERY_ORDERQUERY = 'orderQuery/act/ORDERQUERY';
+
+// dataMachine
+// 设置机列表
+export const SET_DATAMACHINE_MACHINELIST = 'dataMachine/set/MACHINELIST';
+// 设置时间值
+export const SET_DATAMACHINE_TIMEVALUE = 'dataMachine/set/TIMEVALUE';
+
+// 获取机列表
+export const GET_DATAMACHINE_MACHINELIST = 'dataMachine/get/MACHINELIST';
+// 获取时间值
+export const GET_DATAMACHINE_TIMEVALUE = 'dataMachine/get/TIMEVALUE';
+
+// 执行查询操作
+export const ACT_DATAMACHINE_DATAMACHINE = 'dataMachine/act/DATAMACHINE';
