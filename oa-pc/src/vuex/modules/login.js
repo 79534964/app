@@ -33,10 +33,6 @@ const actions = {
           if (radioValue) {
             window.localStorage.userInfo = info;
           } else {
-            // 关闭浏览器注销token
-            window.onunload = () => {
-
-            };
             window.sessionStorage.userInfo = info;
           }
           commit('login/set/USERINFO', info);
@@ -46,6 +42,15 @@ const actions = {
     } else {
       Vue.$alert('正在登陆中，请稍后', '温馨提示');
     }
+  },
+  [types.ACT_LOGIN_LOGOUT] ({state, rootState}, {Vue}) {
+    Vue.$http({
+      url: rootState.logoutUrl,
+      method: 'POST',
+      params: {
+        usertoken: state.token
+      }
+    });
   },
   [types.ACT_LOGIN_USERINFO] ({commit}) {
     commit('login/set/USERINFO');

@@ -14,6 +14,7 @@ const HOST = 'http://test.wx.mattburg.cn/managerment/';
 const state = {
   ok: '01',
   noToken: '300',
+  logoutUrl: `${HOST}login/logout?`,
   loginUrl: `${HOST}login?`,
   orderQueryUrl: `${HOST}order/getorderinfo?`,
   dataMachineUrl: `${HOST}order/getreport?`

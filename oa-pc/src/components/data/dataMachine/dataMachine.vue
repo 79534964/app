@@ -12,6 +12,7 @@
         </el-date-picker>
       </div>
       <el-button type="primary" size="large" @click="query()">查询</el-button>
+      <excelbtn :list="machineList" :excelTite="excelTite" :type="excelType"></excelbtn>
     </div>
     <div class="content-wrapper">
       <el-table :data="machineList" border height=100%>
@@ -79,6 +80,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import excelbtn from 'components/common/excelbtn';
+
   export default {
     data() {
       return {
@@ -130,7 +133,18 @@
         set (value) {
           this.$store.commit('dataMachine/set/TIMEVALUE', value);
         }
+      },
+      excelTite() {
+        let before = new Date(this.timeValue[0]);
+        let next = new Date(this.timeValue[1]);
+        return before.getFullYear() + '-' + (before.getMonth() + 1) + '-' + before.getDate() + '至' + next.getFullYear() + '-' + (next.getMonth() + 1) + '-' + next.getDate() + '的机器销售报表.xls';
+      },
+      excelType() {
+        return 'dataMachine';
       }
+    },
+    components: {
+      excelbtn
     }
   };
 </script>

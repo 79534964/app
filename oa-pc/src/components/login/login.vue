@@ -65,7 +65,6 @@
     top: 0
     left: 0
     width: 100%
-    min-width: 1200px
     height: 100%
     background-color: #f5f5f5
     text-align: center

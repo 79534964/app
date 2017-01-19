@@ -19,6 +19,10 @@ $(document).ready(function () {
                     ani.prop('活动暂未开始,敬请期待');
                 } else if (json.response.code == 03) {
                     ani.prop('活动已经结束,请关注最新活动');
+                } else if (json.response.code == 04) {
+                    ani.prop('没有配置优惠券');
+                } else if (json.response.code == 05) {
+                    ani.prop('用户信息找不到');
                 } else if (json.response.code == 06) {
                     ani.prop('您已经参与过了,下次再来吧');
                 } else if (json.response.code == 07) {
@@ -81,7 +85,7 @@ $(document).ready(function () {
             var imgSrc;
             var html = "";
             $.each(json.coupongrouprecordlist, function (i, e) {
-                imgSrc = e.userheadimgurl == null ? 'webapp/images/head.png' : e.userheadimgurl;
+                imgSrc = e.userheadimgurl ? e.userheadimgurl : 'webapp/images/head.png';;
                 html += '<div class="clearfix swiper-slide">' +
                     '<img src="' + imgSrc + '"/>' +
                     '<div>' +
@@ -113,7 +117,7 @@ $(document).ready(function () {
             html += '<div class="content">' +
                 '<ul>';
             $.each(json.coupongrouprecordlist, function (i, e) {
-                imgSrc = e.userheadimgurl == null ? 'webapp/images/head.png' : e.userheadimgurl;
+                imgSrc = e.userheadimgurl ? e.userheadimgurl : 'webapp/images/head.png';
                 html += '<li class="clearfix">' +
                     '<img src="' + imgSrc + '"/>' +
                     '<div>' +
@@ -183,6 +187,10 @@ $(document).ready(function () {
                 ani.prop('活动暂未开始,敬请期待');
             } else if (json.response.code == 03) {
                 ani.prop('活动已经结束,请关注最新活动');
+            } else if (json.response.code == 04) {
+                ani.prop('没有配置优惠券');
+            } else if (json.response.code == 05) {
+                ani.prop('用户信息找不到');
             } else if (json.response.code == 06) {
                 ani.prop('您已经参与过了,下次再来吧');
             } else if (json.response.code == 07) {

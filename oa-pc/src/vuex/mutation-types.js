@@ -12,6 +12,8 @@ export const GET_LOGIN_USERNAME = 'login/get/UERNAME';
 
 // 执行登陆
 export const ACT_LOGIN_LOGIN = 'login/act/LOGIN';
+// 注销token
+export const ACT_LOGIN_LOGOUT = 'login/act/LOGOUT';
 // 执行设置用户信息
 export const ACT_LOGIN_USERINFO = 'login/act/USERINFO';
 

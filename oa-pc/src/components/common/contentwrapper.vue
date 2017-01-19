@@ -41,9 +41,6 @@
     .el-menu
       background-color: #fff
       transition: all 0.3s
-      &.v-enter-active, &.v-enter-to, &.v-leave-active, &.v-leave-to
-        opacity: 0
-        transform: translate3d(-100%, 0, 0)
       .el-submenu__title
         font-size: 20px
         padding: 0 !important

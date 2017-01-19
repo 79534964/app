@@ -3,7 +3,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import contentwrapper from 'components/common/contentwrapper/contentwrapper';
+  import contentwrapper from 'components/common/contentwrapper';
 
   export default {
     data() {

@@ -6,6 +6,21 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>咖啡码头</title>
+    <script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b601fadaedebbd6a']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+    </script>
     <script src="webapp/js/rem.js"></script>
     <link rel="stylesheet" type="text/css" href="webapp/css/index.css">
 </head>
@@ -15,7 +30,7 @@
 </div>
 <div class='phone' id="phone">
     <div>
-        <input type="text" placeholder="请输入手机号">
+        <input type="text" maxlength="11" placeholder="请输入手机号">
         <p id="dole">立即领取</p>
     </div>
 </div>
@@ -82,6 +97,17 @@
                     link: 'http://' + window.location.host + '/' + json.coupongroup.url.replace(/\s/ig, ''),
                     imgUrl: 'http://oa.managerment.mattburg.cn/activity/webapp/images/share.png',
                     success: function () {
+                        $.ajax({
+                            url: 'http://' + window.location.host + '/activity/share/addsharetimes?',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {
+                                groupid: json.coupongroup.groupid,
+                            },
+                            success: function (data) {
+
+                            }
+                        });
                         alert('分享成功,欢迎您的参与');
                     }
                 });
@@ -91,6 +117,17 @@
                     link: 'http://' + window.location.host + '/' + json.coupongroup.url.replace(/\s/ig, ''),
                     imgUrl: 'http://oa.managerment.mattburg.cn/activity/webapp/images/share.png',
                     success: function () {
+                         $.ajax({
+                            url: 'http://' + window.location.host + '/activity/share/addsharetimes?',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {
+                                groupid: json.coupongroup.groupid,
+                            },
+                            success: function (data) {
+
+                            }
+                        });
                         alert('分享成功,欢迎您的参与');
                     }
                 });
