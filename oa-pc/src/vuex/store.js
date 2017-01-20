@@ -20,7 +20,7 @@ const state = {
   dataMachineUrl: `${HOST}order/getreport?`
 };
 
-// 至此，这个 store 就可以连接到我们的应用中
+// 这个store就可以连接到我们的应用中
 export default new Vuex.Store({
   // 在部署生产时，不要启用严格模式！
   strict: process.env.NODE_ENV !== 'production',

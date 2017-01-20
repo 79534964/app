@@ -1,6 +1,9 @@
 <template>
-  <div class="excelwrapper">
-    <a class="excelbtn" :download="excelTite" :href="excelTable">导出</a>
+  <div class="excelwrapper clearfix">
+    <div class="btnwrapper">
+      <a class="excelbtn" :download="excelTite" :href="excelTable">导出</a>
+    </div>
+    <span class="prompt">{{prop}}</span>
   </div>
 </template>
 
@@ -8,6 +11,11 @@
   import excelHashMaps from 'common/js/excelHashMaps';
 
   export default {
+    data() {
+      return {
+        prop: ''
+      };
+    },
     props: {
       list: {
         type: Array
@@ -17,6 +25,13 @@
       },
       type: {
         type: String
+      }
+    },
+    created() {
+      // 进行Safari判断
+      let safari = navigator.userAgent.toLowerCase().match(/version\/([\d.]+)/);
+      if (safari && safari[1]) {
+        this.prop = '(建议您使用谷歌浏览器,否则需要自行给文件加后缀.xls)';
       }
     },
     methods: {
@@ -79,15 +94,22 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .excelwrapper
-    width: 120px
-    height: 40px
-    line-height: 40px
-    .excelbtn
-      display: block
-      background-color: #0663a2
-      color: #fff
-      font-size: 18px
-      border-radius: 4px
-      letter-spacing: 6px
-      padding-left: 6px
+    width: 300px
+    .btnwrapper
+      float: left
+      width: 120px
+      height: 40px
+      line-height: 40px
+      .excelbtn
+        display: block
+        background-color: #0663a2
+        color: #fff
+        font-size: 18px
+        border-radius: 4px
+        letter-spacing: 6px
+        padding-left: 6px
+    .prompt
+      float: left
+      font-size: 12px
+      margin-top: 4px
 </style>

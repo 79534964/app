@@ -43,8 +43,8 @@ const actions = {
 
 const mutations = {
   [types.SET_DATAMACHINE_MACHINELIST] (state, list) {
-    // 总后的总计对象
-    let object = {};
+    // 总计list
+    let totalList = {};
     Array.from(list, function (item) {
       // 计算客单价
       item.perticket = item.totalCount - item.free ? (item.totalPay / (item.totalCount - item.free)).toFixed(2) : 0;
@@ -52,20 +52,26 @@ const mutations = {
         if (value === 'machineSuppierId') {
           item[value] = item[value] === 'SOS' ? '二代机' : '一代机';
         }
-        if (object.hasOwnProperty(value)) {
-          object[value] = object[value] * 1 + item[value] * 1;
+        if (totalList.hasOwnProperty(value)) {
+          totalList[value] = totalList[value] * 1 + item[value] * 1;
         } else {
-          object[value] = item[value];
+          totalList[value] = item[value];
         }
       }
     });
-    object.machineName = '总计';
-    object.machineSuppierId = '';
-    object.countPay = parseInt(object.countPay * 100) / 100;
-    object.otherPay = parseInt(object.otherPay * 100) / 100;
-    object.totalPay = parseInt(object.totalPay * 100) / 100;
-    object.perticket = object.totalCount - object.free ? (object.totalPay / (object.totalCount - object.free)).toFixed(2) : 0;
-    state.machineList = [...list, object];
+    for (let value in totalList) {
+      totalList[value] = isNaN(totalList[value]) ? totalList[value] : parseInt(totalList[value] * 100) / 100;
+      if (value === 'machineSuppierId') {
+        totalList[value] = '';
+      }
+      if (value === 'machineName') {
+        totalList[value] = '总计';
+      }
+      if (value === 'perticket') {
+        totalList[value] = totalList.totalCount - totalList.free ? (totalList.totalPay / (totalList.totalCount - totalList.free)).toFixed(2) : 0;
+      }
+    }
+    state.machineList = [...list, totalList];
   },
   [types.SET_DATAMACHINE_TIMEVALUE] (state, time) {
     state.timeValue = time;

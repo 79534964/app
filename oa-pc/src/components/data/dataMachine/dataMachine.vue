@@ -12,7 +12,9 @@
         </el-date-picker>
       </div>
       <el-button type="primary" size="large" @click="query()">查询</el-button>
-      <excelbtn :list="machineList" :excelTite="excelTite" :type="excelType"></excelbtn>
+      <div class="excelbox">
+        <excelbtn :list="machineList" :excelTite="excelTite" :type="excelType"></excelbtn>
+      </div>
     </div>
     <div class="content-wrapper">
       <el-table :data="machineList" border height=100%>
@@ -184,6 +186,11 @@
         letter-spacing: 6px
         padding-left: 25px
         font-size: 20px
+      .excelbox
+        position: absolute
+        height: 56px
+        bottom: 10px
+        right: 0
     .content-wrapper
       position: absolute
       top: 0
