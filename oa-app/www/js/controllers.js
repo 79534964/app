@@ -268,30 +268,75 @@ angular.module('ionicApp.controllers', [])
       },
       query: function () {
         $ionicLoading.show();
-        restful.selectOrderList({
-            userid: dataObject.getUserid(),
-            pagenumber: 1,
-            pagesize: 10,
-            //[cx.radioVale.value]: $scope.inputValue
-          },
-          function (data) {
-            $ionicLoading.hide();
-            if (data.code === '01') {
-              if (data.content.list.length == 0) {
-                prop('查询不到相关数据');
-              } else {
-                orderList.init();
-                orderList.setDataList(data.content);
-                orderList.setOrderInfo({
-                  type: cx.radioVale.value,
-                  content: $scope.inputValue
-                });
-                $state.go('main.report-list');
-              }
-            } else {
-              prop(data.msg);
-            }
-          });
+        if (cx.radioVale.value == 'nickname') {
+          restful.selectOrderList({
+              userid: dataObject.getUserid(),
+              pagenumber: 1,
+              pagesize: 10,
+              nickname: $scope.inputValue
+            },
+            function (data) {
+              cx.getData(data);
+            });
+        } else if (cx.radioVale.value == 'machineid') {
+          restful.selectOrderList({
+              userid: dataObject.getUserid(),
+              pagenumber: 1,
+              pagesize: 10,
+              machineid: $scope.inputValue
+            },
+            function (data) {
+              cx.getData(data);
+            });
+        } else if (cx.radioVale.value == 'machinename') {
+          restful.selectOrderList({
+              userid: dataObject.getUserid(),
+              pagenumber: 1,
+              pagesize: 10,
+              machinename: $scope.inputValue
+            },
+            function (data) {
+              cx.getData(data);
+            });
+        } else if (cx.radioVale.value == 'orderid') {
+          restful.selectOrderList({
+              userid: dataObject.getUserid(),
+              pagenumber: 1,
+              pagesize: 10,
+              orderid: $scope.inputValue
+            },
+            function (data) {
+              cx.getData(data);
+            });
+        } else if (cx.radioVale.value == 'mobile') {
+          restful.selectOrderList({
+              userid: dataObject.getUserid(),
+              pagenumber: 1,
+              pagesize: 10,
+              mobile: $scope.inputValue
+            },
+            function (data) {
+              cx.getData(data);
+            });
+        }
+      },
+      getData: function (data) {
+        $ionicLoading.hide();
+        if (data.code === '01') {
+          if (data.content.list.length == 0) {
+            prop('查询不到相关数据');
+          } else {
+            orderList.init();
+            orderList.setDataList(data.content);
+            orderList.setOrderInfo({
+              type: cx.radioVale.value,
+              content: $scope.inputValue
+            });
+            $state.go('main.report-list');
+          }
+        } else {
+          prop(data.msg);
+        }
       }
     }
   })
@@ -337,29 +382,74 @@ angular.module('ionicApp.controllers', [])
       orderDetails: function (index) {
         cx.options.orderDetails = {};
         cx.options.orderDetails = cx.options.dataList[index];
+      },
+      getData: function (data) {
+        if (data.code === '01') {
+          if (data.content.list.length == 0) {
+            prop('查询不到相关数据');
+            cx.options.pageFlag = true;
+          } else {
+            cx.options.dataList = cx.options.dataList.concat(data.content.list);
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+          }
+        } else {
+          prop(data.msg);
+        }
       }
     }
     cx.init();
     $scope.loadMore = function () {
-      restful.selectOrderList({
-          userid: dataObject.getUserid(),
-          pagenumber: ++(cx.options.page),
-          pagesize: 10,
-          //[cx.options.orderList.type]: cx.options.orderList.content
-        },
-        function (data) {
-          if (data.code === '01') {
-            if (data.content.list.length == 0) {
-              prop('查询不到相关数据');
-              cx.options.pageFlag = true;
-            } else {
-              cx.options.dataList = cx.options.dataList.concat(data.content.list);
-              $scope.$broadcast('scroll.infiniteScrollComplete');
-            }
-          } else {
-            prop(data.msg);
-          }
-        });
+      if (cx.options.orderList.type == 'nickname') {
+        restful.selectOrderList({
+            userid: dataObject.getUserid(),
+            pagenumber: 1,
+            pagesize: 10,
+            nickname: cx.options.orderList.content
+          },
+          function (data) {
+            cx.getData(data);
+          });
+      } else if (cx.options.orderList.type == 'machineid') {
+        restful.selectOrderList({
+            userid: dataObject.getUserid(),
+            pagenumber: 1,
+            pagesize: 10,
+            machineid: cx.options.orderList.content
+          },
+          function (data) {
+            cx.getData(data);
+          });
+      } else if (cx.options.orderList.type == 'machinename') {
+        restful.selectOrderList({
+            userid: dataObject.getUserid(),
+            pagenumber: 1,
+            pagesize: 10,
+            machinename: cx.options.orderList.content
+          },
+          function (data) {
+            cx.getData(data);
+          });
+      } else if (cx.options.orderList.type == 'orderid') {
+        restful.selectOrderList({
+            userid: dataObject.getUserid(),
+            pagenumber: 1,
+            pagesize: 10,
+            orderid: cx.options.orderList.content
+          },
+          function (data) {
+            cx.getData(data);
+          });
+      } else if (cx.options.orderList.type == 'mobile') {
+        restful.selectOrderList({
+            userid: dataObject.getUserid(),
+            pagenumber: 1,
+            pagesize: 10,
+            mobile: cx.options.orderList.content
+          },
+          function (data) {
+            cx.getData(data);
+          });
+      }
     }
     $scope.title = cx.dataMap(cx.options.orderList.type) + ':' + cx.options.orderList.content + ' 的订单列表';
   })
