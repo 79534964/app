@@ -19,18 +19,12 @@ const router = new VueRouter({
 
 // 监听路由跳转
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login') {
-    if (window.localStorage.userInfo || window.sessionStorage.userInfo) {
-      router.push('/product');
-    } else {
-      next();
-    }
+  if (to.path === '/login' && (window.localStorage.userInfo || window.sessionStorage.userInfo)) {
+    router.push('/product');
+  } else if (to.path !== '/login' && !(window.localStorage.userInfo || window.sessionStorage.userInfo)) {
+    router.push('/login');
   } else {
-    if (window.localStorage.userInfo || window.sessionStorage.userInfo) {
-      next();
-    } else {
-      router.push('/login');
-    }
+    next();
   }
 });
 
