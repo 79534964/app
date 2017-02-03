@@ -74,7 +74,8 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="webapp/js/zepto.min.js"></script>
 <script>
-    eval('var json=${result}');
+    var str='${result}';
+    eval('var json='+str.replace(/\\/g, ''));
     $.ajax({
         url: 'http://' + window.location.host + '/activity/activity/getsign?',
         type: 'post',

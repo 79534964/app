@@ -85,7 +85,7 @@ $(document).ready(function () {
             var imgSrc;
             var html = "";
             $.each(json.coupongrouprecordlist, function (i, e) {
-                imgSrc = e.userheadimgurl ? e.userheadimgurl : 'webapp/images/head.png';;
+                imgSrc = e.userheadimgurl!="" ? e.userheadimgurl : 'webapp/images/head.png';;
                 html += '<div class="clearfix swiper-slide">' +
                     '<img src="' + imgSrc + '"/>' +
                     '<div>' +
