@@ -17,6 +17,7 @@ import dataMachine from 'components/data/dataMachine/dataMachine';
 import activity from 'components/activity/activity';
 
 import system from 'components/system/system';
+import systemMenu from 'components/system/systemMenu/systemMenu';
 
 export default [
   {
@@ -46,7 +47,7 @@ export default [
     component: service
   },
   {
-    path: '/dataMachine',
+    path: '/machine',
     component: machine
   },
   {
@@ -65,6 +66,12 @@ export default [
   },
   {
     path: '/system',
-    component: system
+    component: system,
+    children: [
+      {
+        path: 'systemMenu',
+        component: systemMenu
+      }
+    ]
   }
 ];

@@ -25,7 +25,7 @@
           <router-link to="/activity">营销活动</router-link>
         </li>
         <li>
-          <router-link to="/system">系统设置</router-link>
+          <router-link to="/system/systemMenu">系统设置</router-link>
         </li>
       </ul>
       <div class="header-right">

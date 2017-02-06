@@ -19,16 +19,13 @@ const actions = {
       commit('login/set/FLAG', false);
       Vue.$http({
         url: rootState.loginUrl,
-        method: 'POST',
-        emulateJSON: true,
-        params: {
+        body: {
           loginname: user,
           password: password
         }
       }).then((res) => {
         commit('login/set/FLAG', true);
-        let data = res.body;
-        Vue.$store.dispatch('all/act/checkHttpData', {Vue, data}).then(() => {
+        Vue.$store.dispatch('all/act/checkHttpData', {Vue, res}).then((data) => {
           let info = JSON.stringify(data.content);
           if (radioValue) {
             window.localStorage.userInfo = info;
@@ -46,7 +43,6 @@ const actions = {
   [types.ACT_LOGIN_LOGOUT] ({state, rootState}, {Vue}) {
     Vue.$http({
       url: rootState.logoutUrl,
-      method: 'POST',
       params: {
         usertoken: state.token
       }

@@ -6,6 +6,7 @@ import actions from './actions';
 import login from './modules/login';
 import orderQuery from './modules/orderQuery';
 import dataMachine from './modules/dataMachine';
+import systemMenu from './modules/systemMenu';
 
 Vue.use(Vuex);
 
@@ -17,7 +18,11 @@ const state = {
   logoutUrl: `${HOST}login/logout?`,
   loginUrl: `${HOST}login?`,
   orderQueryUrl: `${HOST}order/getorderinfo?`,
-  dataMachineUrl: `${HOST}order/getreport?`
+  dataMachineUrl: `${HOST}order/getreport?`,
+  systemMenuUrl: `${HOST}menu`,
+  systemMenuDeleteUrl: `${HOST}menu/delete?`,
+  systemMenuAddUrl: `${HOST}menu/add?`,
+  systemMenuUpdateUrl: `${HOST}menu/update?`
 };
 
 // 这个store就可以连接到我们的应用中
@@ -29,6 +34,7 @@ export default new Vuex.Store({
   modules: {
     login,
     orderQuery,
-    dataMachine
+    dataMachine,
+    systemMenu
   }
 });

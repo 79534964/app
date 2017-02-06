@@ -7,13 +7,14 @@ html, body
   html
     overflow-y: scroll
 
-.el-button
-  background-color: #0663a2 !important
-  &:hover
-    background-color: #0663a2 !important
+// 覆盖主题颜色
+.el-button--primary
+  background-color: #0663a2
+  &:focus, &:hover
+    background: #0663a2
 
-.el-button--primary:hover
-  background-color: #0663a2 !important
+.el-pager li.active
+  background-color: #0663a2
 
 .el-message-box
   margin-top: -200px
@@ -45,14 +46,12 @@ html, body
       min-width: 40px
       height: 35px
       line-height: 35px
-      &.active
-        background-color: #0663a2
-        border-color: #0663a2
   .el-pagination__jump
     font-size: 20px
     height: 35px
     line-height: 35px
+    input
+      width: 45px !important
 
-.el-message
-  top: 110px
-  margin-left: 116px
+.el-dialog__wrapper
+  min-width: 1200px

@@ -53,7 +53,7 @@
         text-align: center
         margin: 0px 3px
         &.is-active
-          background-color: #0060b0
+          background-color: #0663a2
           color: #fff
           font-size: 16px
     .sidebar-content

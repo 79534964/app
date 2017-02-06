@@ -21,17 +21,13 @@ const actions = {
       Vue.loading = true;
       Vue.$http({
         url: rootState.dataMachineUrl,
-        method: 'POST',
-        emulateJSON: true,
-        params: {
+        body: {
           usertoken: rootState.login.token,
           starttime: module.getDateTime(new Date(state.timeValue[0]), 'start'),
           endtime: module.getDateTime(new Date(state.timeValue[1]), 'end')
         }
       }).then((res) => {
-        Vue.loading = false;
-        let data = res.body;
-        Vue.$store.dispatch('all/act/checkHttpData', {Vue, data}).then(() => {
+        Vue.$store.dispatch('all/act/checkHttpData', {Vue, res}).then((data) => {
           commit('dataMachine/set/MACHINELIST', data.content);
         });
       });
@@ -72,6 +68,7 @@ const mutations = {
       }
     }
     state.machineList = [...list, totalList];
+    totalList = null;
   },
   [types.SET_DATAMACHINE_TIMEVALUE] (state, time) {
     state.timeValue = time;

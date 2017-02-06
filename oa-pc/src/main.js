@@ -13,6 +13,13 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Element);
 
+// 设置全局得http请求
+Vue.http.interceptors.push((request, next) => {
+  request.method = 'POST';
+  request.emulateJSON = true;
+  next();
+});
+
 const router = new VueRouter({
   routes
 });

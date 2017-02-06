@@ -56,3 +56,23 @@ export const GET_DATAMACHINE_TIMEVALUE = 'dataMachine/get/TIMEVALUE';
 
 // 执行查询操作
 export const ACT_DATAMACHINE_DATAMACHINE = 'dataMachine/act/DATAMACHINE';
+
+// systemMenu
+// 设置菜单目录
+export const SET_SYSTEMMENU_MENULIST = 'systemMenu/set/MENULIST';
+// 设置selectList
+export const SET_SYSTEMMENU_SELECTLIST = 'systemMenu/set/SELECTLIST';
+
+// 获取菜单目录
+export const GET_SYSTEMMENU_MENULIST = 'systemMenu/get/MENULIST';
+// 获取selectList
+export const GET_SYSTEMMENU_SELECTLIST = 'systemMenu/get/SELECTLIST';
+
+// 执行查询菜单操作
+export const ACT_SYSTEMMENU_MENULIST = 'systemMenu/act/MENULIST';
+// 执行删除菜单操作
+export const ACT_SYSTEMMENU_DELETEMENU = 'systemMenu/act/DELETEMENU';
+// 执行添加菜单操作
+export const ACT_SYSTEMMENU_ADDMENU = 'systemMenu/act/ADDMENU';
+// 执行编辑菜单操作
+export const ACT_SYSTEMMENU_UPDATEMENU = 'systemMenu/act/UPDATEMENU';

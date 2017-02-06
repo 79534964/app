@@ -1,7 +1,7 @@
 <template>
   <div class="order-query-wrapper" v-loading="loading" element-loading-text="拼命加载中...">
     <div class="header-wrapper">
-      <el-radio-group v-model="radioValue" fill="#0060b0">
+      <el-radio-group v-model="radioValue" fill="#0663a2">
         <el-tooltip content="根据订单编号查询" placement="top" effect="light">
           <el-radio-button label="orderid">订单编号</el-radio-button>
         </el-tooltip>

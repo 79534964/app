@@ -39,18 +39,14 @@ const actions = {
       Vue.loading = true;
       Vue.$http({
         url: rootState.orderQueryUrl,
-        method: 'POST',
-        emulateJSON: true,
-        params: {
+        body: {
           usertoken: rootState.login.token,
           pagenumber: state.pagenumber,
           pagesize: 10,
           [state.radioValue]: state.inputValue
         }
       }).then((res) => {
-        Vue.loading = false;
-        let data = res.body;
-        Vue.$store.dispatch('all/act/checkHttpData', {Vue, data}).then(() => {
+        Vue.$store.dispatch('all/act/checkHttpData', {Vue, res}).then((data) => {
           if (data.content.list.length === 0) {
             Vue.$alert('我们查不到您要的订单内容，请核实您的查询条件', '提示');
           }
