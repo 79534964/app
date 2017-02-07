@@ -13,6 +13,9 @@
           list: [{
             name: '菜单管理',
             url: '/system/systemMenu'
+          }, {
+            name: '商户管理',
+            url: '/system/systemCompany'
           }]
         }]
       };

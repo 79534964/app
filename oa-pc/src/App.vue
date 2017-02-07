@@ -43,12 +43,11 @@
   export default {
     methods: {
       quit() {
-        this.$store.dispatch('login/act/LOGOUT', {Vue: this});
-        window.localStorage.clear();
-        window.sessionStorage.clear();
-        window.setTimeout(() => {
+        this.$store.dispatch('login/act/LOGOUT', {Vue: this}).then(() => {
+          window.localStorage.clear();
+          window.sessionStorage.clear();
           window.location.reload();
-        }, 0);
+        });
       }
     },
     computed: {

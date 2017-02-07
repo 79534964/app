@@ -49,13 +49,12 @@
         &:hover
           background-color: #d3dce6
       .el-menu-item
+        font-size: 16px
         padding: 0 !important
         text-align: center
-        margin: 0px 3px
         &.is-active
           background-color: #0663a2
           color: #fff
-          font-size: 16px
     .sidebar-content
       position: relative
       flex: 1

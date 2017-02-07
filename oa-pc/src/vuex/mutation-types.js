@@ -76,3 +76,20 @@ export const ACT_SYSTEMMENU_DELETEMENU = 'systemMenu/act/DELETEMENU';
 export const ACT_SYSTEMMENU_ADDMENU = 'systemMenu/act/ADDMENU';
 // 执行编辑菜单操作
 export const ACT_SYSTEMMENU_UPDATEMENU = 'systemMenu/act/UPDATEMENU';
+
+// systemCompany
+// 设置商户目录
+export const SET_SYSTEMCOMPANY_COMPANYLIST = 'systemCompany/set/COMPANYLIST';
+
+// 获取商户目录
+export const GET_SYSTEMCOMPANY_COMPANYLIST = 'systemCompany/get/COMPANYLIST';
+
+// 执行查询商户操作
+export const ACT_SYSTEMCOMPANY_COMPANYLIST = 'systemCompany/act/COMPANYLIST';
+// 执行添加商户操作
+export const ACT_SYSTEMCOMPANY_ADDCOMPANY = 'systemCompany/act/ADDCOMPANY';
+// 执行删除商户操作
+export const ACT_SYSTEMCOMPANY_DELETECOMPANY = 'systemCompany/act/DELETECOMPANY';
+// 执行修改商户操作
+export const ACT_SYSTEMCOMPANY_UPDATCOMPANY = 'systemCompany/act/UPDATCOMPANY';
+

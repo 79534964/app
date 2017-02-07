@@ -10,8 +10,9 @@ export default {
       return new Promise((resolve, reject) => {
         if (data.code === rootState.ok) {
           resolve(data);
-        } else if (data.code === rootState.noToken) {
-          Vue.$alert('登陆过期，请您重新登陆', '温馨提示', {
+        } else if (data.code === rootState.noToken || data.code === rootState.noCode) {
+          let str = data.code === rootState.noToken ? '登陆过期，请您重新登陆' : '您权限不足，请您重新登陆';
+          Vue.$alert(str, '温馨提示', {
             callback: () => {
               window.localStorage.clear();
               window.sessionStorage.clear();

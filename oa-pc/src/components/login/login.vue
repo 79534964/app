@@ -102,8 +102,8 @@
         margin-left: 45px
         input
           position: absolute
-          top: -10px
-          left: -14px
+          top: -11.5px
+          left: -16px
     .logo
       margin-top: 60px
       width: 500px

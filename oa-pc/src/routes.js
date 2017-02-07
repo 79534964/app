@@ -18,6 +18,7 @@ import activity from 'components/activity/activity';
 
 import system from 'components/system/system';
 import systemMenu from 'components/system/systemMenu/systemMenu';
+import systemCompany from 'components/system/systemCompany/systemCompany';
 
 export default [
   {
@@ -71,6 +72,9 @@ export default [
       {
         path: 'systemMenu',
         component: systemMenu
+      }, {
+        path: 'systemCompany',
+        component: systemCompany
       }
     ]
   }

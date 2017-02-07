@@ -7,6 +7,7 @@ import login from './modules/login';
 import orderQuery from './modules/orderQuery';
 import dataMachine from './modules/dataMachine';
 import systemMenu from './modules/systemMenu';
+import systemCompany from './modules/systemCompany';
 
 Vue.use(Vuex);
 
@@ -15,14 +16,19 @@ const HOST = 'http://test.wx.mattburg.cn/managerment/';
 const state = {
   ok: '01',
   noToken: '300',
-  logoutUrl: `${HOST}login/logout?`,
-  loginUrl: `${HOST}login?`,
-  orderQueryUrl: `${HOST}order/getorderinfo?`,
-  dataMachineUrl: `${HOST}order/getreport?`,
+  noCode: '600',
+  logoutUrl: `${HOST}login/logout`,
+  loginUrl: `${HOST}login`,
+  orderQueryUrl: `${HOST}order/getorderinfo`,
+  dataMachineUrl: `${HOST}order/getreport`,
   systemMenuUrl: `${HOST}menu`,
-  systemMenuDeleteUrl: `${HOST}menu/delete?`,
-  systemMenuAddUrl: `${HOST}menu/add?`,
-  systemMenuUpdateUrl: `${HOST}menu/update?`
+  systemMenuAddUrl: `${HOST}menu/add`,
+  systemMenuDeleteUrl: `${HOST}menu/delete`,
+  systemMenuUpdateUrl: `${HOST}menu/update`,
+  systemCompanyUrl: `${HOST}company`,
+  systemCompanyAddUrl: `${HOST}company/add`,
+  systemCompanyDeleteUrl: `${HOST}company/delete`,
+  systemCompanyUpdateUrl: `${HOST}company/update`
 };
 
 // 这个store就可以连接到我们的应用中
@@ -35,6 +41,7 @@ export default new Vuex.Store({
     login,
     orderQuery,
     dataMachine,
-    systemMenu
+    systemMenu,
+    systemCompany
   }
 });

@@ -1,5 +1,6 @@
 <template>
   <div class="system-menu-wrapper" v-loading="loading" element-loading-text="拼命加载中...">
+    <el-button class="addbtn" size="large" type="text" @click="addShowFrom()">添加菜单</el-button>
     <el-table :data="menuList" border style="width: 100%">
       <el-table-column label="菜单名称">
         <template scope="scope">
@@ -19,7 +20,7 @@
       <el-table-column label="排序编号">
         <template scope="scope">
           <span>{{ scope.row.sort }}</span>
-          <span v-show="scope.row.icon">( {{ scope.row.icon }} )</span>
+          <span v-show="scope.row.icon !== 'null'">( {{ scope.row.icon }} )</span>
         </template>
       </el-table-column>
       <el-table-column label="路由地址">
@@ -27,22 +28,21 @@
           <span>{{ scope.row.href }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="300">
+      <el-table-column label="操作">
         <template scope="scope">
           <el-button size="small" @click="updateShowFrom(scope.row)">修改</el-button>
           <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button v-if="scope.row.parent === 0" size="small" @click="addShowFrom(scope.row)">
-            添加
-          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-dialog :title="form.title" v-model="showForm">
       <el-form :model="form" :rules="rules" ref="formNode">
-        <el-form-item label="菜单名称( 菜单名称请勿重复 )" prop="name">
+        <el-form-item label="菜单名称" prop="name">
+          <span class="points">(菜单名称请勿重复)</span>
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="父级目录">
+          <span class="points">(本系统显示两层目录,请慎重)</span>
           <el-select v-model="form.parentid" placeholder="请选择父级目录">
             <el-option v-for="item in selectList" :label="item.key" :value="item.value"
                        v-show="form.id !== item.value"></el-option>
@@ -54,7 +54,8 @@
         <el-form-item label="分组菜单名称" prop="icon" v-show="form.parentid !== 0">
           <el-input v-model="form.icon"></el-input>
         </el-form-item>
-        <el-form-item label="路由地址( 非开发人员请勿修改 )" prop="href">
+        <el-form-item label="路由地址" prop="href">
+          <span class="points">(非开发人员请勿修改)</span>
           <el-input v-model="form.href"></el-input>
         </el-form-item>
       </el-form>
@@ -112,13 +113,16 @@
     },
     methods: {
       handleDelete(row) {
-        this.$confirm('此操作将永久删除该目录, 是否继续?', '提示', {type: 'warning'}).then(() => {
+        this.$confirm(`是否删除 (${row.name}) 目录`, '提示', {type: 'warning'}).then(() => {
           this.$store.dispatch('systemMenu/act/DELETEMENU', {id: row.id, Vue: this});
         }, () => {
-          this.$message({type: 'info', message: '已取消删除操作'});
+          this.$message({type: 'info', message: '删除操作已取消'});
         });
       },
       handleForm(formNode) {
+        if (this.form.parentid === 0) {
+          this.form.icon = 'null';
+        }
         this.$refs[formNode].validate((valid) => {
           if (valid) {
             this.showForm = false;
@@ -147,15 +151,15 @@
           }
         });
       },
-      addShowFrom(row) {
+      addShowFrom() {
         this.showForm = true;
         this.form.type = 'add';
         this.form.id = '';
-        this.form.parentid = row.id;
+        this.form.parentid = 0;
         this.form.name = '';
         this.form.sort = 1;
         this.form.href = '';
-        this.form.icon = row.icon;
+        this.form.icon = '';
         this.form.title = '添加菜单';
       },
       updateShowFrom(row) {
@@ -167,7 +171,7 @@
         this.form.sort = row.sort;
         this.form.href = row.href;
         this.form.icon = row.icon;
-        this.form.title = '编辑菜单';
+        this.form.title = '修改菜单';
       }
     }
   };
@@ -175,10 +179,14 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .system-menu-wrapper
+    .addbtn
+      padding: 11px 16px
+      span
+        font-weight: 600
     .left
       margin-left: 30px
     .el-dialog--small
-      width: 500px
+      width: 600px
       .el-select
         width: 100%
 </style>
