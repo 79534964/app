@@ -56,15 +56,23 @@
 	var sugar=__webpack_require__(10);
 	//最后一步冲泡
 	var submit=__webpack_require__(11);
+	//冲泡请求
+	var brewAjax=__webpack_require__(12);
+
 	sucess=function(json,type){
 	    var data=json;
 	    data.productEntity.sugarTaste=data.productEntity.sugarTaste.split(",");
 	    brewObject.init(data);
 	    $(document).ready(function(){
-	       header(data.productEntity);
-	       machine(data,type);
-	       sugar(data.productEntity.sugarTaste);
-	       submit();
+	       if(type=="1"){
+	          $(".container").css({'opacity':'1'});
+	          header(data.productEntity);
+	          machine(data,type);
+	          sugar(data.productEntity.sugarTaste);
+	          submit();
+	       }else{
+	          brewAjax();
+	       }
 	    });
 	}
 
@@ -289,7 +297,11 @@
 	    this.setType(data.type);
 	    this.setOrdernumber(data.ordernumber);
 	    this.setOrderPrice(data.orderPrice);
-	    this.setSugarTaste(data.productEntity.sugarTaste[0]);
+	    if(data.productEntity.sugarTaste.length>1){
+	        this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	    }else{
+	        this.setSugarTaste(data.productEntity.sugarTaste[0]);
+	    }
 	}
 	module.exports=new brewObject();
 
@@ -420,7 +432,7 @@
 	                        "<div class='content'>"+
 	                            "<p class='status'>"+machineData.getStatus(e.status)+"</p>"+
 	                            "<div class='icon'>"+
-	                                "<p><img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
+	                                "<p><img src='http://test.wx.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
 	                                "<span>距您"+e.distence+"m</span>"+
 	                            "</div>"+
 	                            "<span class='name'>"+machineData.getMachineIco(e.machineIco)+"—"+e.machineName+"</span>"+
@@ -579,8 +591,8 @@
 	    if(data.length==1){
 	        boxNode.html("<li sugarTaste='"+data[0]+"' class='highcur one'>标准</li>");
 	    }else{
-	        boxNode.html("<li sugarTaste='"+data[0]+"' name='none' class='nonecur'>无糖</li>"+
-	                     "<li sugarTaste='"+data[1]+"' name='low' class='low'>低糖</li>"+
+	        boxNode.html("<li sugarTaste='"+data[0]+"' name='none' class='none'>无糖</li>"+
+	                     "<li sugarTaste='"+data[1]+"' name='low' class='lowcur'>低糖</li>"+
 	                     "<li sugarTaste='"+data[2]+"' name='high' class='high'>高糖</li>");
 	    }   
 	    boxNode.children().on("tap",function(){
@@ -605,8 +617,8 @@
 
 	//loading组件
 	var loading=__webpack_require__(1);
-	//全局数据对象
-	var brewObject=__webpack_require__(4);
+	//冲泡请求
+	var brewAjax=__webpack_require__(12);
 
 	module.exports=function(){
 	  var flag=true;
@@ -614,50 +626,63 @@
 	    if(flag){
 	      flag=false;
 	      loading(true);
-	      var brewUrl="http://org.oa.mattburg.cn/jeewxmb/productController.do?sendBrewCommad";
-	      $.ajax({
-	          type: 'POST',
-	          url: brewUrl,
-	          dataType: "json",
-	          data: {
-	            machineId:brewObject.getMachineId(),
-	            ordernumber:brewObject.getOrdernumber(),
-	            orderPrice:brewObject.getOrderPrice(),
-	            sugarTaste:brewObject.getSugarTaste(),
-	            milkTaste:brewObject.getMilkTaste(),
-	            type:brewObject.getType()
-	          },
-	          success: function(data){
-	            if(data.order_voucher_id[0]==0){
-	                 loading(false);
-	                 alert("冲泡失败,请重试!");
-	            }else{
-	                var orderId=data.order_voucher_id[0];
-	                var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?sendToBrewCommad";
-	                $.ajax({
-	                  type: 'POST',
-	                  url: url,
-	                  dataType: "json",
-	                  data: {
-	                    machineId:brewObject.getMachineId(),
-	                    order_voucher_id:orderId+""
-	                  },
-	                  success: function(data){
-	                    if(data.jSONObject.result_code==0){
-	                        loading(false);
-	                        $(".finish").addClass("finish-block");
-	                    }else{
-	                        alert(data.jSONObject.result_msg);
-	                        WeixinJSBridge.call('closeWindow');
-	                    }
-	                  }
-	                });
-	            }
-	        }
-	      });
+	      brewAjax();
 	    }
 	   });
 	 }
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//全局数据对象
+	var brewObject=__webpack_require__(4);
+	//loading组件
+	var loading=__webpack_require__(1);
+
+	module.exports=function(){
+	  var brewUrl="http://org.oa.mattburg.cn/jeewxmb/productController.do?sendBrewCommad";
+	  $.ajax({
+	      type: 'POST',
+	      url: brewUrl,
+	      dataType: "json",
+	      data: {
+	        machineId:brewObject.getMachineId(),
+	        ordernumber:brewObject.getOrdernumber(),
+	        orderPrice:brewObject.getOrderPrice(),
+	        sugarTaste:brewObject.getSugarTaste(),
+	        milkTaste:brewObject.getMilkTaste(),
+	        type:brewObject.getType()
+	      },
+	      success: function(data){
+	        if(data.order_voucher_id[0]==0){
+	             loading(false);
+	             alert("冲泡失败,请重试!");
+	        }else{
+	            var orderId=data.order_voucher_id[0];
+	            var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?sendToBrewCommad";
+	            $.ajax({
+	              type: 'POST',
+	              url: url,
+	              dataType: "json",
+	              data: {
+	                machineId:brewObject.getMachineId(),
+	                order_voucher_id:orderId+""
+	              },
+	              success: function(data){
+	                if(data.jSONObject.result_code==0){
+	                    loading(false);
+	                    $(".finish").addClass("finish-block");
+	                }else{
+	                    alert(data.jSONObject.result_msg);
+	                    WeixinJSBridge.call('closeWindow');
+	                }
+	              }
+	            });
+	        }
+	    }
+	  });
+	}
 
 /***/ }
 /******/ ]);

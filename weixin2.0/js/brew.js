@@ -10,14 +10,22 @@ var brewObject=require('./brew/dataObj');
 var sugar=require('./brew/sugar');
 //最后一步冲泡
 var submit=require('./brew/submit');
+//冲泡请求
+var brewAjax=require('./brew/brewAjax');
+
 sucess=function(json,type){
     var data=json;
     data.productEntity.sugarTaste=data.productEntity.sugarTaste.split(",");
     brewObject.init(data);
     $(document).ready(function(){
-       header(data.productEntity);
-       machine(data,type);
-       sugar(data.productEntity.sugarTaste);
-       submit();
+       if(type=="1"){
+          $(".container").css({'opacity':'1'});
+          header(data.productEntity);
+          machine(data,type);
+          sugar(data.productEntity.sugarTaste);
+          submit();
+       }else{
+          brewAjax();
+       }
     });
 }
