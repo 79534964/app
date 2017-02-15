@@ -670,12 +670,10 @@
 	                order_voucher_id:orderId+""
 	              },
 	              success: function(data){
-	                if(data.jSONObject.result_code==0){
-	                    loading(false);
-	                    $(".finish").addClass("finish-block");
-	                }else{
-	                    alert(data.jSONObject.result_msg);
-	                    WeixinJSBridge.call('closeWindow');
+	                loading(false);
+	                $(".finish").addClass("finish-block");
+	                if(data.jSONObject.result_code!=0){
+	                  alert(data.jSONObject.result_msg);
 	                }
 	              }
 	            });

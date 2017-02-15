@@ -56,15 +56,23 @@
 	var sugar=__webpack_require__(10);
 	//最后一步冲泡
 	var submit=__webpack_require__(11);
-	sucess=function(orderform,orderdetaile,product,machine){
+	//最后一步提交的ajax
+	var brewAjax=__webpack_require__(12);
+
+	sucess=function(orderform,orderdetaile,product,machine,ordertype){
 	    var product=product;
 	    product.sugar_taste=product.sugar_taste.split(",");
 	    brewObject.init(orderform,orderdetaile,product);
-	    header(product);
-	    addMachine(machine);
-	    sugar(product.sugar_taste);
-	    submit();
 	    loading(false);
+	    if(ordertype=="1"){
+	      $(".container").css({'opacity':'1'});
+	      header(product);
+	      addMachine(machine);
+	      sugar(product.sugar_taste);
+	      submit();
+	    }else{
+	      brewAjax();
+	    }
 	}
 
 /***/ },
@@ -283,7 +291,11 @@
 	    this.setOrderPrice(orderform.order_price);
 	    this.setOrdernumber(orderdetaile.order_form_id);
 	    this.setMilkTaste(product.milk_taste);
-	    this.setSugarTaste(product.sugar_taste[0]);
+	    if(product.sugar_taste.length>1){
+	        this.setSugarTaste(product.sugar_taste[1]);
+	    }else{
+	        this.setSugarTaste(product.sugar_taste[0]);
+	    }
 	}
 	module.exports=new brewObject();
 
@@ -583,8 +595,8 @@
 	    if(data.length==1){
 	        boxNode.html("<li sugarTaste='"+data[0]+"' class='highcur one'>标准</li>");
 	    }else{
-	        boxNode.html("<li sugarTaste='"+data[0]+"' name='none' class='nonecur'>无糖</li>"+
-	                     "<li sugarTaste='"+data[1]+"' name='low' class='low'>低糖</li>"+
+	        boxNode.html("<li sugarTaste='"+data[0]+"' name='none' class='none'>无糖</li>"+
+	                     "<li sugarTaste='"+data[1]+"' name='low' class='lowcur'>低糖</li>"+
 	                     "<li sugarTaste='"+data[2]+"' name='high' class='high'>高糖</li>");
 	    }   
 	    boxNode.children().on("tap",function(){
@@ -611,38 +623,49 @@
 	var loading=__webpack_require__(1);
 	//全局数据对象
 	var brewObject=__webpack_require__(4);
+	//最后一步提交的ajax
+	var brewAjax=__webpack_require__(12);
 
 	module.exports=function(){
 	  var flag=true;
 	  $("#payBtn").on("tap",function(){
-	    console.log(brewObject);
 	    if(flag){
 	      flag=false;
 	      loading(true);
-	      $.ajax({
-	          type: 'POST',
-	          url: "http://"+window.location.host+"/coffeealipay/brew",
-	          dataType: "json",
-	          data: {
-	            machineid:brewObject.getMachineId(),
-	            orderfromid:brewObject.getOrdernumber(),
-	            sugartaste:brewObject.getSugarTaste(),
-	            milktaste:brewObject.getMilkTaste(),
-	          },
-	          success: function(data){
-	            console.log(data);
-	            if(data.jSONObject.result_code==0){
-	                loading(false);
-	                $(".finish").addClass("finish-block");
-	            }else{
-	                alert(data.jSONObject.result_msg);
-	                AlipayJSBridge.call('closeWebview');
-	            }
-	          }
-	      });
+	      brewAjax();
 	    }
-	   });
-	 }
+	  });
+	}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//全局数据对象
+	var brewObject=__webpack_require__(4);
+	//loading组件
+	var loading=__webpack_require__(1);
+
+	module.exports=function(){
+	  $.ajax({
+	      type: 'POST',
+	      url: "http://"+window.location.host+"/coffeealipay/brew",
+	      dataType: "json",
+	      data: {
+	        machineid:brewObject.getMachineId(),
+	        orderfromid:brewObject.getOrdernumber(),
+	        sugartaste:brewObject.getSugarTaste(),
+	        milktaste:brewObject.getMilkTaste(),
+	      },
+	      success: function(data){
+	        loading(false);
+	        $(".finish").addClass("finish-block");
+	        if(data.jSONObject.result_code!=0){
+	          alert(data.jSONObject.result_msg);
+	        }
+	      }
+	  });
+	}
 
 /***/ }
 /******/ ]);

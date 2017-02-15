@@ -41,7 +41,7 @@ function brew(data){
     var alreadyBrewHtml="";
     $.each(data,function(i,e){
         imgUrl="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.product_id+".png";
-        url="http://"+window.location.host+"/coffeealipay/brew/getbrewinfo?ordernumber="+e.ordernumber;
+        url="http://"+window.location.host+"/coffeealipay/brew/getbrewinfo?ordernumber="+e.ordernumber+"&ordertype=1&uid="+e.user_id;
         if(e.status=="20"||e.status=="30"){
             brewHtml+="<div class='product-container swiper-slide2'>"+
                 "<div class='header'>"+"订单编号:"+e.ordernumber+"</div>"+

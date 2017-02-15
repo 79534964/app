@@ -67,6 +67,10 @@ brewObject.prototype.init=function(orderform,orderdetaile,product){
     this.setOrderPrice(orderform.order_price);
     this.setOrdernumber(orderdetaile.order_form_id);
     this.setMilkTaste(product.milk_taste);
-    this.setSugarTaste(product.sugar_taste[0]);
+    if(product.sugar_taste.length>1){
+        this.setSugarTaste(product.sugar_taste[1]);
+    }else{
+        this.setSugarTaste(product.sugar_taste[0]);
+    }
 }
 module.exports=new brewObject();

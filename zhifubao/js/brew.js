@@ -10,13 +10,21 @@ var brewObject=require('./brew/dataObj');
 var sugar=require('./brew/sugar');
 //最后一步冲泡
 var submit=require('./brew/submit');
-sucess=function(orderform,orderdetaile,product,machine){
+//最后一步提交的ajax
+var brewAjax=require('./brew/brewAjax');
+
+sucess=function(orderform,orderdetaile,product,machine,ordertype){
     var product=product;
     product.sugar_taste=product.sugar_taste.split(",");
     brewObject.init(orderform,orderdetaile,product);
-    header(product);
-    addMachine(machine);
-    sugar(product.sugar_taste);
-    submit();
     loading(false);
+    if(ordertype=="1"){
+      $(".container").css({'opacity':'1'});
+      header(product);
+      addMachine(machine);
+      sugar(product.sugar_taste);
+      submit();
+    }else{
+      brewAjax();
+    }
 }

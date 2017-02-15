@@ -51,7 +51,7 @@
     <img class="finish-ani" src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/finish-img1.png"/>
     <img src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/finish-img2.png"/>
     <span class="text1">冲泡遇到问题</span>
-    <a class="server" href="javascript:location.replace('http://org.oa.mattburg.cn/jeewxmb/webpage/extend/server.html');"><img src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/finish-img3.png"/></a>
+    <a class="server" href="tel:4008210356"><img src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/finish-img3.png"/></a>
     <div class="finish-bottom">
         <a  href="javascript:WeixinJSBridge.call('closeWindow');" class="btn">
             <span>关闭</span>
