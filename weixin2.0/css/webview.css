@@ -216,10 +216,9 @@ footer {
     margin-right: 11%; }
 
 body {
-  padding-bottom: 10%;
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 8%; }
   body article {
-    width: 95%;
     padding-left: 5%; }
     body article section {
       position: relative;
@@ -275,6 +274,9 @@ body {
         body article section > a:nth-of-type(2) img {
           width: 0.4rem;
           vertical-align: bottom; }
+
+footer {
+  position: fixed !important; }
 
 @-webkit-keyframes fadeInDown {
   0% {
