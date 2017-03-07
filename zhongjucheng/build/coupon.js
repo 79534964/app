@@ -71,7 +71,7 @@
 	    this.init();
 	}
 	load.prototype.init=function(){
-	    this.container.setAttribute("style","position:fixed;width:100%;height:100%;z-index:100;top:0;max-width:750px");
+	    this.container.setAttribute("style","position:absolute;width:100%;height:100%;z-index:100;top:0;max-width:750px");
 	    this.canvBox.setAttribute("style","position:absolute;top:3.75rem;left:50%;width:1.4rem;height:1.4rem;margin-left:-0.7rem;background-color:rgba(0,0,0,.7);border-radius: 10%;");
 	    this.canv.setAttribute("style","position:absolute;top:2.95rem;left:50%;width:5rem;margin-left:-1.49rem;z-index:10;");
 	    this.canv.setAttribute("id","loading");
