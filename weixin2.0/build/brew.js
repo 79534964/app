@@ -298,7 +298,11 @@
 	    this.setOrdernumber(data.ordernumber);
 	    this.setOrderPrice(data.orderPrice);
 	    if(data.productEntity.sugarTaste.length>1){
-	        this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	        if(data.productEntity.productId==1 || data.productEntity.productId==2){
+	            this.setSugarTaste(data.productEntity.sugarTaste[0]);
+	        }else{
+	            this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	        }
 	    }else{
 	        this.setSugarTaste(data.productEntity.sugarTaste[0]);
 	    }
