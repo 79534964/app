@@ -43,4 +43,3 @@ exports.setData=function(e,flag){
           "</div>";
      return html;
 }
-exports.getPoints

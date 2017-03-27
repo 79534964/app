@@ -301,6 +301,9 @@ body {
   .header-ani li:nth-child(1) span {
     -webkit-animation: bounceIn 1s 3.2s forwards;
             animation: bounceIn 1s 3.2s forwards; }
+  .header-ani li:nth-child(1) p:nth-child(7) {
+    -webkit-animation: rollIn 1s 2.4s forwards;
+            animation: rollIn 1s 2.4s forwards; }
 
 .header-ani li:nth-child(2) {
   -webkit-animation: zoomInDown 1s 1s forwards;
@@ -415,6 +418,25 @@ body {
   .header-ani li:nth-child(7) > div:nth-of-type(3) {
     -webkit-animation: zoomIn 0.5s 8.5s forwards;
             animation: zoomIn 0.5s 8.5s forwards; }
+
+.header-ani li:nth-child(8) {
+  -webkit-animation: zoomInDown 1s 4s forwards;
+          animation: zoomInDown 1s 4s forwards; }
+  .header-ani li:nth-child(8) i {
+    -webkit-animation: zoomIn 0.5s 6.4s forwards;
+            animation: zoomIn 0.5s 6.4s forwards; }
+  .header-ani li:nth-child(8) img {
+    -webkit-animation: fadeInUp 1s 10s forwards;
+            animation: fadeInUp 1s 10s forwards; }
+  .header-ani li:nth-child(8) > div:nth-of-type(1) {
+    -webkit-animation: zoomIn 0.5s 8.5s forwards;
+            animation: zoomIn 0.5s 8.5s forwards; }
+  .header-ani li:nth-child(8) > div:nth-of-type(2) {
+    -webkit-animation: zoomIn 0.5s 9s forwards;
+            animation: zoomIn 0.5s 9s forwards; }
+  .header-ani li:nth-child(8) > div:nth-of-type(3) {
+    -webkit-animation: zoomIn 0.5s 9.5s forwards;
+            animation: zoomIn 0.5s 9.5s forwards; }
 
 .img-ani {
   -webkit-animation: changeImg 1s forwards !important;
