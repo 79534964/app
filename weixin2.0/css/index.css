@@ -651,6 +651,14 @@ footer {
 body {
   background-color: #f0eeec; }
 
+body, html {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent; }
+
 header {
   box-shadow: 0 0.03rem 0.1rem #696969;
   position: absolute;

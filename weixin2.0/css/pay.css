@@ -962,6 +962,14 @@ html {
   margin: 0 auto;
   max-width: 750px; }
 
+body, html {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent; }
+
 body {
   position: relative;
   width: 100%;

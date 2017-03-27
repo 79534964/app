@@ -648,6 +648,14 @@ footer {
     float: right;
     margin-right: 11%; }
 
+body, html {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent; }
+
 body {
   background-color: #f0eeec; }
 
@@ -764,6 +772,29 @@ header {
   width: 100%;
   text-align: center; }
 
+.content-slide .convert .input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 7px 20px 0px 20px;
+  height: 0.7rem; }
+  .content-slide .convert .input input {
+    width: 80%;
+    font-size: 0.25rem;
+    padding-left: 2%;
+    border: 1px solid #cbcbcb;
+    outline: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent; }
+  .content-slide .convert .input .btn {
+    text-align: center;
+    font-size: 0.27rem;
+    background-color: #065ba2;
+    line-height: 0.7rem;
+    color: #fff;
+    width: 20%; }
+
 .content-slide .product-container {
   width: 100%; }
   .content-slide .product-container .img-container {
@@ -802,6 +833,13 @@ header {
       left: 24%;
       bottom: 48%;
       color: #fff; }
+    .content-slide .product-container .img-container .day {
+      bottom: 10px;
+      top: inherit;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      margin-left: 0; }
 
 @-webkit-keyframes flipInX {
   0% {
