@@ -4,12 +4,8 @@ var loading=require('./loading');
 var brewAjax=require('./brewAjax');
 
 module.exports=function(){
-  var flag=true;
   $("#payBtn").on("tap",function(){
-    if(flag){
-      flag=false;
       loading(true);
       brewAjax();
-    }
    });
  }
