@@ -34,9 +34,10 @@ module.exports=function(){
               },
               success: function(data){
                 loading(false);
-                $(".finish").addClass("finish-block");
                 if(data.jSONObject.result_code!=0){
                   alert(data.jSONObject.result_msg);
+                }else{
+                  $(".finish").addClass("finish-block");
                 }
               }
             });

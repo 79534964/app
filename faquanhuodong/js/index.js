@@ -9,7 +9,6 @@ $(document).ready(function () {
         init: function (json) {
             data.countInit(json);
             data.luckyInit(json);
-            data.periodInit(json);
             data.options.submitNode.on('tap', function () {
                 if (json.response.code == 100) {
                     ani.submitOk();
@@ -82,33 +81,50 @@ $(document).ready(function () {
             data.options.countNodes.find('i').css({'width': (data.options.countNodes.find('.box').width() * (json.totalcoupon - json.remaincounpon) / (json.totalcoupon * 1)) + 'px'});
         },
         luckyInit: function (json) {
-            var imgSrc;
-            var html = "";
-            $.each(json.coupongrouprecordlist, function (i, e) {
-                imgSrc = e.userheadimgurl!="" ? e.userheadimgurl : 'webapp/images/head.png';;
-                html += '<div class="clearfix swiper-slide">' +
-                    '<img src="' + imgSrc + '"/>' +
-                    '<div>' +
-                    '<p>' + e.usernickname + '</p>' +
-                    '<p>' + e.couponname + '</p>' +
-                    '<span>' + getTimeStr((new Date().getTime() - new Date(e.createtime.replace(/-/g, "/")).getTime()) / 1000) + '前</span>' +
-                    '</div>' +
-                    '</div>';
-            });
-            data.options.luckyNdes.find('.swiper-wrapper').html(html);
-            function getTimeStr(seconds) {
-                if (seconds > 60 * 60 * 24) {
-                    return parseInt(seconds / (60 * 60 * 24)) + '天';
-                } else if (seconds > 60 * 60) {
-                    return parseInt(seconds / 3600) + '小时';
-                } else if (seconds > 60) {
-                    return parseInt(seconds / 60) + '分钟';
-                } else {
-                    return parseInt(seconds) + '秒';
+            $.ajax({
+                url: 'http://' + window.location.host + '/activity/share/getgrouprecordlist?',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    groupId: json.coupongroup.groupid
+                },
+                success: function (data1) {
+                    var imgSrc;
+                    var html = "";
+                    $.each(data1.content, function (i, e) {
+                        imgSrc = e.userheadimgurl != "" ? e.userheadimgurl : 'webapp/images/head.png';
+                        ;
+                        html += '<div class="clearfix swiper-slide">' +
+                            '<img src="' + imgSrc + '"/>' +
+                            '<div>' +
+                            '<p>' + e.usernickname + '</p>' +
+                            '<p>' + e.couponname + '</p>' +
+                            '<span>' + getTimeStr((new Date().getTime() - new Date(e.createtime.replace(/-/g, "/")).getTime()) / 1000) + '前</span>' +
+                            '</div>' +
+                            '</div>';
+                    });
+
+                    data.options.luckyNdes.find('.swiper-wrapper').html(html);
+
+                    function getTimeStr(seconds) {
+                        if (seconds > 60 * 60 * 24) {
+                            return parseInt(seconds / (60 * 60 * 24)) + '天';
+                        } else if (seconds > 60 * 60) {
+                            return parseInt(seconds / 3600) + '小时';
+                        } else if (seconds > 60) {
+                            return parseInt(seconds / 60) + '分钟';
+                        } else {
+                            return parseInt(seconds) + '秒';
+                        }
+                    }
+
+                    data.periodInit(data1);
+                    ani.swiperInit();
+                    loadings(false);
                 }
-            }
+            });
         },
-        periodInit: function (json) {
+        periodInit: function (data1) {
             var imgSrc;
             var html = '<div class="header clearfix">' +
                 '<p>本期参与人</p>' +
@@ -116,7 +132,7 @@ $(document).ready(function () {
                 '</div>';
             html += '<div class="content">' +
                 '<ul>';
-            $.each(json.coupongrouprecordlist, function (i, e) {
+            $.each(data1.content, function (i, e) {
                 imgSrc = e.userheadimgurl ? e.userheadimgurl : 'webapp/images/head.png';
                 html += '<li class="clearfix">' +
                     '<img src="' + imgSrc + '"/>' +
@@ -178,7 +194,7 @@ $(document).ready(function () {
                 autoplay: 2000,
                 autoplayDisableOnInteraction: false
             });
-            window.onload=function(){
+            window.onload = function () {
                 new iScroll('scroller');
             };
             if (json.response.code == 01) {
@@ -198,6 +214,4 @@ $(document).ready(function () {
             }
         }
     }
-    ani.swiperInit();
-    loadings(false);
 });
