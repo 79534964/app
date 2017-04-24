@@ -631,13 +631,9 @@
 	var brewAjax=__webpack_require__(12);
 
 	module.exports=function(){
-	  var flag=true;
 	  $("#payBtn").on("tap",function(){
-	    if(flag){
-	      flag=false;
 	      loading(true);
 	      brewAjax();
-	    }
 	  });
 	}
 
@@ -663,9 +659,10 @@
 	      },
 	      success: function(data){
 	        loading(false);
-	        $(".finish").addClass("finish-block");
 	        if(data.jSONObject.result_code!=0){
 	          alert(data.jSONObject.result_msg);
+	        }else{
+	          $(".finish").addClass("finish-block");
 	        }
 	      }
 	  });
