@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/css/coupon3.css">
     <script src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/build/rem.js"></script>
     <script type="text/javascript">
-        eval('var couponVoList=${couponVoList}');
-        eval('var couponOffList=${couponOffList}');
-        eval('var openId="${openId}"');
+        var couponVoList= ${couponVoList};
+        var couponOffList= ${couponOffList};
+        var openId= '${openId}';
     </script>
 </head>
 <body>

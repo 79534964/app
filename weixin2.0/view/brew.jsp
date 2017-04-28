@@ -25,8 +25,8 @@
     <script src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/build/rem.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript">
-    eval('var orderType="${orderType}"');
-    eval('var json=${dataStr}');
+    var orderType='${orderType}';
+    var json=${dataStr};
     if(orderType=="normalOrder"){
         wx.config({
             debug: false,

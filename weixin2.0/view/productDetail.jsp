@@ -21,7 +21,7 @@
               'getLocation'
             ]
         });
-        eval('var json=${datestr}');
+        var json=${datestr};
         window.onload=function(){sucess(json)};
     </script>
 </head>

@@ -7,7 +7,6 @@ var sucess=require('./order/sucess');
 //没有图片时替补图片
 var takePlace=require('./order/takePlace');
 order=function(data){
-    console.log(data);
     sucess(data.orderVoListNotPay,data.notBrewAndBrewList);
     takePlace();
     swiperEffect();

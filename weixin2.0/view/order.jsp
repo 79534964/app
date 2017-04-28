@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/css/order.css">
     <script src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/build/rem.js"></script>
     <script type="text/javascript">
-        eval('var orderVoListNotPay=${orderVoListNotPay}');
-        eval('var notBrewAndBrewList=${notBrewAndBrewList}');
+        var orderVoListNotPay=${orderVoListNotPay};
+        var notBrewAndBrewList=${notBrewAndBrewList};
     </script>
 </head>
 <body>
