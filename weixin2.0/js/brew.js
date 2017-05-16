@@ -18,14 +18,10 @@ sucess=function(json,type){
     data.productEntity.sugarTaste=data.productEntity.sugarTaste.split(",");
     brewObject.init(data);
     $(document).ready(function(){
-       if(type=="1"){
-          $(".container").css({'opacity':'1'});
-          header(data.productEntity);
-          machine(data,type);
-          sugar(data.productEntity.sugarTaste);
-          submit();
-       }else{
-          brewAjax();
-       }
+        header(data.productEntity);
+        machine(data,type);
+        sugar(data.productEntity.sugarTaste);
+        submit();
+        loading(false);
     });
 }

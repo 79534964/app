@@ -660,6 +660,7 @@
 	      success: function(data){
 	        loading(false);
 	        if(data.jSONObject.result_code!=0){
+	          $(".container").css({'opacity':'1'});
 	          alert(data.jSONObject.result_msg);
 	        }else{
 	          $(".finish").addClass("finish-block");

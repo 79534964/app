@@ -64,15 +64,11 @@
 	    data.productEntity.sugarTaste=data.productEntity.sugarTaste.split(",");
 	    brewObject.init(data);
 	    $(document).ready(function(){
-	       if(type=="1"){
-	          $(".container").css({'opacity':'1'});
-	          header(data.productEntity);
-	          machine(data,type);
-	          sugar(data.productEntity.sugarTaste);
-	          submit();
-	       }else{
-	          brewAjax();
-	       }
+	        header(data.productEntity);
+	        machine(data,type);
+	        sugar(data.productEntity.sugarTaste);
+	        submit();
+	        loading(false);
 	    });
 	}
 
@@ -297,15 +293,7 @@
 	    this.setType(data.type);
 	    this.setOrdernumber(data.ordernumber);
 	    this.setOrderPrice(data.orderPrice);
-	    if(data.productEntity.sugarTaste.length>1){
-	        if(data.productEntity.productId==1 || data.productEntity.productId==2){
-	            this.setSugarTaste(data.productEntity.sugarTaste[0]);
-	        }else{
-	            this.setSugarTaste(data.productEntity.sugarTaste[1]);
-	        }
-	    }else{
-	        this.setSugarTaste(data.productEntity.sugarTaste[0]);
-	    }
+	    this.setSugarTaste(data.productEntity.sugarTaste[0]);
 	}
 	module.exports=new brewObject();
 
