@@ -63,16 +63,11 @@
 	    var product=product;
 	    product.sugar_taste=product.sugar_taste.split(",");
 	    brewObject.init(orderform,orderdetaile,product);
+	    header(product);
+	    addMachine(machine);
+	    sugar(product.sugar_taste);
+	    submit();
 	    loading(false);
-	    if(ordertype=="1"){
-	      $(".container").css({'opacity':'1'});
-	      header(product);
-	      addMachine(machine);
-	      sugar(product.sugar_taste);
-	      submit();
-	    }else{
-	      brewAjax();
-	    }
 	}
 
 /***/ },
@@ -292,11 +287,7 @@
 	    this.setOrdernumber(orderdetaile.order_form_id);
 	    this.setMilkTaste(product.milk_taste);
 	    if(product.sugar_taste.length>1){
-	        if(product.product_id==1 || product.product_id==2){
-	            this.setSugarTaste(product.sugar_taste[0]);
-	        }else{
-	            this.setSugarTaste(product.sugar_taste[1]);
-	        }
+        	this.setSugarTaste(product.sugar_taste[1]);
 	    }else{
 	        this.setSugarTaste(product.sugar_taste[0]);
 	    }
@@ -660,7 +651,6 @@
 	      success: function(data){
 	        loading(false);
 	        if(data.jSONObject.result_code!=0){
-	          $(".container").css({'opacity':'1'});
 	          alert(data.jSONObject.result_msg);
 	        }else{
 	          $(".finish").addClass("finish-block");

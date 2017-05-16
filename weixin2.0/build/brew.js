@@ -293,7 +293,11 @@
 	    this.setType(data.type);
 	    this.setOrdernumber(data.ordernumber);
 	    this.setOrderPrice(data.orderPrice);
-	    this.setSugarTaste(data.productEntity.sugarTaste[0]);
+	    if(data.productEntity.sugarTaste.length>0){
+	    	this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	    }else{
+	    	this.setSugarTaste(data.productEntity.sugarTaste[0]);
+	    }
 	}
 	module.exports=new brewObject();
 

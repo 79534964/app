@@ -1138,7 +1138,6 @@ body {
     height: 100%; }
   body .container {
     position: absolute;
-    opacity: 0;
     height: 100%;
     width: 100%; }
     body .container .points {
