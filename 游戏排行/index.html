@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏排行榜</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel=stylesheet type=text/css href=css/reset.css>
+    <style>
+        html, body {
+            min-width: 320px;
+            max-width: 750px;
+            margin: 0 auto;
+            height: 100%;
+        }
+    </style>
+    <script src="js/rem.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <transition name="fade">
+        <div class="rule" style="display: none" v-show="ruleFlag" @touchmove.prevent @click.stop="closeRule($event)">
+            <div class="img-warpper">
+                <img class="img" src="images/rule1.png">
+                <img class="btn" src="images/close.png" @click.stop="closeRule($event)">
+            </div>
+        </div>
+    </transition>
+    <div class="header">
+        <img class="banner" src="images/banner.png"/>
+        <img class="btn" @click="showRule()" src="images/btn.png"/>
+    </div>
+    <div class="content">
+        <div class="top">
+            <span class="item1 item">排名</span>
+            <span class="item2 item">玩家</span>
+            <span class="item3 item">游戏成绩</span>
+            <span class="item4 item">游戏奖励</span>
+        </div>
+        <div class="list" v-for="(item,index) in list" v-if="list.length > 0">
+            <span class="item1 data">
+                <img :src="`images/${index}.png`"/>
+            </span>
+            <span class="item2 data data2" v-html="item.nickName"></span>
+            <span class="item3 data data3">
+                <p v-html="`完成关数: ${item.grade}`"></p>
+                <p v-html="`游戏用时: ${item.time}s`"></p>
+            </span>
+            <span class="item4 data data4" v-if="item.remark" v-html="item.remark">
+            </span>
+        </div>
+    </div>
+</div>
+<script src="js/vue.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/http.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                ruleFlag: false,
+                list: []
+            };
+        },
+        methods: {
+            showRule(){
+                this.ruleFlag = true;
+            },
+            closeRule(event){
+                if (event.srcElement._prevClass !== 'img') {
+                    this.ruleFlag = false;
+                }
+            }
+        },
+        created() {
+            this.$http({
+                method: 'POST',
+                emulateJSON: true,
+                url: 'http://zjc.mattburg.cn/activity/game/getgameinfoall',
+                body: {
+                    number: 10
+                }
+            }).then(function (res) {
+                this.list = res.body.content;
+            });
+        },
+
+    });
+</script>
+</body>
+</html>

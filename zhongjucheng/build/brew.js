@@ -292,7 +292,7 @@
 	    this.setType(data.type);
 	    this.setOrdernumber(data.ordernumber);
 	    this.setOrderPrice(data.orderPrice);
-	    if(data.productEntity.sugarTaste.length>0){
+	    if(data.productEntity.sugarTaste.length>1){
         	this.setSugarTaste(data.productEntity.sugarTaste[1]);
 	    }else{
 	        this.setSugarTaste(data.productEntity.sugarTaste[0]);
@@ -651,12 +651,11 @@
 	                    order_voucher_id:orderId+""
 	                  },
 	                  success: function(data){
+              	        loading(false);
 	                    if(data.jSONObject.result_code==0){
-	                        loading(false);
 	                        $(".finish").addClass("finish-block");
 	                    }else{
 	                        alert(data.jSONObject.result_msg);
-	                        WeixinJSBridge.call('closeWindow');
 	                    }
 	                  }
 	                });

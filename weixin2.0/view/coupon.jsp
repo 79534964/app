@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title>优惠劵</title>
-    <link rel="stylesheet" href="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/css/coupon3.css">
+    <link rel="stylesheet" href="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/css/coupon.css">
     <script src="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/build/rem.js"></script>
     <script type="text/javascript">
         var couponVoList= ${couponVoList};

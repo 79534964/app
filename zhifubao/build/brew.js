@@ -287,7 +287,7 @@
 	    this.setOrdernumber(orderdetaile.order_form_id);
 	    this.setMilkTaste(product.milk_taste);
 	    if(product.sugar_taste.length>1){
-        	this.setSugarTaste(product.sugar_taste[1]);
+	        this.setSugarTaste(product.sugar_taste[1]);
 	    }else{
 	        this.setSugarTaste(product.sugar_taste[0]);
 	    }

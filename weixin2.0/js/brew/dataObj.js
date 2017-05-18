@@ -60,15 +60,23 @@ brewObject.prototype.setMilkTaste=function(milkTaste){
     this.milkTaste=milkTaste+"";
 }
 //数据初始化
-brewObject.prototype.init=function(data){
+brewObject.prototype.init=function(data,type){
     this.setMachineId(data.machineEntity.id);
     this.setMilkTaste(data.productEntity.milkTaste);
     this.setUserId(data.userId);
     this.setType(data.type);
     this.setOrdernumber(data.ordernumber);
     this.setOrderPrice(data.orderPrice);
-    if(data.productEntity.sugarTaste.length>0){
-        this.setSugarTaste(data.productEntity.sugarTaste[1]);
+    if(data.productEntity.sugarTaste.length>1){
+        if(data.productEntity.productId==1 || data.productEntity.productId==2){
+            if(type=="1"){
+                 this.setSugarTaste(data.productEntity.sugarTaste[1]);
+            }else{
+                this.setSugarTaste(data.productEntity.sugarTaste[0]);
+            }
+        }else{
+            this.setSugarTaste(data.productEntity.sugarTaste[1]);
+        }
     }else{
         this.setSugarTaste(data.productEntity.sugarTaste[0]);
     }

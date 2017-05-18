@@ -40,7 +40,7 @@ exports.setData = function (e, type, flag) {
     }
     var time = '';
     if (flag && e.couponEndTime && e.couponEndTime * 1000 > new Date().getTime()) {
-        time = '还有' + Math.ceil((e.couponEndTime * 1000 - new Date().getTime()) / (60 * 1000 * 60 * 24)) + '天过期';
+        time = '有效天数：' + Math.ceil((e.couponEndTime * 1000 - new Date().getTime()) / (60 * 1000 * 60 * 24)) + '天';
     }
     html = "<div class='swiper-slide2 product-container'>" +
         "<div class='img-container'>" +

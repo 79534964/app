@@ -16,12 +16,17 @@ var brewAjax=require('./brew/brewAjax');
 sucess=function(json,type){
     var data=json;
     data.productEntity.sugarTaste=data.productEntity.sugarTaste.split(",");
-    brewObject.init(data);
+    brewObject.init(data,type);
     $(document).ready(function(){
-        header(data.productEntity);
-        machine(data,type);
-        sugar(data.productEntity.sugarTaste);
-        submit();
-        loading(false);
+       loading(false);
+       header(data.productEntity);
+       machine(data,type);
+       sugar(data.productEntity.sugarTaste);
+       submit();
+       if(type=="1"){
+          $(".container").css({'opacity':'1'});
+       }else{
+          brewAjax();
+       }
     });
 }
