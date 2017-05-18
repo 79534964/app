@@ -56,16 +56,24 @@
 	var sugar=__webpack_require__(10);
 	//最后一步冲泡
 	var submit=__webpack_require__(11);
+	//冲泡请求
+	var brewAjax=__webpack_require__(12);
+
 	sucess=function(json,type){
 	    var data=json;
 	    data.productEntity.sugarTaste=data.productEntity.sugarTaste.split(",");
-	    brewObject.init(data);
+	    brewObject.init(data,type);
 	    $(document).ready(function(){
+	       loading(false);
 	       header(data.productEntity);
 	       machine(data,type);
 	       sugar(data.productEntity.sugarTaste);
 	       submit();
-	       loading(false);
+	       if(type=="1"){
+	          $(".container").css({'opacity':'1'});
+	       }else{
+	          brewAjax();
+	       }
 	    });
 	}
 
@@ -81,7 +89,7 @@
 	    this.init();
 	}
 	load.prototype.init=function(){
-	    this.container.setAttribute("style","position:absolute;width:100%;height:100%;z-index:100;top:0;max-width:750px");
+	    this.container.setAttribute("style","position:absolute;width:100%;height:100%;z-index:100;top:0;max-width:750px;display:none;");
 	    this.canvBox.setAttribute("style","position:absolute;top:3.75rem;left:50%;width:1.4rem;height:1.4rem;margin-left:-0.7rem;background-color:rgba(0,0,0,.7);border-radius: 10%;");
 	    this.canv.setAttribute("style","position:absolute;top:2.95rem;left:50%;width:5rem;margin-left:-1.49rem;z-index:10;");
 	    this.canv.setAttribute("id","loading");
@@ -159,13 +167,13 @@
 	module.exports=function(data){
 	    $("#productBox").html(
 	        "<div class='img-container'>"+
-	            "<img src='http://zjc.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.productId+".png'alt=''/>"+
+	            "<img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.productId+".png'alt=''/>"+
 	        "</div>"+
 	        "<div class='product-content clearfix'>"+
 	            "<p class='name'>"+data.productName+"</p>"+
 	            "<p class='ename'>"+data.productEname+"</p>"+
 	            "<p class='price'>￥"+data.salesPrice+".00</p>"+
-	            // "<p class='no-price'>￥"+data.price+".00<span></span></p>"+
+	            "<p class='no-price'>￥"+data.price+".00<span></span></p>"+
 	        "</div>"
 	    );
 	}
@@ -201,12 +209,10 @@
 	    $("#entity").html(
 	        "<p class='title'>"+data.machineNumber+"</p>"+
 	        "<p class='entity-img'>"+
-	            // "<img src='"+imgPath+"' alt=''/>"+
-	            "<img src='http://zjc.mattburg.cn/jeewxmb/webpage/extend/images/pay-logo.png' alt=''/>"+
+	            "<img src='"+imgPath+"' alt=''/>"+
 	        "</p>"+
 	        "<div class='entity-address'>"+
-	            // "<p class='entity-name'>"+getMachineIco(data.machineIco)+"—"+data.machineName+"</p>"+
-	            "<p class='entity-name'>北京辛蒂("+data.machineName+")</p>"+
+	            "<p class='entity-name'>"+machineData.getMachineIco(data.machineIco)+"—"+data.machineName+"</p>"+
 	            "<p class='entity-number'>"+data.machineAddressDetail+"</p>"+
 	            "<p class='entity-adr'>"+data.machineAddress+"</p>"+
 	       "</div>"
@@ -285,7 +291,7 @@
 	    this.milkTaste=milkTaste+"";
 	}
 	//数据初始化
-	brewObject.prototype.init=function(data){
+	brewObject.prototype.init=function(data,type){
 	    this.setMachineId(data.machineEntity.id);
 	    this.setMilkTaste(data.productEntity.milkTaste);
 	    this.setUserId(data.userId);
@@ -293,7 +299,15 @@
 	    this.setOrdernumber(data.ordernumber);
 	    this.setOrderPrice(data.orderPrice);
 	    if(data.productEntity.sugarTaste.length>1){
-	        this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	        if(data.productEntity.productId==1 || data.productEntity.productId==2){
+	            if(type=="1"){
+	                 this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	            }else{
+	                this.setSugarTaste(data.productEntity.sugarTaste[0]);
+	            }
+	        }else{
+	            this.setSugarTaste(data.productEntity.sugarTaste[1]);
+	        }
 	    }else{
 	        this.setSugarTaste(data.productEntity.sugarTaste[0]);
 	    }
@@ -339,7 +353,7 @@
 	    });
 	}
 	function machineAjax(latitude,longitude,userId,flag){
-	    var url="http://zjc.mattburg.cn/jeewxmb/productController.do?getlistMachineJson";
+	    var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?getlistMachineJson";
 	    var path=url+"&userId="+userId+"&longitude="+longitude+"&latitude="+latitude;
 	    $.ajax({
 	        type:"GET",
@@ -410,34 +424,33 @@
 	    var imgPath="http://api.mattburg.cn/static/machineIco/";
 	    var html="<ul>";
 	    $.each(datas,function(i,e){
-	        if(e.enabledFlag==1&&e.flag==0){
-	            // var str="id="+e.id+" title="+e.machineNumber+" name="+getMachineIco(e.machineIco)+"—"+e.machineName+" num="+e.machineAddressDetail+" adr="+e.machineAddress+" img="+imgPath+e.operatorId+"/"+e.machineIco+".png"+" status="+e.status;
-	            var str="id="+e.id+" title="+e.machineNumber+" name=北京辛蒂("+e.machineName+") num="+e.machineAddressDetail+" adr="+e.machineAddress+" img=http://zjc.mattburg.cn/jeewxmb/webpage/extend/images/pay-logo.png"+" status="+e.status;
-	            if(e.status=="00"){
-	                html+="<li class='entity-box'"+str+">";
-	            }else{
-	                html+="<li class='entity-box background'"+str+">"; 
-	            }
-	            if(e.distence*1>30000){
-	                e.distence="未知";
-	            }
-	            html+="<p class='entity-title'>"+e.machineNumber+"</p>"+
-	                "<div class='entity-con'>"+
-	                   // "<img src='"+imgPath+e.operatorId+"/"+e.machineIco+".png"+"' alt=''/>"+
-	                    "<img src='http://zjc.mattburg.cn/jeewxmb/webpage/extend/images/pay-logo.png' alt=''/>"+
-	                    "<div class='content'>"+
-	                        "<p class='status'>"+machineData.getStatus(e.status)+"</p>"+
-	                        "<div class='icon'>"+
-	                            "<p><img src='http://zjc.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
-	                            "<span>距您"+e.distence+"m</span>"+
+	        if(e.machineName.indexOf("CS")==-1){
+	            if(e.enabledFlag==1&&e.flag==0){
+	                var str="id="+e.id+" title="+e.machineNumber+" name="+machineData.getMachineIco(e.machineIco)+"—"+e.machineName+" num="+e.machineAddressDetail+" adr="+e.machineAddress+" img="+imgPath+e.operatorId+"/"+e.machineIco+".png"+" status="+e.status;
+	                if(e.status=="00"){
+	                    html+="<li class='entity-box'"+str+">";
+	                }else{
+	                    html+="<li class='entity-box background'"+str+">"; 
+	                }
+	                if(e.distence*1>30000){
+	                    e.distence="未知";
+	                }
+	                html+="<p class='entity-title'>"+e.machineNumber+"</p>"+
+	                    "<div class='entity-con'>"+
+	                        "<img src='"+imgPath+e.operatorId+"/"+e.machineIco+".png"+"' alt=''/>"+
+	                        "<div class='content'>"+
+	                            "<p class='status'>"+machineData.getStatus(e.status)+"</p>"+
+	                            "<div class='icon'>"+
+	                                "<p><img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
+	                                "<span>距您"+e.distence+"m</span>"+
+	                            "</div>"+
+	                            "<span class='name'>"+machineData.getMachineIco(e.machineIco)+"—"+e.machineName+"</span>"+
+	                            "<span class='address'>"+e.machineAddressDetail+"</span>"+
+	                            "<span>"+e.machineAddress+"</span>"+
 	                        "</div>"+
-	                        // "<span class='name'>"+getMachineIco(e.machineIco)+"—"+e.machineName+"</span>"+
-	                        "<p class='name'>北京辛蒂("+e.machineName+")</p>"+
-	                        "<span class='address'>"+e.machineAddressDetail+"</span>"+
-	                        "<span>"+e.machineAddress+"</span>"+
 	                    "</div>"+
-	                "</div>"+
-	              "</li>";
+	                  "</li>";
+	            } 
 	        }
 	    });
 	    html+="</ul>";
@@ -516,10 +529,10 @@
 	        name="伦敦码头";
 	        break;
 	        case "40":
-	        name="悉尼码头";
+	        name="洛杉矶码头";
 	        break;
 	        case "50":
-	        name="洛杉矶码头";
+	        name="悉尼码头";
 	        break;
 	    }
 	    return name;
@@ -544,7 +557,7 @@
 	        var status=$(this).attr("status");
 	        if(status=="00"){
 	            loading(true);
-	            var url="http://zjc.mattburg.cn/jeewxmb/productController.do?mymachine";
+	            var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?mymachine";
 	            brewObject.setMachineId($(this).attr("id"));
 	            $.ajax({
 	                type:"POST",
@@ -587,8 +600,8 @@
 	    if(data.length==1){
 	        boxNode.html("<li sugarTaste='"+data[0]+"' class='highcur one'>标准</li>");
 	    }else{
-	        boxNode.html("<li sugarTaste='"+data[0]+"' name='none' class='nonecur'>无糖</li>"+
-	                     "<li sugarTaste='"+data[1]+"' name='low' class='low'>低糖</li>"+
+	        boxNode.html("<li sugarTaste='"+data[0]+"' name='none' class='none'>无糖</li>"+
+	                     "<li sugarTaste='"+data[1]+"' name='low' class='lowcur'>低糖</li>"+
 	                     "<li sugarTaste='"+data[2]+"' name='high' class='high'>高糖</li>");
 	    }   
 	    boxNode.children().on("tap",function(){
@@ -613,53 +626,67 @@
 
 	//loading组件
 	var loading=__webpack_require__(1);
-	//全局数据对象
-	var brewObject=__webpack_require__(4);
+	//冲泡请求
+	var brewAjax=__webpack_require__(12);
 
 	module.exports=function(){
 	  $("#payBtn").on("tap",function(){
-	    loading(true);
-	    var brewUrl="http://zjc.mattburg.cn/jeewxmb/productController.do?sendBrewCommad";
-	    $.ajax({
-	        type: 'POST',
-	        url: brewUrl,
-	        dataType: "json",
-	        data: {
-	          machineId:brewObject.getMachineId(),
-	          ordernumber:brewObject.getOrdernumber(),
-	          orderPrice:brewObject.getOrderPrice(),
-	          sugarTaste:brewObject.getSugarTaste(),
-	          milkTaste:brewObject.getMilkTaste(),
-	          type:brewObject.getType()
-	        },
-	        success: function(data){
-	          if(data.order_voucher_id[0]==0){
-	               loading(false);
-	               alert("冲泡失败,请重试!");
-	          }else{
-	              var orderId=data.order_voucher_id[0];
-	              var url="http://zjc.mattburg.cn/jeewxmb/productController.do?sendToBrewCommad";
-	              $.ajax({
-	                type: 'POST',
-	                url: url,
-	                dataType: "json",
-	                data: {
-	                  machineId:brewObject.getMachineId(),
-	                  order_voucher_id:orderId+""
-	                },
-	                success: function(data){
-	                  loading(false);
-	                  if(data.jSONObject.result_code==0){
-	                      $(".finish").addClass("finish-block");
-	                  }else{
-	                      alert(data.jSONObject.result_msg);
-	                  }
+	      loading(true);
+	      brewAjax();
+	   });
+	 }
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//全局数据对象
+	var brewObject=__webpack_require__(4);
+	//loading组件
+	var loading=__webpack_require__(1);
+
+	module.exports=function(){
+	  var brewUrl="http://org.oa.mattburg.cn/jeewxmb/productController.do?sendBrewCommad";
+	  $.ajax({
+	      type: 'POST',
+	      url: brewUrl,
+	      dataType: "json",
+	      data: {
+	        machineId:brewObject.getMachineId(),
+	        ordernumber:brewObject.getOrdernumber(),
+	        orderPrice:brewObject.getOrderPrice(),
+	        sugarTaste:brewObject.getSugarTaste(),
+	        milkTaste:brewObject.getMilkTaste(),
+	        type:brewObject.getType()
+	      },
+	      success: function(data){
+	        if(data.order_voucher_id[0]==0){
+	             loading(false);
+	             alert("冲泡失败,请重试!");
+	        }else{
+	            var orderId=data.order_voucher_id[0];
+	            var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?sendToBrewCommad";
+	            $.ajax({
+	              type: 'POST',
+	              url: url,
+	              dataType: "json",
+	              data: {
+	                machineId:brewObject.getMachineId(),
+	                order_voucher_id:orderId+""
+	              },
+	              success: function(data){
+	                loading(false);
+	                if(data.jSONObject.result_code!=0){
+	                  $(".container").css({'opacity':'1'});
+	                  alert(data.jSONObject.result_msg);
+	                }else{
+	                  $(".finish").addClass("finish-block");
 	                }
-	              });
-	          }
+	              }
+	            });
 	        }
-	    }); 
-	 });
+	    }
+	  });
 	}
 
 /***/ }

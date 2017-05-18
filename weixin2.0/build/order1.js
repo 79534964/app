@@ -255,14 +255,12 @@
 	    var url;
 	    var html="";
 	    var imgUrl;
-	    var payNum;
 	    $.each(data,function(i,e){
 	        if(i<30){
 	            orderNumber=(e.createTime+"")+(e.id+"");
-	            payNum=(e.createTime+e.id)+"";
 	            orderPrice=(e.productPayPrice.toFixed(2))+"";
 	            imgUrl="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
-	            redirect_uri = encodeURIComponent('http://' + window.location.host + '/jeewxmb/wXPayController.do?pay&userId=' + e.userId +"&orderNumber=" + payNum + "&orderPrice=" + orderPrice + "&machineId=" + e.machineId + "&productId=" +e.productId+"&orderType=normalOrder");
+	            redirect_uri = encodeURIComponent('http://' + window.location.host + '/jeewxmb/wXPayController.do?pay&userId=' + e.userId +"&orderNumber=" + orderNumber + "&orderPrice=" + orderPrice + "&machineId=" + e.machineId + "&productId=" +e.productId+"&orderType=normalOrder");
 	            url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid +'&redirect_uri=' + redirect_uri +'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
 	            html+="<div class='product-container swiper-slide2'>"+
 	                "<div class='header'>"+"订单编号:"+orderNumber+"</div>"+
@@ -299,10 +297,9 @@
 	    var alreadyBrewIndex=0;
 	    $.each(data,function(i,e){
 	        orderNumber=(e.createTime+"")+(e.id+"");
-	        payNum=(e.createTime+e.id)+"";
 	        orderPrice=(e.productPayPrice.toFixed(2))+"";
 	        imgUrl="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
-	        url='http://'+window.location.host+'/jeewxmb/productController.do?paySucess&' + 'userId='+e.userId+'&orderNumber='+payNum+'&orderPrice='+orderPrice+'&machineId='+e.machineId+'&productId='+e.productId+'&type=1' + '&orderType=normalOrder';
+	        url='http://'+window.location.host+'/jeewxmb/productController.do?paySucess&' + 'userId='+e.userId+'&orderNumber='+orderNumber+'&orderPrice='+orderPrice+'&machineId='+e.machineId+'&productId='+e.productId+'&type=1' + '&orderType=normalOrder';
 	        if(e.status=="20"||e.status=="30"){
 	            if(++brewIndex<30){
 	                brewHtml+="<div class='product-container swiper-slide2'>"+
