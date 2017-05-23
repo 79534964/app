@@ -63,11 +63,16 @@
 	    var product=product;
 	    product.sugar_taste=product.sugar_taste.split(",");
 	    brewObject.init(orderform,orderdetaile,product);
+	    loading(false);
 	    header(product);
 	    addMachine(machine);
 	    sugar(product.sugar_taste);
 	    submit();
-	    loading(false);
+	    if(ordertype=="1") {
+	      $(".container").css({'opacity':'1'});
+	    }else{
+	      brewAjax();
+	    }
 	}
 
 /***/ },
@@ -159,7 +164,7 @@
 	module.exports=function(data){
 	    $("#productBox").html(
 	        "<div class='img-container'>"+
-	            "<img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.product_id+".png'alt=''/>"+
+	            "<img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.id+".png'alt=''/>"+
 	        "</div>"+
 	        "<div class='product-content clearfix'>"+
 	            "<p class='name'>"+data.memo+"</p>"+
@@ -651,6 +656,7 @@
 	      success: function(data){
 	        loading(false);
 	        if(data.jSONObject.result_code!=0){
+	          $(".container").css({'opacity':'1'});
 	          alert(data.jSONObject.result_msg);
 	        }else{
 	          $(".finish").addClass("finish-block");

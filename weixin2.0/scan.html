@@ -1,30 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script>
-    (function(){
-        if(isWeiXin()){
-            local("http://org.oa.mattburg.cn/jeewxmb/productController.do?scanCommitOrder&");
-        }else{
-            local("http://org.oa.mattburg.cn/coffeealipay/pay?");
-        }
-    })();
-    function isWeiXin(){
-        var ua = window.navigator.userAgent.toLowerCase();
-            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
-                return true;
-            }else{ 
-                return false;
-            }
-    }
-    function local(url){
-        var str=window.location.href;
-        str=str.substring(str.indexOf("&")+1,str.length);
-        return window.location.href=url+str;
-    }
-    </script>
 </head>
 <body>
+<script>
+    var object = {
+        wxUrl: 'http://org.oa.mattburg.cn/jeewxmb/productController.do?scanCommitOrder&',
+        zfbUrl: 'http://org.oa.mattburg.cn/coffeealipay/pay?',
+        productId: '',
+        machineId: '',
+        isWeiXin: function () {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        fail: function (str) {
+            window.alert(str);
+            if (this.isWeiXin()) {
+                window.location.href = 'http://test.wx.mattburg.cn/jeewxmb/webpage/extend/productList.html';
+            }
+        },
+        success: function () {
+            var params = 'machineId=' + this.machineId + '&productId=' + this.productId;
+            window.location.href = this.isWeiXin() ? this.wxUrl + params : this.zfbUrl + params;
+        },
+        checkNumber: function (str) {
+            if (isNaN(str)) {
+                return false;
+            }
+
+            if (str == '') {
+                return false;
+            }
+
+            if (str == 0) {
+                return false;
+            }
+
+            if (str.toString().indexOf('.') !== -1) {
+                return false;
+            }
+
+            return true;
+        },
+        init: function () {
+            // 检查格式
+            var arr = window.location.href.split('&');
+            if (arr.length != 3) {
+                this.fail('格式不正确');
+                return false
+            }
+            // 机器id
+            this.machineId = arr[1].split('=')[1];
+            if (!this.checkNumber(this.machineId)) {
+                this.fail('机器id不正确');
+                return false
+            }
+            // 检查productId
+            this.productId = arr[2].split('=')[1];
+            if (!this.checkNumber(this.productId)) {
+                this.fail('产品id不正确');
+                return false
+            }
+            // 最后成功提交
+            this.success();
+        }
+    }
+    object.init();
+</script>
 </body>
 </html>

@@ -17,9 +17,14 @@ sucess=function(orderform,orderdetaile,product,machine,ordertype){
     var product=product;
     product.sugar_taste=product.sugar_taste.split(",");
     brewObject.init(orderform,orderdetaile,product);
+    loading(false);
     header(product);
     addMachine(machine);
     sugar(product.sugar_taste);
     submit();
-    loading(false);
+    if(ordertype=="1") {
+      $(".container").css({'opacity':'1'});
+    }else{
+      brewAjax();
+    }
 }

@@ -2,7 +2,7 @@
 module.exports=function(data){
     $("#productBox").html(
         "<div class='img-container'>"+
-            "<img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.product_id+".png'alt=''/>"+
+            "<img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.id+".png'alt=''/>"+
         "</div>"+
         "<div class='product-content clearfix'>"+
             "<p class='name'>"+data.memo+"</p>"+
