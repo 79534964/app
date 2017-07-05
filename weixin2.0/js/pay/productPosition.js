@@ -33,7 +33,7 @@ module.exports=function(userId){
     });
 }
 function machineAjax(latitude,longitude,userId,flag){
-    var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?getlistMachineJson";
+    var url="http://test.wx.mattburg.cn/jeewxmb/productController.do?getlistMachineJson";
     var path=url+"&userId="+userId+"&longitude="+longitude+"&latitude="+latitude;
     $.ajax({
         type:"GET",

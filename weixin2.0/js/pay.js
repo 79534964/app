@@ -14,16 +14,19 @@ var reBenefit=require('./pay/reBenefit');
 var payPrice=require('./pay/payPrice');
 //最后一步支付
 var submit=require('./pay/submit');
+// 获取商品
+var getProductInfo=require('./pay/getProductInfo');
 sucess=function(json){
     var data=json;
     payObject.init(data);
     sortBenefit(data);
     $(document).ready(function(){
+       loading(false);
        header(data[2].productEntity);
        machine(data);
        reBenefit();
        payPrice();
        submit();
-       loading(false);
+       getProductInfo();
     });
 }

@@ -4,8 +4,8 @@ var loading=require('./loading');
 var payObject=require('./dataObj');
 //地地栏滑出的效果组件
 var showEntity=require('./showEntity');
-//重置优惠劵区域
-var reBenefit=require('./reBenefit');
+//获取商品价格
+var getProductInfo=require('./getProductInfo');
 //后端对应的数字字典
 var machineData=require('./machineData');
 
@@ -15,7 +15,7 @@ module.exports=function(node){
         var status=$(this).attr("status");
         if(status=="00"){
             loading(true);
-            var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?mymachine";
+            var url="http://test.wx.mattburg.cn/jeewxmb/productController.do?mymachine";
             payObject.setMachineId($(this).attr("id"));
             $.ajax({
                 type:"POST",
@@ -27,7 +27,6 @@ module.exports=function(node){
                 },
                 success: function(data){
                     showEntity(false);
-                    loading(false);
                     $("#entity").html(
                         "<p class='title'>"+obj.attr("title")+"</p>"+
                         "<p class='entity-img'>"+
@@ -53,7 +52,7 @@ module.exports=function(node){
                             payObject.setCouponArr(arr);    
                         }
                     }
-                    reBenefit();
+                    getProductInfo();
                 }
             });
         }else{

@@ -53,27 +53,29 @@
 	//全局数据对象
 	var payObject=__webpack_require__(4);
 	//将数据中的优惠券按规则重新排序的组件
-	var sortBenefit=__webpack_require__(13);
+	var sortBenefit=__webpack_require__(14);
 	//优惠劵区域
-	var reBenefit=__webpack_require__(10);
+	var reBenefit=__webpack_require__(11);
 	//最下方的支付按钮
-	var payPrice=__webpack_require__(12);
+	var payPrice=__webpack_require__(13);
 	//最后一步支付
-	var submit=__webpack_require__(14);
+	var submit=__webpack_require__(15);
+	// 获取商品
+	var getProductInfo=__webpack_require__(10);
 	sucess=function(json){
 	    var data=json;
 	    payObject.init(data);
 	    sortBenefit(data);
 	    $(document).ready(function(){
+	       loading(false);
 	       header(data[2].productEntity);
 	       machine(data);
 	       reBenefit();
 	       payPrice();
 	       submit();
-	       loading(false);
+	       getProductInfo();
 	    });
 	}
-
 
 /***/ },
 /* 1 */
@@ -164,12 +166,12 @@
 	module.exports=function(data){
 	    $("#productBox").html(
 	        "<div class='img-container'>"+
-	            "<img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.productId+".png'alt=''/>"+
+	            "<img src='http://test.wx.mattburg.cn/jeewxmb/webpage/extend/product-img/"+data.productId+".png'alt=''/>"+
 	        "</div>"+
 	        "<div class='product-content clearfix'>"+
 	            "<p class='name'>"+data.productName+"</p>"+
 	            "<p class='ename'>"+data.productEname+"</p>"+
-	            "<p class='price'>￥"+data.salesPrice+".00</p>"+
+	            "<p class='price' id='productPrice'>￥"+data.salesPrice+".00</p>"+
 	            "<p class='no-price'>￥"+data.price+".00<span></span></p>"+
 	        "</div>"
 	    );
@@ -399,7 +401,7 @@
 	    });
 	}
 	function machineAjax(latitude,longitude,userId,flag){
-	    var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?getlistMachineJson";
+	    var url="http://test.wx.mattburg.cn/jeewxmb/productController.do?getlistMachineJson";
 	    var path=url+"&userId="+userId+"&longitude="+longitude+"&latitude="+latitude;
 	    $.ajax({
 	        type:"GET",
@@ -487,7 +489,7 @@
 	                        "<div class='content'>"+
 	                            "<p class='status'>"+machineData.getStatus(e.status)+"</p>"+
 	                            "<div class='icon'>"+
-	                                "<p><img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
+	                                "<p><img src='http://test.wx.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
 	                                "<span>距您"+e.distence+"m</span>"+
 	                            "</div>"+
 	                            "<span class='name'>"+machineData.getMachineIco(e.machineIco)+"—"+e.machineName+"</span>"+
@@ -594,8 +596,8 @@
 	var payObject=__webpack_require__(4);
 	//地地栏滑出的效果组件
 	var showEntity=__webpack_require__(6);
-	//重置优惠劵区域
-	var reBenefit=__webpack_require__(10);
+	//获取商品价格
+	var getProductInfo=__webpack_require__(10);
 	//后端对应的数字字典
 	var machineData=__webpack_require__(8);
 
@@ -605,7 +607,7 @@
 	        var status=$(this).attr("status");
 	        if(status=="00"){
 	            loading(true);
-	            var url="http://org.oa.mattburg.cn/jeewxmb/productController.do?mymachine";
+	            var url="http://test.wx.mattburg.cn/jeewxmb/productController.do?mymachine";
 	            payObject.setMachineId($(this).attr("id"));
 	            $.ajax({
 	                type:"POST",
@@ -617,7 +619,6 @@
 	                },
 	                success: function(data){
 	                    showEntity(false);
-	                    loading(false);
 	                    $("#entity").html(
 	                        "<p class='title'>"+obj.attr("title")+"</p>"+
 	                        "<p class='entity-img'>"+
@@ -643,7 +644,7 @@
 	                            payObject.setCouponArr(arr);    
 	                        }
 	                    }
-	                    reBenefit();
+	                    getProductInfo();
 	                }
 	            });
 	        }else{
@@ -656,12 +657,44 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// loading组件
+	var loading=__webpack_require__(1);
+	// 优惠劵区域
+	var reBenefit=__webpack_require__(11);
+	//全局数据对象
+	var payObject=__webpack_require__(4);
+
+	module.exports=function(){
+	    if(payObject.getMachineId()!=='') {
+	        loading(true);
+	        $.ajax({
+	            type:'POST',
+	            url:'http://test.wx.mattburg.cn/coffeeservice/product/getProdcutInfo',
+	            dataType:"json",
+	            data:{
+	                productId:payObject.getProductId(),
+	                machineId:payObject.getMachineId()
+	            },
+	            success: function(data){
+	                payObject.setProductPrice(data.content.salesPrice);
+	                $('#productPrice').text('￥'+data.content.salesPrice+'.00');
+	                reBenefit();
+	                loading(false);
+	            }
+	        });
+	    }
+	}
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
 	//全局数据对象
 	var payObject=__webpack_require__(4);
 	//优惠劵点击事件组件
-	var benefitEffect=__webpack_require__(11);
+	var benefitEffect=__webpack_require__(12);
 	//最下方的支付按钮
-	var payPrice=__webpack_require__(12);
+	var payPrice=__webpack_require__(13);
 
 	module.exports=function(){
 	    if(payObject.getNoCouponFlag()){
@@ -711,13 +744,13 @@
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//全局数据对象
 	var payObject=__webpack_require__(4);
 	//最下方的支付按钮
-	var payPrice=__webpack_require__(12);
+	var payPrice=__webpack_require__(13);
 
 	module.exports=function(){
 	    var index=0;
@@ -764,7 +797,7 @@
 	}
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//全局数据对象
@@ -777,7 +810,7 @@
 	}
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//全局数据对象
@@ -807,7 +840,7 @@
 	};
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//loading组件
@@ -852,7 +885,7 @@
 	                  if(orderPrice=="0.00"){
 	                      window.location.href= 'http://'+host+'/jeewxmb/productController.do?paySucess&' + 'userId='+userId+'&orderNumber='+orderNumber+'&orderPrice='+orderPrice+'&machineId='+machineId+'&productId='+productId+'&type=2'+'&orderType=' + orderType;
 	                  }else{
-	                      var appid="wxe020a9991e4fe96f";
+	                      var appid="wxeac3a500f95bf866";
 	                      var redirect_uri = encodeURIComponent('http://' + host + '/jeewxmb/wXPayController.do?pay&userId=' + userId +"&orderNumber=" + orderNumber + "&orderPrice=" + orderPrice + "&machineId=" + machineId + "&productId=" +productId+'&orderType=' + orderType);
 	                      var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid +'&redirect_uri=' + redirect_uri +'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
 	                      window.location.href = url; 

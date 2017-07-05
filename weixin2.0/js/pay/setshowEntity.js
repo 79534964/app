@@ -26,7 +26,7 @@ module.exports=function(node,datas){
                         "<div class='content'>"+
                             "<p class='status'>"+machineData.getStatus(e.status)+"</p>"+
                             "<div class='icon'>"+
-                                "<p><img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
+                                "<p><img src='http://test.wx.mattburg.cn/jeewxmb/webpage/extend/images/position-img.png'/></p>"+
                                 "<span>距您"+e.distence+"m</span>"+
                             "</div>"+
                             "<span class='name'>"+machineData.getMachineIco(e.machineIco)+"—"+e.machineName+"</span>"+

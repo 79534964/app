@@ -40,7 +40,7 @@ module.exports=function(){
                   if(orderPrice=="0.00"){
                       window.location.href= 'http://'+host+'/jeewxmb/productController.do?paySucess&' + 'userId='+userId+'&orderNumber='+orderNumber+'&orderPrice='+orderPrice+'&machineId='+machineId+'&productId='+productId+'&type=2'+'&orderType=' + orderType;
                   }else{
-                      var appid="wxe020a9991e4fe96f";
+                      var appid="wxeac3a500f95bf866";
                       var redirect_uri = encodeURIComponent('http://' + host + '/jeewxmb/wXPayController.do?pay&userId=' + userId +"&orderNumber=" + orderNumber + "&orderPrice=" + orderPrice + "&machineId=" + machineId + "&productId=" +productId+'&orderType=' + orderType);
                       var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid +'&redirect_uri=' + redirect_uri +'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
                       window.location.href = url; 
