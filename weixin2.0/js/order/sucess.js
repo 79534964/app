@@ -1,11 +1,11 @@
 //如果为空添加默认动画组件
 var getPoints=require('./getPoints');
-module.exports=function(data1,data2){
+module.exports=function(data1,data2,brewAndBrewList){
     wait(data1);
-    brew(data2);
+    brew(data2,brewAndBrewList);
 }
 function wait(data){
-    var appid="wxe020a9991e4fe96f";
+    var appid="wxeac3a500f95bf866";
     var orderNumber;
     var orderPrice;
     var redirect_uri;
@@ -16,7 +16,7 @@ function wait(data){
         if(i<30){
             orderNumber=(e.createTime+"")+(e.id+"");
             orderPrice=(e.productPayPrice.toFixed(2))+"";
-            imgUrl="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
+            imgUrl="http://test.wx.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
             redirect_uri = encodeURIComponent('http://' + window.location.host + '/jeewxmb/wXPayController.do?pay&userId=' + e.userId +"&orderNumber=" + orderNumber + "&orderPrice=" + orderPrice + "&machineId=" + e.machineId + "&productId=" +e.productId+"&orderType=normalOrder");
             url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid +'&redirect_uri=' + redirect_uri +'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
             html+="<div class='product-container swiper-slide2'>"+
@@ -43,7 +43,7 @@ function wait(data){
         $("#wait").html(getPoints("您还没有相关订单","快来下一单吧"));
     }
 }
-function brew(data){
+function brew(data,brewAndBrewList){
     var imgUrl;
     var url;
     var orderNumber;
@@ -55,43 +55,44 @@ function brew(data){
     $.each(data,function(i,e){
         orderNumber=(e.createTime+"")+(e.id+"");
         orderPrice=(e.productPayPrice.toFixed(2))+"";
-        imgUrl="http://org.oa.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
+        imgUrl="http://test.wx.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
         url='http://'+window.location.host+'/jeewxmb/productController.do?paySucess&' + 'userId='+e.userId+'&orderNumber='+orderNumber+'&orderPrice='+orderPrice+'&machineId='+e.machineId+'&productId='+e.productId+'&type=1' + '&orderType=normalOrder';
-        if(e.status=="20"||e.status=="30"){
-            if(++brewIndex<30){
-                brewHtml+="<div class='product-container swiper-slide2'>"+
-                    "<div class='header'>"+"订单编号:"+orderNumber+"</div>"+
-                    "<div class='content clearfix'>"+
-                        "<a href='"+url+"'class='btn'>冲 泡</a>"+
-                        "<div class='img-box'>"+
-                            "<img src='"+imgUrl+"' alt=''/>"+
-                            "<p>"+e.productName+"</p>"+
-                        "</div>"+
-                        "<div class='introduce'>"+
-                            "<p class='time'>下单时间: "+e.orderDate+"</p>"+
-                            "<p class='one-price'>商品单价: "+e.productPrice.toFixed(2)+"元(1份,未冲泡)</p>"+
-                            "<p class='price'>实付:￥"+e.productPayPrice.toFixed(2)+"</p>"+
-                        "</div>"+
-                    "</div>"+
-                "</div>";
-            }
-        }else if(e.status=="50"){
-            if(++alreadyBrewIndex<30){
-                alreadyBrewHtml+="<div class='product-container swiper-slide2'>"+
+        if(++brewIndex<30){
+            brewHtml+="<div class='product-container swiper-slide2'>"+
                 "<div class='header'>"+"订单编号:"+orderNumber+"</div>"+
                 "<div class='content clearfix'>"+
+                    "<a href='"+url+"'class='btn'>冲 泡</a>"+
                     "<div class='img-box'>"+
                         "<img src='"+imgUrl+"' alt=''/>"+
                         "<p>"+e.productName+"</p>"+
                     "</div>"+
                     "<div class='introduce'>"+
                         "<p class='time'>下单时间: "+e.orderDate+"</p>"+
-                        "<p class='one-price'>商品单价: "+e.productPrice.toFixed(2)+"元(1份,已冲泡)</p>"+
+                        "<p class='one-price'>商品单价: "+e.productPrice.toFixed(2)+"元(1份,未冲泡)</p>"+
                         "<p class='price'>实付:￥"+e.productPayPrice.toFixed(2)+"</p>"+
                     "</div>"+
                 "</div>"+
-            "</div>"
-            }
+            "</div>";
+        }
+    });
+    $.each(brewAndBrewList,function(i,e){
+        orderNumber=(e.createTime+"")+(e.id+"");
+        imgUrl="http://test.wx.mattburg.cn/jeewxmb/webpage/extend/product-img/order-img/"+e.productId+".png";
+        if(++alreadyBrewIndex<30){
+            alreadyBrewHtml+="<div class='product-container swiper-slide2'>"+
+            "<div class='header'>"+"订单编号:"+orderNumber+"</div>"+
+            "<div class='content clearfix'>"+
+                "<div class='img-box'>"+
+                    "<img src='"+imgUrl+"' alt=''/>"+
+                    "<p>"+e.productName+"</p>"+
+                "</div>"+
+                "<div class='introduce'>"+
+                    "<p class='time'>下单时间: "+e.orderDate+"</p>"+
+                    "<p class='one-price'>商品单价: "+e.productPrice.toFixed(2)+"元(1份,已冲泡)</p>"+
+                    "<p class='price'>实付:￥"+e.productPayPrice.toFixed(2)+"</p>"+
+                "</div>"+
+            "</div>"+
+        "</div>"
         }
     });
     if(brewHtml!=""){
@@ -109,5 +110,5 @@ function brew(data){
 }
 //加载更多的图片
 function getLoadNodeHtml(){
-    return "<i class='swiper-slide2 load-node'><img src='http://org.oa.mattburg.cn/jeewxmb/webpage/extend/images/load-node.png'/><p>正在加载</p></i>";
+    return "<i class='swiper-slide2 load-node'><img src='http://test.wx.mattburg.cn/jeewxmb/webpage/extend/images/load-node.png'/><p>正在加载</p></i>";
 }
