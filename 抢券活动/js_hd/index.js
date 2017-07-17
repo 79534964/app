@@ -59,7 +59,8 @@ $(document).ready(function () {
                             loadings(false);
                             if (data.code == '01') {
                                 var prizeNode = $('#prize');
-                                prizeNode.find('.price').html('¥ ' + data.content.couponprice);
+                                var priceStr=data.content.couponprice==50?'5 折':'¥ ' + data.content.couponprice;
+                                prizeNode.find('.price').html(priceStr);
                                 prizeNode.find('.name').html(data.content.couponname);
                                 prizeNode.addClass('showprize');
                             } else {
