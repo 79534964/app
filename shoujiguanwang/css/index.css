@@ -265,15 +265,7 @@
   .call-content ul {
     margin-left: 9%; }
     .call-content ul li {
-      margin-top: 3%; }
-      .call-content ul li h3, .call-content ul li p {
-        float: left; }
-      .call-content ul li p {
-        margin-left: 1%;
-        margin-top: 0.5%; }
-      .call-content ul li p:nth-child(1) {
-        margin-top: 0;
-        margin-left: 0; }
+      margin-top: 1%; }
 
 .call-ani img {
   -webkit-animation: bounceInLeft 1s;
