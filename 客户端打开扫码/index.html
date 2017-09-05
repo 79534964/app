@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扫码支付</title>
+</head>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://as.alipayobjects.com/g/component/antbridge/1.1.4/antbridge.min.js"></script>
+<script src="./js/vue.min.js"></script>
+<script src="./js/vue-resource.min.js"></script>
+<body>
+<script type="text/javascript">
+    var vm = new Vue({
+        methods: {
+            weiXin: function () {
+                this.$http({
+                    method: 'POST',
+                    emulateJSON: true,
+                    url: 'http://org.oa.mattburg.cn/coffeewx/sign',
+                    body: {
+                        url: window.location.href.split('#')[0]
+                    }
+                }).then(function (data) {
+                    window.wx.config({
+                        debug: false,
+                        appId: data.body.content.appId,
+                        timestamp: data.body.content.timestamp,
+                        nonceStr: data.body.content.nonceStr,
+                        signature: data.body.content.signature,
+                        jsApiList: ['scanQRCode']
+                    });
+                    window.wx.ready(function () {
+                        window.wx.scanQRCode({
+                            needResult: 1,
+                            scanType: ['qrCode', 'barCode'],
+                            success: function (res) {
+                                window.location.href = res.resultStr;
+                            },
+                            fail: function (res) {
+                                window.alert('打不开摄像头，请您确认权限是否打开！');
+                            }
+                        });
+                    });
+                });
+            },
+            zhiFuBao: function () {
+                window.Ali.scan({
+                    type: 'qr'
+                }, function (res) {
+                    if (!res.errorCode) {
+                        window.location.href = res.qrCode;
+                    } else {
+                        window.alert('打不开摄像头，请您确认权限是否打开！');
+                    }
+                });
+            }
+        },
+        created: function () {
+            if (window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) {
+                this.weiXin();
+            } else if (navigator.userAgent.toLowerCase().indexOf('alipay') !== -1) {
+                this.zhiFuBao();
+            }
+        }
+    });
+</script>
+</body>
+</html>
