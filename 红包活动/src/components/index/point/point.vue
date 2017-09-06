@@ -15,7 +15,7 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   ._wrapper
     background-color: #fff
-    padding: 0.2rem
+    padding: 0.3rem
     .content
       height: 2rem;
       box-shadow: 0 4px 3px #dfdfdf

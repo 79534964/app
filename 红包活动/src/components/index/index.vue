@@ -3,6 +3,8 @@
     <banner></banner>
     <red></red>
     <point></point>
+    <people></people>
+    <rule></rule>
   </div>
 </template>
 
@@ -11,20 +13,19 @@
   import banner from './banner/banner';
   import red from './red/red';
   import point from './point/point';
+  import people from './people/people';
+  import rule from './rule/rule';
   import {groupInfoMixin} from '@/common/js/mixins';
 
   export default {
     name: 'index',
     mixins: [groupInfoMixin],
-    data() {
-      return {};
-    },
-    created() {
-    },
     components: {
       banner,
       red,
-      point
+      point,
+      people,
+      rule
     }
   };
 </script>

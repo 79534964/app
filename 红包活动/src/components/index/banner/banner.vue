@@ -1,14 +1,16 @@
 <template>
-  <div class="_wrapper">
-    <img src="http://p1.meituan.net/coupon/9b2cbda42f88ea2322c5c86da175a3ab83513.jpg.webp"/>
+  <div class="_wrapper" v-if="groupInfo !== null">
+    <img :src="groupInfo.img"/>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
     name: 'index_banner',
-    data() {
-      return {};
+    computed: {
+      groupInfo() {
+        return this.$store.getters['index/get/GROUPINFO'];
+      }
     }
   };
 </script>
@@ -16,6 +18,7 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   ._wrapper
     font-size: 0
+    min-height: 3rem
     img
       width: 100%
 </style>

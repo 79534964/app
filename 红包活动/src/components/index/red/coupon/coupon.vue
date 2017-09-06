@@ -1,9 +1,8 @@
 <template>
-  <div class="common-coupon">
-    <div class="content">
+  <div class="index_red_coupon" v-if="done.length !== 0">
+    <div class="item" v-for="coupon in done">
       <div class="left">
         <div>{{coupon.couponName}}</div>
-        <div class="day">还剩余{{coupon.days}}天</div>
       </div>
       <div class="other" v-if="coupon.priceType ===2 && (coupon.couponPrice === 50 || coupon.couponPrice === 100)">
         {{coupon.couponPrice === 50 ? '半价券' : '全免券'}}
@@ -22,10 +21,10 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'common-coupon',
-    props: {
-      coupon: {
-        type: Object
+    name: 'index_red_coupon',
+    computed: {
+      done() {
+        return this.$store.getters['index/get/DONE'];
       }
     }
   };
@@ -33,12 +32,12 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .common-coupon
+  .index_red_coupon
     position: relative
     height: 1.65rem
     background: url(use.png) no-repeat
     background-size: 100% 100%
-    .content
+    .item
       width: 100%
       height: 100%
       padding: 0.4rem 0.5rem
@@ -52,8 +51,6 @@
         justify-content: space-around
         text-align: left
         font-size: 0.3rem
-        .day
-          font-size: 0.24rem
       .right
         display: flex
         .type

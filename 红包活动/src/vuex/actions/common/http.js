@@ -9,13 +9,13 @@ const actions = {
   [types.ACT_COMMON_HTTP] ({state, commit, rootState}, {Vue, url, body = {}}) {
     return new Promise((resolve, reject) => {
       // 没有活动id不请求
-      if (rootState.groupId.groupId !== '') {
+      if (Vue.$route.query.groupId === '') {
         return false;
       }
       // 开始请求
       Vue.$http({
         url,
-        body: Object.assign(body, {groupId: rootState.groupId.groupId})
+        body: Object.assign(body, {groupId: Vue.$route.query.groupId})
       }).then(({body}) => {
         if (body.code === rootState.ok) {
           resolve(body.content);

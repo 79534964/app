@@ -4,7 +4,6 @@ import Vuex from 'vuex';
 // store模块
 // common
 import loading from './actions/common/loading';
-import groupInfo from './actions/common/groupInfo';
 import weiXin from './actions/weiXin/weiXin';
 import http from './actions/common/http';
 // index
@@ -24,12 +23,14 @@ const state = {
   // 正确
   ok: '01',
   // 判断微信支付宝
-  isWeiXin: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ? 1 : 0,
+  isWeiXin: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1 ? 1 : 0,
   // WeiXin
   // 获取微信签名
-  weiXinGetSignUrl: `${HOST}coffeewx/sign`,
-  // commmon
-  getGroupInfoUrl: `${HOST}hb/get`
+  weiXinGetSignUrl: `${HOST}sign`,
+  // index
+  getGroupInfoUrl: `${HOST}hb/get`,
+  setSmsSendUrl: `${HOST}sms/send`,
+  submitUrl: `${HOST}hb/done`
 };
 
 // 这个store就可以连接到我们的应用中
@@ -39,7 +40,6 @@ export default new Vuex.Store({
   state,
   modules: {
     loading,
-    groupInfo,
     weiXin,
     http,
     // index
