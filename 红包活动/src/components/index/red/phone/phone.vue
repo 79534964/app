@@ -12,7 +12,7 @@
 
 <script type="text/ecmascript-6">
 
-  import {getCookie} from '@/common/js/utils';
+  import {getCookie, setCookie} from '@/common/js/utils';
   import {Field, Button, Toast} from 'mint-ui';
 
   export default {
@@ -34,11 +34,13 @@
           Toast('请输入正确的手机号');
           return false;
         }
-        if (this.phone === getCookie('uer_phone')) {
+        if (this.phone === getCookie('user_phone')) {
           Toast('已经绑定为当前手机号');
           return false;
         }
-        this.$store.dispatch('index/act/SMSSEND', {Vue: this, phone: this.phone});
+        this.$store.dispatch('index/act/SMSSEND', {Vue: this, phone: this.phone}).then(() => {
+          this.changeCaptcha();
+        });
       },
       changeCaptcha() {
         this.captchaFlag = true;
@@ -60,7 +62,10 @@
           Toast('请输入4位验证码');
           return false;
         }
-        this.$store.dispatch('index/act/SUMBIT', {Vue: this, phone: this.phone, code: this.captcha});
+        this.$store.dispatch('index/act/SUMBIT', {Vue: this, phone: this.phone, code: this.captcha}).then(() => {
+          setCookie('user_phone', this.phone);
+          this.$emit('success');
+        });
       }
     },
     components: {
@@ -89,14 +94,14 @@
         border-radius: 0
         font-size: 0.3rem
         background-color: #fff
-        color: #186899
+        color: #009bec
         box-shadow: none
         &::after
           background-color: #fff
     .submit
       width: 100%
       margin-top: 0.5rem
-      background: #186899
+      background: #009bec
       color: #fff
       padding: 0.17rem
       border-radius: 3px

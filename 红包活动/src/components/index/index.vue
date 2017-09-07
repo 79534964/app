@@ -31,6 +31,4 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .wrapper
-    background-color: #f4f4f4
 </style>

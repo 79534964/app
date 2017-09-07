@@ -18,12 +18,12 @@ const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 测试
-  imgUrl: 'http://192.168.2.18:8080/static/img/',
-  // imgUrl: `http://${window.location.host}/mobile/coffeered/static/img/`,
+  // imgUrl: 'http://192.168.2.18:8080/static/img/',
+  imgUrl: `http://${window.location.host}/mobile/coffeewxred/static/img/`,
   // 正确
   ok: '01',
   // 判断微信支付宝
-  isWeiXin: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1 ? 1 : 0,
+  isWeiXin: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ? 1 : 0,
   // WeiXin
   // 获取微信签名
   weiXinGetSignUrl: `${HOST}sign`,

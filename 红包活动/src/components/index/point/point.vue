@@ -1,5 +1,5 @@
 <template>
-  <div class="_wrapper" v-if="$store.state.isWeiXin === 0">
+  <div class="_wrapper" v-if="$store.state.isWeiXin === 0 && $route.query.groupid">
     <div class="content">
       仅限在微信中打开哦
     </div>

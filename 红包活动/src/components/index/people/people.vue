@@ -1,5 +1,5 @@
 <template>
-  <div class="_wrapper">
+  <div class="_wrapper" v-if="record.length !== 0">
     <div class="header">
       <span class="left"></span>看看大家手气<span class="right"></span>
     </div>
@@ -20,10 +20,10 @@
           <div>
             <span class="price">
             {{people.priceType === 1 ? people.couponPrice : (people.couponPrice / 10)}}
-          </span>
+            </span>
             <span class="type">
             {{people.priceType === 1 ? '元' : '折'}}
-          </span>
+            </span>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
       .item
         display: flex
         justify-content: space-between
-        padding: 0.3rem 0
+        padding: 0.2rem 0
         margin: 0 0.3rem
         font-size: 0.27rem
         border-bottom: 1px solid #f4f4f4
