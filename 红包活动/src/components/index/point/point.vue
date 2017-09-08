@@ -1,5 +1,5 @@
 <template>
-  <div class="_wrapper" v-if="$store.state.isWeiXin === 0 && $route.query.groupid">
+  <div class="_wrapper" v-if="$store.state.isWeiXin === 0 && groupFlag">
     <div class="content">
       仅限在微信中打开哦
     </div>
@@ -8,7 +8,12 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'index_point'
+    name: 'index_point',
+    computed: {
+      groupFlag() {
+        return this.$store.getters['index/get/GROUPFLAG'];
+      }
+    }
   };
 </script>
 

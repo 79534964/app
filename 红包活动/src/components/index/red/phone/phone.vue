@@ -3,7 +3,7 @@
     <mt-field class="phone" placeholder="请输入手机号" type="tel" v-model="phone"
               :attr="{ maxlength: 11 }" :disableClear="true"></mt-field>
     <div class="captcha">
-      <mt-field class="input" v-model="captcha" :attr="{ maxlength: 4 }" :disableClear="true"></mt-field>
+      <mt-field class="input" v-model="captcha" :attr="{ maxlength: 4 }" type="tel" :disableClear="true"></mt-field>
       <mt-button class="btn" @click="getCaptcha()" type="default" :disabled="captchaFlag">{{captchaText}}</mt-button>
     </div>
     <mt-button class="submit" @click="sumbit()">确定</mt-button>

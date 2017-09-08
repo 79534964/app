@@ -8,10 +8,6 @@ const getters = {};
 const actions = {
   [types.ACT_COMMON_HTTP] ({state, commit, rootState}, {Vue, url, body = {}}) {
     return new Promise((resolve, reject) => {
-      // 没有活动id不请求
-      if (Vue.$route.query.groupid === '') {
-        return false;
-      }
       // 开始请求
       Vue.$http({
         url,

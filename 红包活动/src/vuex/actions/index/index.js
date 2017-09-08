@@ -24,57 +24,52 @@ const getters = {
 };
 
 const actions = {
-  [types.ACT_INDEX_GROUPINFO] ({state, commit, rootState}, {Vue, groupId, phone, type = 1}) {
+  [types.ACT_INDEX_GROUPINFO] ({state, commit, rootState}, {Vue, phone, type = 1}) {
     return new Promise((resolve, reject) => {
-      Vue.$http({
+      Vue.$store.dispatch('common/act/HTTP', {
+        Vue,
         url: rootState.getGroupInfoUrl,
         body: {
-          groupId,
           phone
         }
-      }).then(({body}) => {
-        let {content} = body;
-        if (content !== null) {
-          commit('index/set/DONE', content.done);
-          commit('index/set/RECORD', content.record);
-          commit('index/set/GROUPINFO', content);
-          Vue.$store.dispatch('weiXin/act/SHARE', {
-            Vue,
-            title: content.shareTitle,
-            desc: content.shareContent,
-            imgUrl: content.shareImgUrl
-          });
-          // 领取完调用不判断
-          if (type !== 1) {
-            resolve();
-            return false;
-          }
-          if (content.done.length !== 0) {
-            // 表示活动时间结束
-            Toast('你已经抢过这个红包了');
-            commit('index/set/GROUPFLAG', true);
-            return false;
-          }
-          if (content.endTime < new Date().getTime() / 1000) {
-            // 表示活动时间结束
-            Toast('这个红包已经结束');
-            return false;
-          }
-          if (content.startTime > new Date().getTime() / 1000) {
-            // 表示活动暂未开始
-            Toast('这个红包暂未开始');
-            return false;
-          }
-          if (content.usable * 1 !== 1 || !content.ruleSize) {
-            // 表示没有可领优惠券
-            Toast('这个红包已经领完了');
-            return false;
-          }
-          commit('index/set/GROUPFLAG', true);
+      }).then((data) => {
+        commit('index/set/DONE', data.done);
+        commit('index/set/RECORD', data.record);
+        commit('index/set/GROUPINFO', data);
+        Vue.$store.dispatch('weiXin/act/SHARE', {
+          Vue,
+          title: data.shareTitle,
+          desc: data.shareContent,
+          imgUrl: data.img
+        });
+        // 领取完调用不判断
+        if (type !== 1) {
           resolve();
-        } else {
-          Toast('找不到该活动信息');
+          return false;
         }
+        if (data.done.length !== 0) {
+          // 表示活动时间结束
+          Toast('你已经抢过这个红包了');
+          commit('index/set/GROUPFLAG', true);
+          return false;
+        }
+        if (data.endTime < new Date().getTime() / 1000) {
+          // 表示活动时间结束
+          Toast('这个红包已经结束');
+          return false;
+        }
+        if (data.startTime > new Date().getTime() / 1000) {
+          // 表示活动暂未开始
+          Toast('这个红包暂未开始');
+          return false;
+        }
+        if (data.usable === 0) {
+          // 表示没有可领优惠券
+          Toast('这个红包已经领完了');
+          return false;
+        }
+        commit('index/set/GROUPFLAG', true);
+        resolve();
       });
     });
   },
@@ -103,7 +98,7 @@ const actions = {
       }).then((data) => {
         resolve();
         Toast(data.received === 0 ? '领取成功！' : '你已经抢过这个红包了');
-        Vue.$store.dispatch('index/act/GROUPINFO', {Vue, groupId: Vue.$route.query.groupid, phone, type: 2});
+        Vue.$store.dispatch('index/act/GROUPINFO', {Vue, phone, type: 2});
       });
     });
   }
