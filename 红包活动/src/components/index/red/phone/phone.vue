@@ -22,7 +22,8 @@
         phone: '',
         captcha: '',
         captchaFlag: false,
-        captchaText: '获取验证码'
+        captchaText: '获取验证码',
+        interval: -1
       };
     },
     methods: {
@@ -46,16 +47,23 @@
         this.captchaFlag = true;
         let num = 60;
         this.captchaText = `${num}秒`;
-        let interval = window.setInterval(() => {
+        this.interval = window.setInterval(() => {
           num--;
           if (num === 0) {
-            window.clearInterval(interval);
+            window.clearInterval(this.interval);
             this.captchaText = '获取验证码';
             this.captchaFlag = false;
             return false;
           }
           this.captchaText = `${num}秒`;
         }, 1000);
+      },
+      init() {
+        this.phone = '';
+        this.captcha = '';
+        window.clearInterval(this.interval);
+        this.captchaText = '获取验证码';
+        this.captchaFlag = false;
       },
       sumbit() {
         if (this.captcha === '') {
@@ -65,6 +73,7 @@
         this.$store.dispatch('index/act/SUMBIT', {Vue: this, phone: this.phone, code: this.captcha}).then(() => {
           setCookie('user_phone', this.phone);
           this.$emit('success');
+          this.init();
         });
       }
     },
