@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="wrapper" v-show="loading" @touchmove.prevent>
+    <div class="wrapper" v-if="loading" @touchmove.prevent>
       <div class="content">
         <img class="loading" :src="`${$store.state.imgUrl}loading.gif`"/>
       </div>

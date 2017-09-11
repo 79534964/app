@@ -17,7 +17,7 @@
           <span class="other" v-if="people.priceType ===2 && (people.couponPrice === 50 || people.couponPrice === 100)">
             {{people.couponPrice === 50 ? '半价券' : '全免券'}}
           </span>
-          <div>
+          <div v-else>
             <span class="price">
             {{people.priceType === 1 ? people.couponPrice : (people.couponPrice / 10)}}
             </span>

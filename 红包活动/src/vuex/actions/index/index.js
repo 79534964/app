@@ -42,6 +42,10 @@ const actions = {
           desc: data.shareContent,
           imgUrl: data.img
         });
+        Vue.$store.dispatch('qq/act/SHARE', {
+          title: data.shareTitle,
+          desc: data.shareContent
+        });
         // 领取完调用不判断
         if (type !== 1) {
           resolve();

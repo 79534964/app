@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 // common
 import loading from './actions/common/loading';
 import weiXin from './actions/weiXin/weiXin';
+import qq from './actions/qq/qq';
 import http from './actions/common/http';
 // index
 import index from './actions/index/index';
@@ -23,7 +24,7 @@ const state = {
   // 正确
   ok: '01',
   // 判断微信支付宝
-  isWeiXin: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ? 1 : 0,
+  isWeiXin: (window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 || window.navigator.userAgent.toLowerCase().indexOf('qq') !== -1) ? 1 : 0,
   // WeiXin
   // 获取微信签名
   weiXinGetSignUrl: `${HOST}sign`,
@@ -41,6 +42,7 @@ export default new Vuex.Store({
   modules: {
     loading,
     weiXin,
+    qq,
     http,
     // index
     index

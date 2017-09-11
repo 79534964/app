@@ -5,7 +5,7 @@
         <div class="left">
           <div>{{coupon.ruleName}}</div>
         </div>
-        <div class="other" v-if="coupon.priceType ===2 && (coupon.couponPrice === 50 || coupon.couponPrice === 100)">
+        <div class="other" v-if="coupon.priceType === 2 && (coupon.couponPrice === 50 || coupon.couponPrice === 100)">
           {{coupon.couponPrice === 50 ? '半价券' : '全免券'}}
         </div>
         <div class="right" v-else>

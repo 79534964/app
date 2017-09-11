@@ -48,7 +48,7 @@
       padding: 0.2rem 0.5rem
       p
         font-size: 0.26rem
-        margin-bottom: 0.1rem
+        margin-bottom: 0.15rem
 
 </style>
 

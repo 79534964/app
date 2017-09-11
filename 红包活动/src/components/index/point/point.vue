@@ -1,7 +1,7 @@
 <template>
   <div class="_wrapper" v-if="$store.state.isWeiXin === 0 && groupFlag">
     <div class="content">
-      仅限在微信中打开哦
+      仅限在微信或QQ游览器中打开哦
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@
       border-radius: 4px
       text-align: center
       line-height: 2rem
-      font-size: 0.4rem
+      font-size: 0.33rem
       font-weight: 600
       color: #cdcdcd
 
