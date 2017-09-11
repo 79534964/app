@@ -21,8 +21,19 @@
   <component name="FavoritesManager">
     <favorites_list name="extend" />
   </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/红包活动/src/components/index/red/coupon/coupon.vue" />
+        <option value="$PROJECT_DIR$/红包活动/src/components/index/red/red.vue" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -36,7 +47,6 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
     <option name="width" value="1934" />
     <option name="height" value="1056" />
   </component>
@@ -71,8 +81,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -91,9 +101,18 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="nodejs_interpreter_path" value="D:/nodejs/node" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -106,32 +125,33 @@
       <workItem from="1504598273479" duration="47000" />
       <workItem from="1504598338575" duration="111000" />
       <workItem from="1504833864520" duration="1000" />
+      <workItem from="1505124277559" duration="1114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164000" />
+    <option name="totallyTimeSpent" value="1278000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1934" height="1056" extended-state="0" />
+    <frame x="-8" y="0" width="1934" height="1056" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -148,5 +168,101 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/红包活动/src/components/index/point/point.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1505094926884" expanded="true" signature="216:355" ph="{&quot;name&quot;: 'index_point'...}" />
+            <marker date="1505094926884" expanded="true" signature="257:351" ph="{...}" />
+            <marker date="1505094926884" expanded="true" signature="277:345" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/红包活动/src/components/index/red/phone/phone.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="27" selection-end-column="6" />
+          <folding>
+            <marker date="1504864104564" expanded="false" signature="586:682" ph="..." />
+            <marker date="1504864104564" expanded="true" signature="701:2451" ph="{&quot;name&quot;: 'index_red_phone'...}" />
+            <marker date="1504864104564" expanded="true" signature="743:893" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="758:886" ph="{&quot;phone&quot;: ''...}" />
+            <marker date="1504864104564" expanded="true" signature="908:2371" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="929:1377" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="961:996" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1046:1111" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1164:1230" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1324:1367" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1401:1821" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1545:1805" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1589:1755" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="1836:2012" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="2029:2365" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="2064:2128" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="2241:2355" ph="{...}" />
+            <marker date="1504864104564" expanded="true" signature="2389:2447" ph="{&quot;mt-field&quot;: Field...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/红包活动/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/答题活动/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding>
+            <marker date="1503912513507" expanded="true" signature="211:271" ph="{&quot;name&quot;: 'app'...}" />
+            <marker date="1503912513507" expanded="true" signature="246:267" ph="{&quot;loading&quot;: loading...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/红包活动/src/components/index/red/red.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+          <folding>
+            <marker date="1505125386393" expanded="false" signature="651:806" ph="..." />
+            <marker date="1505125386393" expanded="true" signature="825:1583" ph="{&quot;name&quot;: 'index_red'...}" />
+            <marker date="1505125386393" expanded="true" signature="861:942" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="876:935" ph="{&quot;cookiePhone&quot;: ''...}" />
+            <marker date="1505125386393" expanded="true" signature="957:1320" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="976:1037" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1057:1097" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1115:1181" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1198:1314" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1336:1366" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1382:1476" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1402:1470" ph="{...}" />
+            <marker date="1505125386393" expanded="true" signature="1494:1579" ph="{&quot;coupon&quot;: coupon...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/红包活动/src/components/index/red/coupon/coupon.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding>
+            <marker date="1505125290519" expanded="true" signature="958:1178" ph="{&quot;name&quot;: 'index_red_coupon'...}" />
+            <marker date="1505125290519" expanded="true" signature="1001:1074" ph="{...}" />
+            <marker date="1505125290519" expanded="true" signature="1016:1067" ph="{...}" />
+            <marker date="1505125290519" expanded="true" signature="1090:1174" ph="{...}" />
+            <marker date="1505125290519" expanded="true" signature="1105:1168" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

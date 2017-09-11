@@ -17,7 +17,10 @@
           </div>
         </div>
       </div>
-      <div class="bottom"></div>
+      <div class="bottom">
+        <p v-if="!coupon.couponEndTime">不限时间</p>
+        <p v-else>{{parseInt((coupon.couponEndTime - time)/(24*60*60))}}天后过期</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +28,11 @@
 <script type="text/ecmascript-6">
   export default {
     name: 'index_red_coupon',
+    data() {
+      return {
+        time: new Date().getTime() / 1000
+      };
+    },
     computed: {
       done() {
         return this.$store.getters['index/get/DONE'];
@@ -42,7 +50,11 @@
       border-radius: 4px
       .bottom
         height: 0.5rem
-        margin-bottom: 0.3rem
+        line-height: 0.5rem
+        margin-bottom: 0.3 remp
+        p
+          color: #676767
+          padding-left: 0.2rem
       .item
         display: flex
         justify-content: space-between
