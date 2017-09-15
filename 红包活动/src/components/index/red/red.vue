@@ -11,7 +11,7 @@
                @click="goHref()">
       立即使用
     </mt-button>
-    <mt-popup class="popup" v-model="popupFlag" popup-transition="popup-fade">
+    <mt-popup class="popup" v-model="popupFlag" popup-transition="popup-fade" :style="{marginTop:height}">
       <div>
         <phone @success="success"></phone>
       </div>
@@ -31,7 +31,8 @@
     data() {
       return {
         popupFlag: false,
-        cookiePhone: ''
+        cookiePhone: '',
+        height: '0px'
       };
     },
     methods: {
@@ -40,6 +41,7 @@
       },
       openPopup() {
         this.popupFlag = true;
+        this.height = `${document.body.scrollTop}px`;
       },
       success() {
         this.getPhone();
@@ -89,6 +91,7 @@
       border-radius: 3px
       font-size: 0.35rem
     .popup
+      position: absolute
       top: 30%
       width: 7rem
       padding: 0.5rem 0 0.5rem 0
