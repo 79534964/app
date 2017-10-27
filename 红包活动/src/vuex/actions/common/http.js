@@ -26,7 +26,7 @@ const actions = {
         }
       }).catch((res) => {
         Vue.$store.dispatch('common/act/LOADING', {loading: false});
-        MessageBox.alert('抱歉,服务器开小差了~');
+        MessageBox.alert('网络异常！');
       });
     });
   }

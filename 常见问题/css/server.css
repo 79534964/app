@@ -225,7 +225,7 @@ body {
       #wrapper > div ul li:not(:first-child) > div:nth-of-type(2) {
         top: 45%; }
       #wrapper > div ul li:not(:first-child) > div:nth-of-type(3) {
-        width: 100%;
+        width: 90%;
         top: 81%; }
         #wrapper > div ul li:not(:first-child) > div:nth-of-type(3) p {
           margin-left: 0;

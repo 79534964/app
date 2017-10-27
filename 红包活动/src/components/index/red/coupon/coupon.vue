@@ -48,6 +48,7 @@
     .content
       box-shadow: 0 4px 3px #dfdfdf
       border-radius: 4px
+      margin-bottom: 0.2rem
       .bottom
         height: 0.5rem
         line-height: 0.5rem

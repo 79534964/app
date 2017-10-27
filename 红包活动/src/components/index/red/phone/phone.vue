@@ -22,8 +22,7 @@
         phone: '',
         captcha: '',
         captchaFlag: false,
-        captchaText: '获取验证码',
-        interval: -1
+        captchaText: '获取验证码'
       };
     },
     methods: {
@@ -47,10 +46,10 @@
         this.captchaFlag = true;
         let num = 60;
         this.captchaText = `${num}秒`;
-        this.interval = window.setInterval(() => {
+        let interval = window.setInterval(() => {
           num--;
           if (num === 0) {
-            window.clearInterval(this.interval);
+            window.clearInterval(interval);
             this.captchaText = '获取验证码';
             this.captchaFlag = false;
             return false;
@@ -61,7 +60,6 @@
       init() {
         this.phone = '';
         this.captcha = '';
-        window.clearInterval(this.interval);
         this.captchaText = '获取验证码';
         this.captchaFlag = false;
       },

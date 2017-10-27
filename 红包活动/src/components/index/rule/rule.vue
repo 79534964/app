@@ -8,7 +8,8 @@
       <p>2、每个红包限制{{groupInfo.limitCount}}人领取</p>
       <p>3、发放{{groupInfo.groupType === 1 ? '随机' : '指定'}}优惠券</p>
       <p>4、每个订单只能用一个优惠券</p>
-      <p>5、其他未尽事宜，联系客服咨询</p>
+      <p>5、仅限咖啡码头APP使用</p>
+      <p>6、其他未尽事宜，联系客服咨询</p>
     </div>
   </div>
 </template>

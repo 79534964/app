@@ -36,16 +36,19 @@ const actions = {
         commit('index/set/DONE', data.done);
         commit('index/set/RECORD', data.record);
         commit('index/set/GROUPINFO', data);
-        Vue.$store.dispatch('weiXin/act/SHARE', {
-          Vue,
-          title: data.shareTitle,
-          desc: data.shareContent,
-          imgUrl: data.img
-        });
-        Vue.$store.dispatch('qq/act/SHARE', {
-          title: data.shareTitle,
-          desc: data.shareContent
-        });
+        // 只有微信中才行调取
+        if (rootState.isWeiXin === 1) {
+          Vue.$store.dispatch('weiXin/act/SHARE', {
+            Vue,
+            title: data.shareTitle,
+            desc: data.shareContent,
+            imgUrl: data.img
+          });
+          Vue.$store.dispatch('qq/act/SHARE', {
+            title: data.shareTitle,
+            desc: data.shareContent
+          });
+        }
         // 领取完调用不判断
         if (type !== 1) {
           resolve();
@@ -57,12 +60,12 @@ const actions = {
           commit('index/set/GROUPFLAG', true);
           return false;
         }
-        if (data.endTime < new Date().getTime() / 1000) {
+        if (new Date(data.endTime.replace(/-/g, '/')).getTime() < new Date().getTime()) {
           // 表示活动时间结束
           Toast('这个红包已经结束');
           return false;
         }
-        if (data.startTime > new Date().getTime() / 1000) {
+        if (new Date(data.startTime.replace(/-/g, '/')).getTime() > new Date().getTime()) {
           // 表示活动暂未开始
           Toast('这个红包暂未开始');
           return false;

@@ -10,10 +10,11 @@
           <img v-else :src="people.headImg"/>
         </div>
         <div class="info">
-          <div class="name">{{people.userName}}</div>
+          <div class="name">{{people.nickName ? people.nickName : people.userName}}</div>
           <div class="time">{{people.createTime}}</div>
         </div>
-        <div class="price">
+        <img class="good" v-if="people.isBest === 1" src="./good.png"/>
+        <div class="price" :class="{good_price:people.isBest === 1}">
           <span class="other" v-if="people.priceType ===2 && (people.couponPrice === 50 || people.couponPrice === 100)">
             {{people.couponPrice === 50 ? '半价券' : '全免券'}}
           </span>
@@ -63,6 +64,7 @@
     .content
       color: #484848
       .item
+        position: relative
         display: flex
         justify-content: space-between
         padding: 0.2rem 0
@@ -77,14 +79,24 @@
           overflow: hidden
           img
             width: 100%
+        .good
+          position: absolute
+          width: 1.3rem
+          right: 0
+          bottom: 0.3rem
         .info
           display: flex
           flex-direction: column
           justify-content: space-around
-          padding: 0.05rem 0
-          margin-left: -2rem
+          position: absolute
+          left: 1.3rem
+          height: 0.8rem
+          top: 0.3rem
         .price
           line-height: 1rem
+        .good_price
+          position: relative
+          top: -0.1rem
 </style>
 
 <style lang="stylus" rel="stylesheet/stylus">
