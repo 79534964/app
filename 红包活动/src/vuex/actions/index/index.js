@@ -24,7 +24,7 @@ const getters = {
 };
 
 const actions = {
-  [types.ACT_INDEX_GROUPINFO] ({state, commit, rootState}, {Vue, phone, type = 1}) {
+  [types.ACT_INDEX_GROUPINFO]({state, commit, rootState}, {Vue, phone, type = 1}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
@@ -44,11 +44,11 @@ const actions = {
             desc: data.shareContent,
             imgUrl: data.img
           });
-          Vue.$store.dispatch('qq/act/SHARE', {
-            title: data.shareTitle,
-            desc: data.shareContent
-          });
         }
+        Vue.$store.dispatch('qq/act/SHARE', {
+          title: data.shareTitle,
+          desc: data.shareContent
+        });
         // 领取完调用不判断
         if (type !== 1) {
           resolve();
@@ -80,7 +80,7 @@ const actions = {
       });
     });
   },
-  [types.ACT_INDEX_SMSSEND] ({state, commit, rootState}, {Vue, phone}) {
+  [types.ACT_INDEX_SMSSEND]({state, commit, rootState}, {Vue, phone}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
@@ -93,7 +93,7 @@ const actions = {
       });
     });
   },
-  [types.ACT_INDEX_SUMBIT] ({state, commit, rootState}, {Vue, phone, code}) {
+  [types.ACT_INDEX_SUMBIT]({state, commit, rootState}, {Vue, phone, code}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
@@ -112,16 +112,16 @@ const actions = {
 };
 
 const mutations = {
-  [types.SET_INDEX_GROUPINFO] (state, info) {
+  [types.SET_INDEX_GROUPINFO](state, info) {
     state.groupInfo = info;
   },
-  [types.SET_INDEX_DONE] (state, done) {
+  [types.SET_INDEX_DONE](state, done) {
     state.done = done;
   },
-  [types.SET_INDEX_RECORD] (state, record) {
+  [types.SET_INDEX_RECORD](state, record) {
     state.record = record;
   },
-  [types.SET_INDEX_GROUPFLAG] (state, beal) {
+  [types.SET_INDEX_GROUPFLAG](state, beal) {
     state.groupFlag = beal;
   }
 };
