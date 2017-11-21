@@ -1,145 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>咖啡码头</title>
-    <script type='text/javascript'>
-      var _vds = _vds || [];
-      window._vds = _vds;
-      (function(){
-        _vds.push(['setAccountId', 'b601fadaedebbd6a']);
-        (function() {
-          var vds = document.createElement('script');
-          vds.type='text/javascript';
-          vds.async = true;
-          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(vds, s);
-        })();
-      })();
-    </script>
-    <script src="webapp/js/rem.js"></script>
-    <link rel="stylesheet" type="text/css" href="webapp/css/index.css">
+  <meta charset="utf-8">
+  <title>咖啡码头</title>
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="stylesheet" type="text/css" href="./static/css/reset.css">
+  <script src="./static/js/rem.js"></script>
 </head>
 <body>
-<div class='prop' id="prop">
-    <p></p>
-</div>
-<div class='phone' id="phone">
-    <div>
-        <input type="text" maxlength="11" placeholder="请输入手机号">
-        <p id="dole">立即领取</p>
-    </div>
-</div>
-<div class="rule" id="ruleBox">
-    <div id="scroller">
-        <ul>
-            <img src="webapp/images/rule1.png"/>
-        </ul>
-    </div>
-    <p id="removeRule">知道了</p>
-</div>
-<div class="prize" id="prize">
-    <div>
-        <img src="webapp/images/prize.png"/>
-        <p class="price"></p>
-        <p class="name"></p>
-        <a href="http://org.oa.mattburg.cn/jeewxmb/productController.do?toCoupon">查看优惠券</a>
-    </div>
-    <a class="close" href="javascript:void(0)" onclick="location.reload()"></a>
-</div>
-<header class="swiper-banner">
-    <div class="swiper-wrapper">
-        <img class="swiper-slide" src="webapp/images/header.jpg"/>
-    </div>
-    <img src="webapp/images/rule.png" id="ruleBtn">
-</header>
-<div id="count" class="count">
-</div>
-<div class="lucky" id="lucky">
-    <img src="webapp/images/lucky.png"/>
-    <div class="right swiper-container">
-        <div class="swiper-wrapper">
-        </div>
-    </div>
-</div>
-<div class="period" id="period">
-</div>
-<footer>
-    <p id="submit">立即参与</p>
-</footer>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script src="webapp/js/zepto.min.js"></script>
-<script>
-    var str='${result}';
-    eval('var json='+str.replace(/\\/g, ''));
-    $.ajax({
-        url: 'http://' + window.location.host + '/activity/activity/getsign?',
-        type: 'post',
-        dataType: 'json',
-        data: {
-            url: window.location.href.split('#')[0]
-        },
-        success: function (data) {
-            wx.config({
-                debug: false,
-                appId: data.appid,
-                timestamp: data.timestamp,
-                nonceStr: data.nonceStr,
-                signature: data.signature,
-                jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
-            });
-            wx.ready(function () {
-                wx.onMenuShareTimeline({
-                    title: json.coupongroup.groupname,
-                    link: 'http://' + window.location.host + '/' + json.coupongroup.url.replace(/\s/ig, ''),
-                    imgUrl: 'http://oa.managerment.mattburg.cn/activity/webapp/images/share.png',
-                    success: function () {
-                        $.ajax({
-                            url: 'http://' + window.location.host + '/activity/share/addsharetimes?',
-                            type: 'post',
-                            dataType: 'json',
-                            data: {
-                                groupid: json.coupongroup.groupid,
-                            },
-                            success: function (data) {
-
-                            }
-                        });
-                        alert('分享成功,欢迎您的参与');
-                    }
-                });
-                wx.onMenuShareAppMessage({
-                    title: json.coupongroup.groupname,
-                    desc: '咖啡码头新年特惠红包，陪你一起欢度鸡年',
-                    link: 'http://' + window.location.host + '/' + json.coupongroup.url.replace(/\s/ig, ''),
-                    imgUrl: 'http://oa.managerment.mattburg.cn/activity/webapp/images/share.png',
-                    success: function () {
-                         $.ajax({
-                            url: 'http://' + window.location.host + '/activity/share/addsharetimes?',
-                            type: 'post',
-                            dataType: 'json',
-                            data: {
-                                groupid: json.coupongroup.groupid,
-                            },
-                            success: function (data) {
-
-                            }
-                        });
-                        alert('分享成功,欢迎您的参与');
-                    }
-                });
-            });
-        }
-    });
-</script>
-<script src="webapp/js/touch.min.js"></script>
-<script src="webapp/js/swiper.min.js"></script>
-<script src="webapp/js/iscroll.min.js"></script>
-<script src="webapp/js/loading.js"></script>
-<script src="webapp/js/index.js"></script>
+  <div id="app"></div>
 </body>
 </html>

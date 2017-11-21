@@ -1,4 +1,0 @@
-Â·¾¶
-http://test.wx.mattburg.cn/coffeealipay/webapps/scan.html
-µØÖ·
-/usr/local/apache-tomcat-7.0.69/webapps/coffeealipay/webapps

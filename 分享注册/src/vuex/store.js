@@ -13,9 +13,9 @@ import index from './actions/index/index';
 Vue.use(Vuex);
 
 // 测试接口地址
-const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
+// const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
 // 正式接口
-// const HOST = 'http://org.oa.mattburg.cn/coffeewx/';
+const HOST = 'http://org.oa.mattburg.cn/coffeewx/';
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 测试
