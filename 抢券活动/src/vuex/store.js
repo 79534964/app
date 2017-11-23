@@ -40,7 +40,7 @@ const state = {
   // 校验token
   checkUserTokenUrl: `${HOST}user/checkToken`,
   // groupInfo
-  getGroupInfoUrl: `${HOST}acc/group`
+  getGroupInfoUrl: `${HOST}acc/info`
   // index
 };
 
