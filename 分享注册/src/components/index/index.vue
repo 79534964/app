@@ -48,13 +48,13 @@
     .header
       font-size: 0
     .point
-      height: 1rem
-      line-height: 1rem
+      height: 1.5rem
+      line-height: 1.5rem
       text-align: center
       font-size: 0.4rem
     .rule
       text-align: center
-      margin-top: 0.4rem
+      margin-top: 0.6rem
       color: #8d8d8d
       span
         padding: 0.2rem

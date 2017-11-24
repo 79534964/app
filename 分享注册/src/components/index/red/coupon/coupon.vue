@@ -19,7 +19,7 @@
       </div>
       <div class="bottom">
         <p v-if="!coupon.couponEndTime">不限时间</p>
-        <p v-else>{{parseInt((coupon.couponEndTime - time)/(24*60*60))}}天后过期</p>
+        <p v-else>{{Math.round((coupon.couponEndTime - time)/(24*60*60))}}天后过期</p>
       </div>
     </div>
     <mt-button class="href" @click="goHref()">
@@ -91,10 +91,10 @@
           padding-top: 0.1rem
     .href
       width: 100%
-      margin-top: 0.5rem
+      margin-top: 0.7rem
       background: #009bec
       color: #fff
-      padding: 0.17rem
+      padding: 0.2rem
       border-radius: 3px
       font-size: 0.33rem
 </style>

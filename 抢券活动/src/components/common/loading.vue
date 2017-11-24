@@ -28,6 +28,7 @@
     width: 100%
     height: 100%
     transition: all 0.3s
+    background-color: rgba(0, 0, 0, .3)
     &.fade-enter-active
       opacity: 0
     &.fade-leave-active
@@ -38,7 +39,6 @@
       margin-top: 35%
       .loading
         width: 100%
-        background-color: rgba(255,255,255,0.5)
         border-radius: 5%
 </style>
 

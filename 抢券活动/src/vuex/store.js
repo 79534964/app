@@ -10,7 +10,6 @@ import zhiFuBao from './actions/zhiFuBao/zhiFuBao';
 import http from './actions/common/http';
 import loading from './actions/common/loading';
 import userToken from './actions/common/userToken';
-import groupInfo from './actions/common/groupInfo';
 // index
 import index from './actions/index/index';
 
@@ -23,12 +22,14 @@ const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 测试
-  imgUrl: 'http://192.168.2.16:8080/static/img/',
-  // imgUrl: `http://${window.location.host}/mobile/coffeewxanswer/static/img/`,
+  // imgUrl: 'http://192.168.2.16:8080/static/img/',
+  imgUrl: `http://${window.location.host}/mobile/coffeewxactivity/static/img/`,
   // 正确
   ok: '01',
+  noToken: '300',
   // 判断微信支付宝
-  userType: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1 ? 'WX' : navigator.userAgent.toLowerCase().indexOf('alipay') !== -1 ? 'ZFB' : '',
+  // userType: window.navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1 ? 'WX' : navigator.userAgent.toLowerCase().indexOf('alipay') !== -1 ? 'ZFB' : '',
+  userType: 'WX',
   // weiXin
   // 微信获取签名接口
   weiXinGetSignUrl: `${HOST}sign`,
@@ -39,9 +40,10 @@ const state = {
   getUserTokenUrl: `${HOST}user/login`,
   // 校验token
   checkUserTokenUrl: `${HOST}user/checkToken`,
-  // groupInfo
-  getGroupInfoUrl: `${HOST}acc/info`
   // index
+  getGroupInfoUrl: `${HOST}acc/info`,
+  smsUrl: `${HOST}sms/send`,
+  couponUrl: `${HOST}hb/recCoupon`
 };
 
 // 这个store就可以连接到我们的应用中
@@ -58,7 +60,6 @@ export default new Vuex.Store({
     http,
     loading,
     userToken,
-    groupInfo,
     // index
     index
   }

@@ -86,19 +86,18 @@
       overflow: hidden
       background-color: #f8f8f8
       .phone
-        height: 0.83rem
+        height: 1rem
         min-height: inherit
         border-bottom: 1px solid #e4e4e4
       .captcha
         display: flex
         border-bottom: 1px solid #e4e4e4
-        margin-top: 0.1rem
         .input
           flex: 1
           min-height: inherit
         .btn
           width: 2.5rem
-          height: 0.83rem
+          height: 1rem
           border-radius: 0
           font-size: 0.3rem
           color: #009bec
@@ -107,10 +106,10 @@
             background-color: #fff
     .submit
       width: 100%
-      margin-top: 0.5rem
+      margin-top: 0.7rem
       background: #009bec
       color: #fff
-      padding: 0.17rem
+      padding: 0.2rem
       border-radius: 3px
       font-size: 0.33rem
 </style>

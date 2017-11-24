@@ -7,7 +7,7 @@ const state = {};
 const getters = {};
 
 const actions = {
-  [types.ACT_COMMON_HTTP] ({state, commit, rootState}, {Vue, url, body = {}}) {
+  [types.ACT_COMMON_HTTP]({state, commit, rootState}, {Vue, url, body = {}}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTPINTERCEPTORS', {Vue}).then(() => {
         Vue.$store.dispatch('common/act/LOADING', {loading: true});
@@ -37,14 +37,14 @@ const actions = {
       });
     });
   },
-  [types.ACT_COMMON_HTTPINTERCEPTORS] ({state, commit, rootState}, {Vue}) {
+  [types.ACT_COMMON_HTTPINTERCEPTORS]({state, commit, rootState}, {Vue}) {
     return new Promise((resolve, reject) => {
       // 先拦截projectType
       if ((rootState.weiXin.openId !== '' && rootState.userType === 'WX') || (rootState.zhiFuBao.userId !== '' && rootState.userType === 'ZFB')) {
         // 再检验token
         Vue.$store.dispatch('common/act/CHECKUSERTOKEN', {Vue}).then((code) => {
           // token过期 重新获取token
-          if (code === '300') {
+          if (code === rootState.noToken) {
             Vue.$store.dispatch('common/act/USERTOKEN', {Vue}).then((res) => {
               resolve();
             });

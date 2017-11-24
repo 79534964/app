@@ -28,21 +28,3 @@ export const GET_COMMON_LOADING = 'common/get/LOADING';
 
 // 执行设置loading状态
 export const ACT_COMMON_LOADING = 'common/act/LOADING';
-
-// groupInfo
-// 设置活动信息
-export const SET_COMMON_GROUPINFO = 'common/set/GROUPINFO';
-// 设置活动得类型
-export const SET_COMMON_GROUPTYPE = 'common/set/GROUPTYPE';
-
-// 获取活动信息
-export const GET_COMMON_GROUPINFO = 'common/get/GROUPINFO';
-// 获取活动得类型
-export const GET_COMMON_GROUPTYPE = 'common/get/GROUPTYPE';
-
-// 执行设置活动信息
-export const ACT_COMMON_GROUPINFO = 'common/act/GROUPINFO';
-// 执行设置活动类型
-export const ACT_COMMON_GROUPTYPE = 'common/act/GROUPTYPE';
-// 执行检测活动类型
-export const ACT_COMMON_CHECKGROUPTYPE = 'common/act/CHECKGROUPTYPE';

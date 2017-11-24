@@ -23,9 +23,11 @@
         goPage: function () {
             if (auto.data.openId) {
                 var inter = window.setInterval(function () {
-                    wx && window.clearInterval(inter);
                     wx && wx.miniProgram.redirectTo({
-                        url: auto.data.page + '?openId=' + auto.data.openId + splitUrl(window.location.href)
+                        url: auto.data.page + '?openId=' + auto.data.openId + splitUrl(window.location.href),
+                        success: function () {
+                            window.clearInterval(inter);
+                        }
                     });
                 }, 100);
             }
@@ -33,7 +35,6 @@
         isOpenId: function () {
             if (!auto.data.openId) {
                 window.location.href = escapeUrl(window.location.href).replace(window.location.host + '/', auto.data.serviceUrl);
-                alert(escapeUrl(window.location.href).replace(window.location.host + '/', auto.data.serviceUrl));
             }
         },
         init: function () {

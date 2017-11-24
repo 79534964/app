@@ -14,6 +14,27 @@ export function getCookie(name) {
   return '';
 }
 
+export function dateFormat(date, fmt) {
+  let o = {
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds(),
+    'q+': Math.floor((date.getMonth() + 3) / 3),
+    'S': date.getMilliseconds()
+  };
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+  }
+  for (let k in o) {
+    if (new RegExp('(' + k + ')').test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+    }
+  }
+  return fmt;
+}
+
 // 设置cookie
 export function setCookie(name, value, days = 365) {
   let exdate = new Date();
