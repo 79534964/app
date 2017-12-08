@@ -19,12 +19,10 @@
     },
     methods: {
       changWidth() {
-        if (this.info.usedCounpon !== 0) {
-          this.iStyle.width = `${Math.round((this.info.usedCounpon * 100) / this.info.totalCoupon)}%`;
+        if (this.info.usedCoupon !== 0) {
+          this.iStyle.width = `${Math.round((this.info.usedCoupon * 100) / this.info.totalCoupon)}%`;
         }
       }
-    },
-    created() {
     },
     computed: {
       info() {

@@ -4,7 +4,7 @@
       <p v-if="info">{{dateFormat(new Date(info.startTime * 1000), 'yyyy-MM-dd hh:mm:ss')}} 开始</p></div>
     <div class="content" v-if="info">
       <ul>
-        <li class="clearfix" v-for="user in info.userRecords" :key="user.userName">
+        <li class="clearfix" v-for="user in info.disRecords" :key="user.userName">
           <img v-if="user.avatar" :src="user.avatar"/>
           <img v-if="!user.avatar" src="./head.png">
           <div>

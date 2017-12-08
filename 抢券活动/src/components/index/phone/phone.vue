@@ -73,11 +73,7 @@
           });
           return false;
         }
-        this.$store.dispatch('index/act/COUPON', {Vue: this, phone: this.phone, code: this.captcha}).then(() => {
-          Toast({
-            message: '领取成功！',
-            duration: 700
-          });
+        this.$store.dispatch('index/act/COUPONS', {Vue: this, phone: this.phone, code: this.captcha}).then(() => {
           this.showFlag = false;
           this.$emit('success');
         });

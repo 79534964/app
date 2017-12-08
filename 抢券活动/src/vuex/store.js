@@ -16,13 +16,13 @@ import index from './actions/index/index';
 Vue.use(Vuex);
 
 // 测试接口地址
-const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
+// const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
 // 正式接口
-// const HOST = 'http://org.oa.mattburg.cn/coffeewx/';
+const HOST = 'http://org.oa.mattburg.cn/coffeewx/';
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 测试
-  // imgUrl: 'http://192.168.2.16:8080/static/img/',
+  // imgUrl: 'http://192.168.2.21:8080/static/img/',
   imgUrl: `http://${window.location.host}/mobile/coffeewxactivity/static/img/`,
   // 正确
   ok: '01',

@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <phone ref="phoneNode"></phone>
+    <phone ref="phoneNode" @success="success"></phone>
+    <coupon ref="couponNode"></coupon>
     <rule ref="ruleNode"></rule>
     <div class="rule" @click="$refs.ruleNode.open()">
       <img src="./rule.png"/>
@@ -25,6 +26,7 @@
   import count from './count/count';
   import lucky from './lucky/lucky';
   import period from './period/period';
+  import coupon from './coupon/coupon';
 
   export default {
     name: 'index',
@@ -62,8 +64,17 @@
       },
       submit() {
         if (this.checkToken()) {
-          this.$refs.phoneNode.open();
+          if (this.userInfo.mobile) {
+            this.$store.dispatch('index/act/COUPONS', {Vue: this, phone: this.userInfo.mobile, code: ''}).then(() => {
+              this.success();
+            });
+          } else {
+            this.$refs.phoneNode.open();
+          }
         }
+      },
+      success() {
+        this.$refs.couponNode.open();
       }
     },
     created() {
@@ -77,6 +88,9 @@
     computed: {
       info() {
         return this.$store.getters['index/get/INFO'];
+      },
+      userInfo() {
+        return this.$store.getters['common/get/USERINFO'];
       }
     },
     components: {
@@ -85,6 +99,7 @@
       lucky,
       period,
       phone,
+      coupon,
       'mt-button': Button
     }
   };

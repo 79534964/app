@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <loading></loading>
     <router-view></router-view>
   </div>
@@ -18,4 +18,6 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  .app
+    padding-bottom: 1rem
 </style>
