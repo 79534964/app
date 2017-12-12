@@ -45,7 +45,9 @@
     .button
       text-align: center
       background-color: #36a3fe
-      padding: 0.14rem 0
+      height: 0.7rem
+      line-height: 0.7rem
+      margin-top: 0.15rem
       border-radius: 5px
       width: 60%
       margin-left: 20%

@@ -117,7 +117,7 @@
               position: absolute
               font-size: 0.27rem
               right: 0
-              top: -10px
+              top: -0.25rem
 </style>
 
 <style lang="stylus" rel="stylesheet/stylus">
