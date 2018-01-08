@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>机器报修</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<div [@showAlertWrapper]="promptFlag" class="task-repair-changeRepair_prompt"
+     ontouchmove="event.preventDefault();event.stopPropagation();">
+  <div class="wrapper"></div>
+  <ion-list [@showAlert]="promptFlag" class="content">
+    <ion-item class="_item">
+      <ion-textarea [(ngModel)]="cancelDesc" maxlength="50" placeholder="撤销描述"></ion-textarea>
+    </ion-item>
+    <div class="btn">
+      <button (click)="promptFlag='back'" ion-button clear>取消</button>
+      <button (click)="cancelSubmit()" ion-button clear>确认</button>
+    </div>
+  </ion-list>
+</div>
+
+<ion-content class="operative-task-repair-changeRepair">
+  <ion-list class="wrapper">
+    <p class="point" *ngIf="repair['reportUser']">报修人账号：{{repair['reportUser']}}</p>
+    <ion-item class="_item">
+      <ion-label><img src="assets/images/operatetive-task-repair-state.png"/>故障类型</ion-label>
+      <ion-select [(ngModel)]="state" interface="popover">
+        <ion-option *ngFor="let item of dict" value="{{item.code}}">{{item.description}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="_item">
+      <ion-label><img src="assets/images/operatetive-task-repair-mobile.png"/>手机号</ion-label>
+      <ion-input [(ngModel)]="reportMobile" type="text" maxlength="11" clearInput></ion-input>
+    </ion-item>
+    <ion-item class="_item">
+      <ion-label><img src="assets/images/operatetive-task-repair-desc.png"/>故障描述</ion-label>
+      <ion-textarea [(ngModel)]="reportDesc" maxlength="100"></ion-textarea>
+    </ion-item>
+    <CommonPhoto [imgList]="imgList" #commonPhotoNode></CommonPhoto>
+    <div class="submit">
+      <button ion-button block (click)="submit()">{{machine['id'] ? '确认报修' : '确认修改'}}</button>
+      <button class="cancel" *ngIf="!machine['id']" ion-button block color="danger" (click)="cancel()">撤销</button>
+    </div>
+  </ion-list>
+</ion-content>

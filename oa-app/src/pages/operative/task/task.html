@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{machine.machineName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="operative-task">
+  <ion-refresher
+    (ionRefresh)="doRefresh($event)" pullMax="100">
+    <ion-refresher-content refreshingText='定位中...'>
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="error" *ngIf="distance.type === -1">
+    <p>
+      <ion-icon name="ios-information-circle-outline"></ion-icon>
+      距离机器<span>{{distance.dis === 0 ? '未知': distance.dis}}</span>米，部分功能无法使用，请下拉刷新页面！
+    </p>
+  </div>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskTask1',{machine:machine,imgList:taskList.img1})">
+      <img
+        src="{{distance.type !== -1 ? 'assets/images/operative-task1-y.png' : 'assets/images/operative-task1-n.png'}}"/>
+      <span class="title">检查设备</span>
+      <span *ngIf="taskList.img1 !== null" class="state">已完成</span>
+    </button>
+  </ion-card>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskTask2',{machine:machine,imgList:taskList.img2})">
+      <img
+        src="{{distance.type !== -1 ? 'assets/images/operative-task2-y.png' : 'assets/images/operative-task2-n.png'}}"/>
+      <span class="title">添加物料</span>
+      <span *ngIf="taskList.img2 !== null" class="state">已完成</span>
+    </button>
+  </ion-card>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskTask3',{machine:machine,imgList:taskList.img3})">
+      <img
+        src="{{distance.type !== -1 ? 'assets/images/operative-task3-y.png' : 'assets/images/operative-task3-n.png'}}"/>
+      <span class="title">清理物料</span>
+      <span *ngIf="taskList.img3 !== null" class="state">已完成</span>
+    </button>
+  </ion-card>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskTask4',{machine:machine,imgList:taskList.img4})">
+      <img
+        src="{{distance.type !== -1 ? 'assets/images/operative-task4-y.png' : 'assets/images/operative-task4-n.png'}}"/>
+      <span class="title">测试冲泡</span>
+      <span *ngIf="taskList.img4 !== null" class="state">已完成</span>
+    </button>
+  </ion-card>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskFeedback',machine)">
+      <img src="assets/images/operative-task5-y.png"/>
+      <span class="title">订单反馈处理</span>
+    </button>
+  </ion-card>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskOrder',machine)">
+      <img src="assets/images/operative-task6-y.png"/>
+      <span class="title">订单异常处理</span>
+    </button>
+  </ion-card>
+  <ion-card>
+    <button ion-item (click)="pushPage('OperatetiveTaskRepair',machine)">
+      <img src="assets/images/operative-task7-y.png"/>
+      <span class="title">机器报修</span>
+    </button>
+  </ion-card>
+</ion-content>

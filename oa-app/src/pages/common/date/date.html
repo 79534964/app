@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>请选择时间</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="common-date">
+  <div class="date-input">
+    <ion-item>
+      <ion-label>开始时间：</ion-label>
+      <ion-datetime min="2016" displayFormat="YYYY-MM-DD" cancelText="取消" doneText="确定" [(ngModel)]="startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>结束时间：</ion-label>
+      <ion-datetime min="2016" displayFormat="YYYY-MM-DD" cancelText="取消" doneText="确定" [(ngModel)]="endDate"></ion-datetime>
+    </ion-item>
+  </div>
+  <div padding class="btn">
+    <button ion-button block color="primary" (click)="submit()">查询</button>
+  </div>
+</ion-content>

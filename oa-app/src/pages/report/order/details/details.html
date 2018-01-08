@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>订单详情</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="report-order-details">
+  <ion-card class="wrapper">
+    <div class="info" *ngIf="item.orderId">
+      <span>订单编号</span>
+      <span class="text">{{item.orderId}}</span>
+    </div>
+    <div class="info" *ngIf="item.status">
+      <span>订单状态</span>
+      <span class="text">{{item.status}}</span>
+    </div>
+    <div class="info" *ngIf="item.userType">
+      <span>用户类型</span>
+      <span class="text">{{item.userType}}</span>
+    </div>
+    <div class="info" *ngIf="item.nickName">
+      <span>用户昵称</span>
+      <span class="text">{{item.nickName}}</span>
+    </div>
+    <div class="info" *ngIf="item.mobile">
+      <span>用户手机号</span>
+      <span class="text">{{item.mobile}}</span>
+    </div>
+    <div class="info" *ngIf="item.productName">
+      <span>商品名称</span>
+      <span class="text">{{item.productName}}</span>
+    </div>
+    <div class="info" *ngIf="item.createTime">
+      <span>下单时间</span>
+      <span class="text">{{item.createTime}}</span>
+    </div>
+    <div class="info" *ngIf="item.machineName">
+      <span>下单机器</span>
+      <span class="text">{{item.machineName}}</span>
+    </div>
+    <div class="info" *ngIf="item.ruleName">
+      <span>使用优惠劵</span>
+      <span class="text">{{item.ruleName}}</span>
+    </div>
+    <div class="info" *ngIf="item.productCouponPrice">
+      <span>优惠金额</span>
+      <span class="text">{{item.productCouponPrice}}</span>
+    </div>
+    <div class="info" *ngIf="item.payPrice">
+      <span>支付金额</span>
+      <span class="text">{{item.payPrice}}</span>
+    </div>
+    <div class="info" *ngIf="item.payChannel">
+      <span>支付方式</span>
+      <span class="text">{{item.payChannel}}</span>
+    </div>
+    <div class="info" *ngIf="item.payTime">
+      <span>支付时间</span>
+      <span class="text">{{item.payTime}}</span>
+    </div>
+  </ion-card>
+</ion-content>

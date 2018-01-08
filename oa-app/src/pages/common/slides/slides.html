@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>图片浏览</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="common-slides">
+  <ion-slides zoom="true" spaceBetween="20">
+    <ion-slide class="swiper-zoom-container" *ngFor="let url of img">
+      <img src="{{url}}"/>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

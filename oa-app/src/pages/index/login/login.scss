@@ -1,0 +1,35 @@
+.index-login {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #f9f9f9;
+  color: $theme-color;
+  .logo-img {
+    width: 60%;
+    margin: 10px;
+  }
+  .item {
+    padding: 0 16px;
+    background-color: inherit;
+    .item-inner {
+      border-bottom: 1px solid #dedede;
+    }
+  }
+  .input-has-focus {
+    color: $theme-color;
+    .item-inner {
+      border-bottom-color: #2f82ce;
+      box-shadow: inset 0 -1px 0 0 #2f82ce;
+    }
+    input {
+      color: black;
+    }
+  }
+  .btn {
+    padding: 2rem 3rem !important;
+    .button-inner {
+      padding-left: 0.5rem;
+      letter-spacing: 0.5rem;
+    }
+  }
+}

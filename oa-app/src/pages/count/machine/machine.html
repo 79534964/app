@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>机器销售统计</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="count-machine">
+  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="getMchine($event)"
+                 placeholder="机器名称搜索"></ion-searchbar>
+  <ion-segment [(ngModel)]="pet">
+    <ion-segment-button value="day" (click)="actionHttp()">当天</ion-segment-button>
+    <ion-segment-button value="week" (click)="actionHttp()">当周</ion-segment-button>
+    <ion-segment-button value="month" (click)="actionHttp()">当月</ion-segment-button>
+  </ion-segment>
+  <div class="time-box">
+    <p class="title">查询区间：
+      <span class="text">{{getDateStr(startDate)}}~{{getDateStr(endDate)}}</span>
+      <button ion-button color="#2f82ce" outline (click)="showModal()">选择时间</button>
+    </p>
+  </div>
+  <div class="total" *ngIf="total">
+    机器销售总计
+    <div class="price">
+      <table>
+        <tr>
+          <td>实付:{{total.totalSales ? total.totalSales : 0}}元</td>
+          <td>优惠:{{total.totalCoupon ? total.totalCoupon : 0}}元</td>
+          <td>销售:{{total.totalCount ? total.totalCount : 0}}杯</td>
+        </tr>
+        <tr>
+          <td>平均客单价:{{total.totalCount ? (total.totalSales/total.totalCount).toFixed(2) : 0}}元</td>
+          <td>平均杯数:{{(total.totalCount/list.length).toFixed(0)}}杯</td>
+          <td>机器数量:{{list.length}}个</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="list-header" *ngIf="list.length > 0">
+    <span>机器名称</span>
+    <span>总计</span>
+    <span>实付</span>
+    <span>销售</span>
+  </div>
+  <div class="list-wrapper count-machine-list">
+    <ion-list class="list">
+      <button ion-item *ngFor="let item of searchList" (click)="pushPage(item.machineId)">
+        <div class="list_item" *ngIf="list.length > 0">
+          <span>{{item.machineName}}</span>
+          <span>{{item.count}}杯</span>
+          <span>{{item.payCount}}杯</span>
+          <span>{{item.totalSales}}元</span>
+        </div>
+      </button>
+    </ion-list>
+  </div>
+</ion-content>

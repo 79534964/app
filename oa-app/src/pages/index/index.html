@@ -1,0 +1,35 @@
+<ion-content class="index">
+  <ion-refresher
+    (ionRefresh)="doRefresh($event)"
+    pullMax="100">
+    <ion-refresher-content refreshingText={{refreshTime}}>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card class="card-text">
+    <div ion-item class="text">您好:{{name}}</div>
+    <button ion-item class="btn" (click)="pushPage('IndexLogin')">切换</button>
+  </ion-card>
+  <ion-card *ngIf="officeId.indexOf('1') !== -1">
+    <ion-card-header class="card-text">
+      状态栏
+      <ion-badge color="danger" *ngIf="errorList.length > 0">{{errorList.length}}</ion-badge>
+    </ion-card-header>
+    <ion-card-content class="card-text">
+      <button *ngIf="errorList.length > 0" ion-item (click)="pushPage('IndexError',errorList)"
+              [style.color]="errorList.length > 0 ? '#F7BA2A' : '#13CE66'">{{errorList.length}}台机器不在运营状态!
+      </button>
+      <div *ngIf="errorList.length === 0" ion-item
+           [style.color]="errorList.length > 0 ? '#F7BA2A' : '#13CE66'">机器一切正常</div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="officeId.indexOf('3') !== -1">
+    <ion-card-header class="card-text">
+      今日销售总计
+    </ion-card-header>
+    <ion-card-content class="card-text">
+      <button ion-item (click)="pushPage('IndexTotal',total)">
+        {{(total.totalSales + total.totalCoupon) ? (total.totalSales + total.totalCoupon) : 0}}元 {{total.totalCount}}杯
+      </button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

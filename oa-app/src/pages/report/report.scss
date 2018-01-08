@@ -1,0 +1,46 @@
+.reports {
+  ion-fab {
+    left: 10px;
+    top: 65px;
+    .fab {
+      width: inherit;
+      color: #2f82ce;
+      border-radius: 10px;
+    }
+    .fab-list {
+      width: 100%;
+    }
+  }
+  .input-box {
+    display: flex;
+    margin-top: 80px;
+    flex-direction: column;
+    text-align: center;
+    .label {
+      text-align: left;
+    }
+    .item {
+      padding-right: 16px;
+    }
+    .input-has-focus {
+      color: $theme-color;
+      .item-inner {
+        border-bottom-color: #2f82ce;
+        box-shadow: inset 0 -1px 0 0 #2f82ce;
+        .label-md {
+          color: $theme-color;
+        }
+      }
+      input {
+        color: black;
+      }
+    }
+    .btn {
+      padding: 2rem 3rem !important;
+      .button-inner {
+        padding-left: 0.5rem;
+        letter-spacing: 0.5rem;
+      }
+    }
+  }
+}

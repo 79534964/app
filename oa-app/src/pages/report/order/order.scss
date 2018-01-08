@@ -1,0 +1,24 @@
+.report-order {
+  .text {
+    text-align: center;
+    margin-bottom: 0;
+    span {
+      color: #2f82ce;
+    }
+  }
+  .list-wrapper {
+    margin: 0;
+    margin-top: 5px;
+    .state {
+      position: absolute;
+      right: 12%;
+      top: 50%;
+      transform: translate(0, -50%);
+      color: #2f82ce;
+      font-size: 16px;
+    }
+  }
+  .no-data {
+    text-align: center;
+  }
+}

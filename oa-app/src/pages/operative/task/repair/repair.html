@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      报修列表
+      <button class="_add" ion-button clear
+              (click)="pushPage('OperatetiveTaskRepairChangeRepair',{machine:machine,type:'add'})">
+        <ion-icon name="ios-add"></ion-icon>
+      </button>
+    </ion-title>
+  </ion-navbar>
+  <div class="nav_pet_header">
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="status0" (click)="changeStatus(0)">
+        待维修
+        <span></span>
+      </ion-segment-button>
+      <ion-segment-button value="status1" (click)="changeStatus(1)">
+        维修中
+        <span></span>
+      </ion-segment-button>
+      <ion-segment-button value="status2" (click)="changeStatus(2)">
+        已维修
+        <span></span>
+      </ion-segment-button>
+      <ion-segment-button value="status3" (click)="changeStatus(3)">
+        已撤销
+        <span></span>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content class="operative-task-repair" [ngSwitch]="pet">
+  <ion-refresher
+    (ionRefresh)="doRefresh($event)" pullMax="100">
+    <ion-refresher-content refreshingText='刷新中...'>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngSwitchCase="'status0'" class="wrapper">
+    <p class="point">共计<span>{{total}}</span>条记录</p>
+    <ion-card *ngFor="let repair of list">
+      <button ion-item (click)="goPage(repair)">
+        <span class="state state0">
+          {{repair.status}}
+        </span>
+        <p>{{repair.reportTime}}</p>
+        <span class="title">{{repair.state}}</span>
+      </button>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngSwitchCase="'status1'" class="wrapper">
+    <p class="point">共计<span>{{total}}</span>条记录</p>
+    <ion-card *ngFor="let repair of list">
+      <button ion-item (click)="goPage(repair)">
+        <span class="state state1">
+          {{repair.status}}
+        </span>
+        <p>{{repair.reportTime}}</p>
+        <span class="title">{{repair.state}}</span>
+      </button>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngSwitchCase="'status2'" class="wrapper">
+    <p class="point">共计<span>{{total}}</span>条记录</p>
+    <ion-card *ngFor="let repair of list">
+      <button ion-item (click)="goPage(repair)">
+        <span class="state state2">
+          {{repair.status}}
+        </span>
+        <p>{{repair.reportTime}}</p>
+        <span class="title">{{repair.state}}</span>
+      </button>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngSwitchCase="'status3'" class="wrapper">
+    <p class="point">共计<span>{{total}}</span>条记录</p>
+    <ion-card *ngFor="let repair of list">
+      <button ion-item (click)="goPage(repair)">
+        <span class="state state3">
+          {{repair.status}}
+        </span>
+        <p>{{repair.reportTime}}</p>
+        <span class="title">{{repair.state}}</span>
+      </button>
+    </ion-card>
+  </ion-list>
+  <ion-infinite-scroll
+    *ngIf="list.length !== total" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingText="努力加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <p class="no-data" *ngIf="list.length === total">{{list.length === 0 ? '没有相关记录~' : '没有更多记录了~'}}</p>
+</ion-content>

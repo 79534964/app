@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>报修信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="operative-task-repair-repairInfo">
+  <ion-card class="wrapper">
+    <div class="info" *ngIf="repair.reportTime">
+      <span>报修时间</span>
+      <span class="text">{{repair.reportTime}}</span>
+    </div>
+    <div class="info" *ngIf="repair.reportUser">
+      <span>报修用户</span>
+      <span class="text">{{repair.reportUser}}</span>
+    </div>
+    <div class="info" *ngIf="repair.reportMobile">
+      <span>报修手机号</span>
+      <span class="text">{{repair.reportMobile}}</span>
+    </div>
+    <div class="info" *ngIf="repair.reportDesc">
+      <span>报修描述</span>
+      <span class="text">{{repair.reportDesc}}</span>
+    </div>
+    <div class="info" *ngIf="repair.repairUser">
+      <span>维修用户</span>
+      <span class="text">{{repair.repairUser}}</span>
+    </div>
+    <div class="info" *ngIf="repair.repairMobile">
+      <span>维修手机号</span>
+      <span class="text">{{repair.repairMobile}}</span>
+    </div>
+    <div class="info" *ngIf="repair.repairDesc">
+      <span>维修内容</span>
+      <span class="text">{{repair.repairDesc}}</span>
+    </div>
+    <div class="info" *ngIf="repair.startTime">
+      <span>维修开始时间</span>
+      <span class="text">{{repair.startTime}}</span>
+    </div>
+    <div class="info" *ngIf="repair.endTime">
+      <span>维修结束时间</span>
+      <span class="text">{{repair.endTime}}</span>
+    </div>
+    <div class="info" *ngIf="repair.cancelUser">
+      <span>撤销用户</span>
+      <span class="text">{{repair.cancelUser}}</span>
+    </div>
+    <div class="info" *ngIf="repair.cancelMobile">
+      <span>撤销手机号</span>
+      <span class="text">{{repair.cancelMobile}}</span>
+    </div>
+    <div class="info" *ngIf="repair.cancelDesc">
+      <span>撤销描述</span>
+      <span class="text">{{repair.cancelDesc}}</span>
+    </div>
+    <div class="info" *ngIf="repair.cancelTime">
+      <span>撤销时间</span>
+      <span class="text">{{repair.cancelTime}}</span>
+    </div>
+    <div class="img" *ngIf="repair.img">
+      <button ion-item (click)="openSlides(repair.img)">
+        <div class="box" *ngFor="let url of repair.img.split(',')">
+          <img src="{{url}}"/>
+        </div>
+      </button>
+    </div>
+  </ion-card>
+  <ion-card class="wrapper">
+  </ion-card>
+</ion-content>

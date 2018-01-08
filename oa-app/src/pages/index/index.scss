@@ -1,0 +1,30 @@
+.index {
+  ion-refresher {
+    top: 60px;
+  }
+  .scroll-content {
+    margin-top: 60px !important;
+    padding-top: 0 !important;
+    .version {
+      ion-badge {
+        position: absolute;
+        right: 31px;
+        top: 17px
+      }
+    }
+    .card-text {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      color: #2f82ce;
+      .text {
+        width: auto;
+      }
+      .btn {
+        width: auto;
+        color: #2f82ce;
+        text-align: right;
+      }
+    }
+  }
+}

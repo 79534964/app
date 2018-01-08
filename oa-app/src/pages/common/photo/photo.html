@@ -1,0 +1,16 @@
+<div class="common-photo">
+  <ion-card>
+    <button ion-item (click)="openPicture()">
+      <img src="assets/images/operative-task-photo.png"/>
+      <span class="title">拍照</span>
+    </button>
+  </ion-card>
+  <div class="content" *ngIf="imgList.length > 0">
+    <div class="img" *ngFor="let src of imgList; let i = index">
+      <button color="danger" clear ion-button icon-only (click)="deletePhoto(i)">
+        <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+      <img src="{{src}}"/>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+.count-product {
+  .type-pet {
+    padding: 7px 30%;
+    .segment-button {
+      height: 32px;
+      line-height: 30px;
+    }
+  }
+  .type-date {
+    width: 80%;
+    margin-left: 10%;
+    .segment-button {
+      height: 32px;
+      line-height: 30px;
+    }
+  }
+  .time-box {
+    margin: 8px;
+    height: 19px;
+    .title {
+      .text {
+        color: #2f82ce;
+      }
+      button {
+        height: 27px;
+        font-size: 12px;
+        width: 25%;
+        left: 10px;
+        top: -6px;
+      }
+    }
+  }
+  .pet-wrapper {
+    .pet-list {
+      .total {
+        text-align: center;
+        .price {
+          color: #2f82ce;
+          margin: 5px 10px;
+          font-size: 12px;
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            td {
+              padding: 7px;
+              border: 1px solid #b6b6b6;
+            }
+          }
+        }
+      }
+      .list-header {
+        display: flex;
+        text-align: center;
+        margin: 0 10px;
+        border: 1px solid #c8c7cc;
+        background-color: #fff;
+        span {
+          width: 20%;
+          padding: 10px;
+        }
+        span:nth-child(1) {
+          width: 40%;
+        }
+      }
+      .list-wrapper {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 225px;
+        .list {
+          height: 100%;
+          position: relative;
+          overflow: auto;
+          margin: 0 10px;
+          .item-block:first-child {
+            border-top: none;
+          }
+          .item {
+            padding-left: 0;
+            .item-inner {
+              padding: 0 !important;
+              background-image: none;
+              .label {
+                font-size: 14px;
+                margin: 0;
+                .list_item {
+                  display: flex;
+                  text-align: center;
+                  span {
+                    width: 20%;
+                  }
+                  span:nth-child(1) {
+                    color: #2f82ce;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 40%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .pet-char {
+      .char-wrapper {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 120px;
+        .list {
+          height: 100%;
+          position: relative;
+          overflow: auto;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+}

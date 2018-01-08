@@ -1,0 +1,90 @@
+<div class="operative_header">
+  <ion-searchbar [(ngModel)]="key" (ionInput)="searchMachine()" placeholder="机器名称搜索"></ion-searchbar>
+  <p class="text">共有<span>{{total}}</span>台机器</p>
+</div>
+<ion-content class="operative">
+  <ion-list class="content">
+    <ion-refresher
+      (ionRefresh)="doRefresh($event)" pullMax="100">
+      <ion-refresher-content refreshingText='刷新中...'>
+      </ion-refresher-content>
+    </ion-refresher>
+    <ion-card *ngFor="let machine of machineList">
+      <span class="name">{{machine.machineName}}</span>
+      <span class="state" *ngIf="machine.statusCode !== '00'"><ion-icon
+        name="ios-information-circle-outline"></ion-icon>{{machine.status}}</span>
+      <div class="percentage">
+        <div class="round">
+          <img src="assets/images/operative-wave.png"
+               [ngStyle]="{'top' : 90 - (machine.mPercent/0.04) +'px' }"/>
+          <p class="text">已完成</p>
+          <p class="number">{{machine.mPercent/0.04}}%</p>
+        </div>
+        <button ion-button clear class="operate" (click)="pushPage('OperatetiveTask',machine)">
+          <span>去完成<ion-icon name="arrow-forward"></ion-icon></span>
+        </button>
+      </div>
+      <div class="bottom">
+        <div class="background"></div>
+        <div class="btn">
+          <button ion-button clear (click)="pushPage('OperativeMateriel',machine)">
+            <ion-icon name="ios-list-box-outline"></ion-icon>
+            <span class="point" *ngIf="machine.mCount !== 0">{{machine.mCount}}</span>
+            详情
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,3)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-unlock-outline"></ion-icon>
+            开机器门
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,5)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-undo-outline"></ion-icon>
+            开取杯门
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,-5)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-close-outline"></ion-icon>
+            关取杯门
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,4)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-desktop-outline"></ion-icon>
+            进入后台
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,9)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-create-outline"></ion-icon>
+            获取日志
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,8)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-cloud-download-outline"></ion-icon>
+            更新配方
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,2)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-repeat-outline"></ion-icon>
+            重启app
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,6)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-repeat-outline"></ion-icon>
+            安卓重启
+          </button>
+          <button ion-button clear (click)="operateMachine(machine,7)"
+                  [ngClass]="{'break': machine.statusCode === '91'}">
+            <ion-icon name="ios-repeat-outline"></ion-icon>
+            主板重启
+          </button>
+        </div>
+      </div>
+    </ion-card>
+    <ion-infinite-scroll *ngIf="machineList.length !== total" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingText="努力加载中...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <p class="no-data" *ngIf="machineList.length === total">
+      {{machineList.length === 0 ? '没有找到机器~' : '没有更多机器~'}}</p>
+  </ion-list>
+</ion-content>

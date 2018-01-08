@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>商品销售统计</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="count-product">
+  <ion-segment [(ngModel)]="typePet" class="type-pet">
+    <ion-segment-button value="list" (click)="destroyChart()">
+      列表
+    </ion-segment-button>
+    <ion-segment-button value="chart" (click)="showChart()">
+      图表
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment [(ngModel)]="datePet" class="type-date">
+    <ion-segment-button value="day" (click)="actionHttp()">当天</ion-segment-button>
+    <ion-segment-button value="week" (click)="actionHttp()">当周</ion-segment-button>
+    <ion-segment-button value="month" (click)="actionHttp()">当月</ion-segment-button>
+  </ion-segment>
+  <div class="time-box">
+    <p class="title">查询区间：
+      <span class="text">{{getDateStr(startDate)}}~{{getDateStr(endDate)}}</span>
+      <button ion-button color="#2f82ce" outline (click)="showModal()">选择时间</button>
+    </p>
+  </div>
+  <div [ngSwitch]="typePet" class="pet-wrapper">
+    <ion-list *ngSwitchCase="'list'" class="pet-list">
+      <div class="total" *ngIf="total">
+        商品销售总计
+        <div class="price">
+          <table>
+            <tr>
+              <td>实付:{{ total.totalSales ? total.totalSales : 0 }}元</td>
+              <td>优惠:{{ total.totalCoupon ? total.totalCoupon : 0 }}元</td>
+              <td>销售:{{total.totalCount ? total.totalCount : 0 }}杯</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="list-header" *ngIf="list.length > 0">
+        <span>商品名称</span>
+        <span>总计</span>
+        <span>实付</span>
+        <span>销售</span>
+      </div>
+      <div class="list-wrapper">
+        <div class="list">
+          <div *ngFor="let item of list">
+            <button ion-item (click)="pushPage(item.productId)" *ngIf="item.productName !== null">
+              <div class="list_item">
+                <span>{{item.productName}}</span>
+                <span>{{item.count}}杯</span>
+                <span>{{item.payCount}}杯</span>
+                <span>{{item.totalSales}}元</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'chart'" class="pet-char">
+      <div class="char-wrapper">
+        <div class="list">
+          <div id="columnChart_1"></div>
+          <div id="columnChart_2"></div>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

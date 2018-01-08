@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>检查设备</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="operative-task-task1">
+  <ion-card>
+    <button ion-item (click)="operateMachine()">
+      <img src="assets/images/operative-task-opendoor.png"/>
+      <span class="title">开门</span>
+    </button>
+  </ion-card>
+  <CommonPhoto [imgList]="imgList" #commonPhotoNode></CommonPhoto>
+  <div class="submit">
+    <button ion-button block (click)="submit()">{{state ? '确认完成' : '确认修改'}}</button>
+  </div>
+</ion-content>
