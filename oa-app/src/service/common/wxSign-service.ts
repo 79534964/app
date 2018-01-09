@@ -11,6 +11,10 @@ export class WxSignService {
 
   post() {
     return new Promise((resolve, reject) => {
+      if (window.location.href.indexOf('?') !== -1) {
+        window.location.href = `http://${window.location.host}/mobile/coffeeoa/index.html`;
+        return false;
+      }
       this.factorys.toJsonString({url: window.location.href.split('#')[0]}).then((json) => {
         this.httpService.commonWxSign(json).map((res) => res.json()).subscribe((data) => {
           this.factorys.checkHttpData(data) && resolve(data);

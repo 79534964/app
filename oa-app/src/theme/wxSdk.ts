@@ -18,10 +18,10 @@ export class WxSdk {
     this.timestamp = data.timestamp;
     this.nonceStr = data.nonceStr;
     this.signature = data.signature;
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.config();
       this.share();
-    }, 200);
+    }, 300);
   }
 
   config() {
