@@ -8,33 +8,83 @@ export class WxSdk {
   private timestamp = '';
   private nonceStr = '';
   private signature = '';
-  // private jsApiList = ['scanQRCode', 'openLocation', 'getLocation', 'onMenuShareTimeline', 'onMenuShareAppMessage'];
+  private jsApiList = ['chooseImage', 'getLocalImgData', 'openLocation', 'getLocation', 'onMenuShareTimeline', 'onMenuShareAppMessage'];
 
   constructor(public storage: Storage, public factorys: Factorys) {
   }
 
   setConfig(data) {
-    console.log(data);
     this.appId = data.appId;
     this.timestamp = data.timestamp;
     this.nonceStr = data.nonceStr;
     this.signature = data.signature;
-    console.log(data.nonceStr);
-    console.log(data.signature);
-    console.log(data.timestamp);
+    setTimeout(() => {
+      this.config();
+      this.share();
+    }, 200);
+  }
+
+  config() {
+    window['wx'].config({
+      debug: false,
+      appId: this.appId,
+      timestamp: this.timestamp,
+      nonceStr: this.nonceStr,
+      signature: this.signature,
+      jsApiList: this.jsApiList
+    });
+  }
+
+  share() {
+    window['wx'].ready(() => {
+      window['wx'].onMenuShareTimeline({
+        title: '咖啡码头运维系统',
+        link: `http://${window.location.host}/mobile/coffeeoa/index.html`,
+        imgUrl: 'http://org.oa.mattburg.cn/mobile/coffeewxapp/static/img/share.jpg',
+        success: () => {
+        }
+      });
+      window['wx'].onMenuShareAppMessage({
+        title: '咖啡码头运维系统',
+        link: `http://${window.location.host}/mobile/coffeeoa/index.html`,
+        desc: '咖啡码头运维系统(微信端)',
+        imgUrl: 'http://org.oa.mattburg.cn/mobile/coffeewxapp/static/img/share.jpg',
+        success: () => {
+        }
+      });
+    });
   }
 
   getLocation() {
-    // return new Promise((resolve, reject) => {
-    //   window.wx.getLocation({
-    //     type: 'gcj02',
-    //     success: (res) => {
-    //       resolve();
-    //     },
-    //     fail: (res) => {
-    //       this.factorys.alert('找不到您，请确认定位是否打开！');
-    //     }
-    //   });
-    // });
+    return new Promise((resolve, reject) => {
+      window['wx'].getLocation({
+        type: 'gcj02',
+        success: (res) => {
+          resolve(res);
+        },
+        fail: (res) => {
+          resolve();
+          this.factorys.prop('找不到您，请确认定位是否打开！');
+        }
+      });
+    });
+  }
+
+  getPicture() {
+    return new Promise((resolve, reject) => {
+      window['wx'].chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        sourceType: ['camera'],
+        success: (res) => {
+          window['wx'].getLocalImgData({
+            localId: res['localIds'][0],
+            success: (data) => {
+              resolve(data['localData']);
+            }
+          });
+        }
+      });
+    });
   }
 }

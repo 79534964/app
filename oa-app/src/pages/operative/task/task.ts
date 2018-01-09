@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavParams, App, Events} from 'ionic-angular';
 import {Factorys} from '../../../theme/factorys';
+import {WxSdk} from '../../../theme/wxSdk';
 import {OperatetiveTaskTask1} from './task1/task1';
 import {OperatetiveTaskTask2} from './task2/task2';
 import {OperatetiveTaskTask3} from './task3/task3';
@@ -8,8 +9,6 @@ import {OperatetiveTaskTask4} from './task4/task4';
 import {OperatetiveTaskOrder} from './order/order';
 import {OperatetiveTaskRepair} from './repair/repair';
 import {OperatetiveTaskFeedback} from './feedback/feedback';
-
-// import {Geolocation} from '@ionic-native/geolocation';
 
 import {TaskListService} from '../../../service/oprative/task-list-service';
 import {TaskDistanceService} from '../../../service/oprative/task-distance-service';
@@ -26,7 +25,7 @@ export class OperatetiveTask {
     dis: 0
   };
 
-  constructor(public app: App, public navParams: NavParams, public factorys: Factorys, public events: Events, public taskListService: TaskListService, public taskDistanceService: TaskDistanceService) {
+  constructor(public app: App, public navParams: NavParams, public factorys: Factorys, public events: Events, public taskListService: TaskListService, public taskDistanceService: TaskDistanceService, public wxSdk: WxSdk) {
     factorys.showLoading();
     this.machine = navParams.get('params');
     this.doRefresh();
@@ -36,22 +35,20 @@ export class OperatetiveTask {
 
   // 下拉刷新
   doRefresh(refresher = null) {
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   this.taskDistanceService.post({
-    //     lon1: resp.coords.longitude,
-    //     lat1: resp.coords.latitude,
-    //     lon2: this.machine['longitude'],
-    //     lat2: this.machine['latitude']
-    //   }).then((data) => {
-    //     this.distance.type = data['content'].type;
-    //     this.distance.dis = parseInt(data['content'].dis);
-    //     if (refresher) {
-    //       refresher.complete();
-    //     }
-    //   });
-    // }).catch((error) => {
-    //   this.factorys.alert('定位失败，请您务必打开权限！');
-    // });
+    this.wxSdk.getLocation().then((data) => {
+      this.taskDistanceService.post({
+        lon1: data['longitude'],
+        lat1: data['latitude'],
+        lon2: this.machine['longitude'],
+        lat2: this.machine['latitude']
+      }).then((data) => {
+        this.distance.type = data['content'].type;
+        this.distance.dis = parseInt(data['content'].dis);
+        if (refresher) {
+          refresher.complete();
+        }
+      });
+    });
   }
 
   listenEvent() {

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-// import {Camera} from '@ionic-native/camera';
+import {WxSdk} from '../../../theme/wxSdk';
 import {Factorys} from '../../../theme/factorys';
 
 import {UploadService} from '../../../service/common/upload-service';
@@ -17,7 +17,7 @@ export class CommonPhoto {
 
   private delImgList = [];
 
-  constructor(public factorys: Factorys, public uploadService: UploadService, public delImgService: DelImgService) {
+  constructor(public factorys: Factorys, public WxSdk: WxSdk, public uploadService: UploadService, public delImgService: DelImgService) {
   }
 
   openPicture() {
@@ -25,25 +25,14 @@ export class CommonPhoto {
       this.factorys.alert('图片装不下了！');
       return false;
     }
-    // this.camera.getPicture({
-    //   // 配置项
-    //   quality: 100, // 图片质量
-    //   destinationType: this.camera.DestinationType.DATA_URL,// 选择base64
-    //   encodingType: this.camera.EncodingType.JPEG, // 图片JPG
-    //   mediaType: this.camera.MediaType.PICTURE, // 只能是照片
-    //   saveToPhotoAlbum: false, // 不存本地
-    //   targetWidth: 200, //压缩(px)
-    //   targetHeight: 200
-    // }).then((base64) => {
-    //   this.factorys.base64ToFormData(base64).then((formData) => {
-    //     this.uploadService.post(formData).then((data) => {
-    //       this.imgList.push(data['content']);
-    //       this.factorys.prop('上传成功！');
-    //     });
-    //   });
-    // }, (err) => {
-    //   // 关闭相机处理
-    // });
+    this.WxSdk.getPicture().then((base64) => {
+      this.factorys.base64ToFormData(base64).then((formData) => {
+        this.uploadService.post(formData).then((data) => {
+          this.imgList.push(data['content']);
+          this.factorys.prop('上传成功！');
+        });
+      });
+    });
   }
 
   deletePhoto(index) {

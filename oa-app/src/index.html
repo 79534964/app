@@ -12,9 +12,6 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
 
-  <!-- cordova.js required for cordova apps -->
-  <script src="cordova.js"></script>
-
   <!-- 开启异步缓存
   <script>
     if ('serviceWorker' in navigator) {
@@ -25,6 +22,8 @@
   </script>-->
 
   <link href="build/main.css" rel="stylesheet">
+  <!-- 微信JSSDK -->
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.3.0.js"></script>
 </head>
 <body>
 
@@ -38,8 +37,5 @@
 
 <!-- 所有的build的js -->
 <script src="build/main.js"></script>
-
-<!-- 微信JSSDK -->
-<script src="http://res.wx.qq.com/open/js/jweixin-1.3.0.js"></script>
 </body>
 </html>

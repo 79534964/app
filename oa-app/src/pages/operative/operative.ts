@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {App} from 'ionic-angular';
 import {Factorys} from '../../theme/factorys';
+import {WxSdk} from '../../theme/wxSdk';
 import {OperatetiveTask} from './task/task';
 import {OperativeMateriel} from './materiel/materiel';
-
-// import {Geolocation} from '@ionic-native/geolocation';
 
 import {MachineListService} from '../../service/oprative/machineList-service';
 import {OperateService} from '../../service/oprative/operate-service';
@@ -23,15 +22,14 @@ export class OperativePage {
   private lat = 0;
   private lon = 0;
 
-  constructor(public app: App, public machineListService: MachineListService, public operateService: OperateService, public factorys: Factorys) {
+  constructor(public app: App, public machineListService: MachineListService, public operateService: OperateService, public factorys: Factorys, public wxSdk: WxSdk) {
     factorys.showLoading();
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   this.lon = resp.coords.longitude;
-    //   this.lat = resp.coords.latitude;
-    //   this.getMachineService();
-    // }).catch((error) => {
-    //   this.getMachineService();
-    // });
+    // this.getMachineService();
+    this.wxSdk.getLocation().then((data) => {
+      this.lon = data ? data['longitude'] : 0;
+      this.lat = data ? data['latitude'] : 0;
+      this.getMachineService();
+    });
   }
 
   searchMachine() {
@@ -44,14 +42,14 @@ export class OperativePage {
 
   // 下拉刷新
   doRefresh(refresher) {
-    this.getMachineService().then((res)=> {
+    this.getMachineService().then((res) => {
       refresher.complete();
     });
   }
 
   // 上拉加载
   doInfinite(infiniteScroll) {
-    this.getMachineService('infinite').then((res)=> {
+    this.getMachineService('infinite').then((res) => {
       infiniteScroll.complete();
     });
   }

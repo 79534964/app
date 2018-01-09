@@ -6,8 +6,7 @@
   <ion-list class="content">
     <ion-refresher
       (ionRefresh)="doRefresh($event)" pullMax="100">
-      <ion-refresher-content refreshingText='刷新中...'>
-      </ion-refresher-content>
+      <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     <ion-card *ngFor="let machine of machineList">
       <span class="name">{{machine.machineName}}</span>

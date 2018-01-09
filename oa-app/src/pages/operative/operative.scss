@@ -4,7 +4,7 @@
   z-index: 10;
   width: 100%;
   margin-top: 45px;
-  padding-top: 15px;
+  padding-top: 0px;
   .searchbar-input {
     height: 40px;
   }
@@ -32,6 +32,9 @@
     margin-top: 79px !important;
     .content {
       margin: 0 12px;
+      ion-refresher {
+        top: -2px !important;
+      }
       .card {
         position: relative;
         margin: 0;
