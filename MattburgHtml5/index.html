@@ -9,6 +9,19 @@
 <link rel="stylesheet" href="css/home.css">
 <body>
     <article>
+        <p id="p1"></p>
+        <section>
+            <i>1/30</i>
+            <i></i>
+            <p>跳一跳赢全免券 | 不要扶我，我还能跳</p>
+            <a href="https://mp.weixin.qq.com/s/YkHIz9akjtXAFxgCg3-1mw">
+                <img src="http://api.mattburg.cn/static/appHuodongPic/54.jpg"/>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/YkHIz9akjtXAFxgCg3-1mw">
+                <img src="images/icon.png"/ alt=""/>
+                <span>查看详情</span>
+            </a>
+        </section>
         <section>
             <i>1/16</i>
             <i></i>
@@ -57,30 +70,50 @@
                 <span>查看详情</span>
             </a>
         </section>
-        <section>
-            <i>12/19</i>
-            <i></i>
-            <p>佛系抽奖 | 年轻人，今年怕是要过个佛系圣诞节了</p>
-            <a href="https://mp.weixin.qq.com/s/0quHNEfmo_L1iLZpWA4qSg">
-                <img src="http://api.mattburg.cn/static/appHuodongPic/49.jpg"/>
-            </a>
-            <a href="https://mp.weixin.qq.com/s/0quHNEfmo_L1iLZpWA4qSg">
-                <img src="images/icon.png"/ alt=""/>
-                <span>查看详情</span>
-            </a>
-        </section>
-        <section>
-            <i>12/12</i>
-            <i></i>
-            <p>12+12=12 | 双12来了，猪精少女们又要出来打call了！</p>
-            <a href="https://mp.weixin.qq.com/s/wAYBEGS9D43TxAZekkHkRA">
-                <img src="http://api.mattburg.cn/static/appHuodongPic/48.jpg"/>
-            </a>
-            <a href="https://mp.weixin.qq.com/s/wAYBEGS9D43TxAZekkHkRA">
-                <img src="images/icon.png"/ alt=""/>
-                <span>查看详情</span>
-            </a>
-        </section>
     </article>
+<script>
+    var object = {
+        node : {
+           pNode : document.getElementById('p1')
+        },
+        methods:{
+            parseQuery : function(query) {
+                var res = {};
+
+                query.split('?')[1] && (query = query.split('?')[1]);
+                query = query.trim().replace(/^(\?|#|&)/, '');
+
+                if (!query) {
+                    return res;
+                }
+
+                query.split('&').forEach(function (param) {
+                    var parts = param.replace(/\+/g, ' ').split('=');
+                    var key = decodeURIComponent(parts.shift());
+                    var val = parts.length > 0 ? decodeURIComponent(parts.join('=')) : null;
+
+                    if (res[key] === undefined) {
+                      res[key] = val;
+                    } else if (Array.isArray(res[key])) {
+                      res[key].push(val);
+                    } else {
+                      res[key] = [res[key], val];
+                    }
+                });
+
+                return res
+            },
+            init : function() {
+                var mobile = object.methods.parseQuery(window.location.href).mobile;
+                if(mobile) { 
+                    object.node.pNode.innerHTML = mobile;
+                }
+            }
+        }
+    };
+
+    object.methods.init();
+
+</script>
 </body>
 </html>
