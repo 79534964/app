@@ -1,29 +1,26 @@
 import * as types from '../../mutation-types/index';
 
-const state = {};
+const state = {
+  ques: []
+};
 
 const getters = {
-  [types.GET_INDEX_GROUPINFO]: (state) => {
-    return state.groupInfo;
+  [types.GET_INDEX_QUES]: (state) => {
+    return state.ques;
   }
 };
 
 const actions = {
-  [types.ACT_INDEX_GROUPINFO]({state, commit, rootState}, {Vue, phone, type = 1}) {
+  [types.ACT_INDEX_QUES]({state, commit, rootState}, {Vue, mobile}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
-        url: rootState.getGroupInfoUrl,
+        url: rootState.getQuesUrl,
         body: {
-          phone
+          mobile
         }
       }).then((data) => {
-        if (data.usable === 0) {
-          // 表示没有可领优惠券
-          Toast('这个红包已经领完了');
-          return false;
-        }
-        commit('index/set/GROUPFLAG', true);
+        commit('index/set/QUES', data);
         resolve();
       });
     });
@@ -31,8 +28,8 @@ const actions = {
 };
 
 const mutations = {
-  [types.SET_INDEX_GROUPINFO](state, info) {
-    state.groupInfo = info;
+  [types.SET_INDEX_QUES](state, list) {
+    state.ques = list;
   }
 };
 

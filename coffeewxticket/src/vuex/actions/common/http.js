@@ -6,7 +6,7 @@ const state = {};
 const getters = {};
 
 const actions = {
-  [types.ACT_COMMON_HTTP] ({state, commit, rootState}, {Vue, url, body = {}}) {
+  [types.ACT_COMMON_HTTP]({state, commit, rootState}, {Vue, url, body = {}}) {
     return new Promise((resolve, reject) => {
       // 开始请求
       Vue.$http({
