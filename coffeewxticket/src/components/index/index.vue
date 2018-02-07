@@ -43,7 +43,7 @@
         quesIterator: null,
         getCurData: null,
         curAnswer: '',
-        selectList: []
+        selectObject: {}
       };
     },
     methods: {
@@ -78,39 +78,26 @@
       },
       goBack() {
         this.goIterator('back');
-        this.reduceSelectList();
+        this.reduceSelectObject();
       },
       goNext() {
         if (this.curAnswer === '') {
           Toast({message: '您还没有选择呢~'});
           return;
         }
-        this.addSelectList();
+        this.addSelectObject();
         this.goIterator('next');
+        this.getCurAnswer();
       },
-      addSelectList() {
-        let flag = true;
-        for (let i = 0; i < this.selectList.length; i++) {
-          if (this.selectList[i].qid === this.getCurData.id) {
-            this.selectList[i].aid = this.curAnswer;
-            flag = false;
-            break;
-          }
-        }
-        if (flag) {
-          this.selectList.push({
-            qid: this.getCurData.id,
-            aid: this.curAnswer
-          });
-        }
-        this.curAnswer = '';
+      addSelectObject() {
+        this.selectObject[`qid${this.quesIterator.getCurrent()}`] = this.curAnswer;
       },
-      reduceSelectList() {
-        this.selectList.map(({qid, aid}) => {
-          if (qid === this.getCurData.id) {
-            this.curAnswer = aid;
-          }
-        });
+      reduceSelectObject() {
+        this.getCurAnswer();
+      },
+      getCurAnswer() {
+        this.curAnswer = this.selectObject[`qid${this.quesIterator.getCurrent()}`] || '';
+        console.log(this.selectObject);
       }
     },
     created() {

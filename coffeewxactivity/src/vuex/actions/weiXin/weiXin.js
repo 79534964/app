@@ -25,10 +25,10 @@ const getters = {
 const actions = {
   [types.ACT_WEIXIN_OPENID] ({state, commit, rootState}, {Vue, reload = false}) {
     // 如果没有openId 如果reload就直接强制请求服务器
-    if (!getCookie('openId') || reload) {
+    if (!getCookie('unionId') || reload) {
       window.location.href = escapeUrl(window.location.href).replace(`${window.location.host}/`, state.serviceUrl);
     } else {
-      commit('weiXin/set/OPENID', getCookie('openId'));
+      commit('weiXin/set/OPENID', getCookie('unionId'));
       Vue.$store.dispatch('weiXin/act/CONFIG', {Vue});
     }
   },

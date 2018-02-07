@@ -20,7 +20,7 @@ const actions = {
       Vue.$http({
         url: rootState.getUserTokenUrl,
         body: {
-          openId: rootState.userType === 'WX' ? rootState.weiXin.openId : rootState.zhiFuBao.userId,
+          unionId: rootState.userType === 'WX' ? rootState.weiXin.openId : rootState.zhiFuBao.userId,
           userType: rootState.userType === 'WX' ? 2 : 3
         }
       }).then(({body}) => {
