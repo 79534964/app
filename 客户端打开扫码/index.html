@@ -49,8 +49,6 @@
                 }, function (res) {
                     if (!res.errorCode) {
                         window.location.href = res.qrCode;
-                    } else {
-                        window.alert('打不开摄像头，请您确认权限是否打开！');
                     }
                 });
             }

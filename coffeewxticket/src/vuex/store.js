@@ -17,12 +17,13 @@ const HOST = 'http://test.wx.mattburg.cn/coffeewx/';
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 测试
-  imgUrl: 'http://192.168.2.19:8080/static/img/',
-  // imgUrl: `http://${window.location.host}/mobile/coffeewxticket/static/img/`,
+  // imgUrl: 'http://192.168.2.21:8080/static/img/',
+  imgUrl: `http://${window.location.host}/mobile/coffeewxticket/static/img/`,
   // 正确
   ok: '01',
   // WeiXin
-  getQuesUrl: `${HOST}asq/ques`
+  getQuesUrl: `${HOST}asq/ques`,
+  sumbitQuesUrl: `${HOST}asq/upload`
 };
 
 // 这个store就可以连接到我们的应用中

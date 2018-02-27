@@ -1,32 +1,41 @@
 <template>
   <div class="wrapper">
-    <div class="number">
-      <img :src="`${$store.state.imgUrl}question${quesIterator && quesIterator.getCurrent()}.png`">
-    </div>
-    <div class="content">
-      <img :src="`${$store.state.imgUrl}content.png`"/>
-      <div class="index">
-        {{quesIterator && quesIterator.getCurrent()}}/{{ques.length}}
+    <before></before>
+    <after ref="afterNode"></after>
+    <div v-if="quesFlag">
+      <div class="number">
+        <img :src="`${$store.state.imgUrl}question${quesIterator && quesIterator.getCurrent()}.png`">
       </div>
-      <div class="text">
-        <span>{{getCurData && getCurData.question}}</span>
-      </div>
-    </div>
-    <div class="answer" v-if="getCurData">
-      <div class="btn" v-for="answer in getCurData.answers" @click="tapAnswer(answer.id)">
-        <div class="p">
-          <span>{{answer.answer}}</span>
+      <div class="content">
+        <img :src="`${$store.state.imgUrl}content.png`"/>
+        <div class="index">
+          {{quesIterator && quesIterator.getCurrent()}}/{{ques.length}}
         </div>
-        <img v-if="answer.id === curAnswer" src="./cur.png"/>
-        <img v-else src="./btn.png"/>
+        <div class="text">
+          <span>{{getCurData && getCurData.question}}</span>
+        </div>
       </div>
-    </div>
-    <div class="bottom">
-      <div class="left" v-if="quesIterator && quesIterator.getCurrent() > 1" @click="goBack()">
-        <img src="./left.png"/>
+      <div class="answer" v-if="getCurData">
+        <div class="btn" v-for="answer in getCurData.answers" @click="tapAnswer(answer.id)">
+          <div class="p">
+            <span>{{answer.answer}}</span>
+          </div>
+          <img v-if="answer.id === curAnswer" src="./cur.png"/>
+          <img v-else src="./btn.png"/>
+        </div>
       </div>
-      <div class="right" @click="goNext()">
-        <img src="./right.png"/>
+      <div class="bottom" v-if="quesIterator && quesIterator.getCurrent() !== ques.length">
+        <div class="left" v-if="quesIterator.getCurrent() > 1" @click="goBack()">
+          <img src="./left.png"/>
+        </div>
+        <div class="right" @click="goNext()">
+          <img src="./right.png"/>
+        </div>
+      </div>
+      <div class="bottom" v-else>
+        <div class="left" :style="{marginLeft:'0.3rem'}" @click="goNext()">
+          <img src="./coupon.png"/>
+        </div>
       </div>
     </div>
   </div>
@@ -35,11 +44,14 @@
 <script type="text/ecmascript-6">
   import Iterator from '@/common/js/iterator';
   import {Toast} from 'mint-ui';
+  import before from './before/before';
+  import after from './after/after';
 
   export default {
     name: 'index',
     data() {
       return {
+        quesFlag: false,
         quesIterator: null,
         getCurData: null,
         curAnswer: '',
@@ -48,6 +60,16 @@
     },
     methods: {
       init() {
+        if (/^1[34578]\d{9}$/.test(this.$route.query.mobile)) {
+          window.setTimeout(() => {
+            this.quesFlag = true;
+          }, 500);
+          this.getQues();
+          return;
+        }
+        Toast({message: '手机号不正确~'});
+      },
+      getQues() {
         this.$store.dispatch('common/act/LOADING', {loading: true});
         this.$store.dispatch('index/act/QUES', {
           Vue: this,
@@ -88,6 +110,11 @@
         this.addSelectObject();
         this.goIterator('next');
         this.getCurAnswer();
+        if (this.quesIterator.getCurrent() === this.ques.length + 1) {
+          this.quesFlag = false;
+          this.$refs.afterNode.open();
+          this.$refs.afterNode.submit(this.selectObject);
+        }
       },
       addSelectObject() {
         this.selectObject[`qid${this.quesIterator.getCurrent()}`] = this.curAnswer;
@@ -97,7 +124,6 @@
       },
       getCurAnswer() {
         this.curAnswer = this.selectObject[`qid${this.quesIterator.getCurrent()}`] || '';
-        console.log(this.selectObject);
       }
     },
     created() {
@@ -107,6 +133,10 @@
       ques() {
         return this.$store.getters['index/get/QUES'];
       }
+    },
+    components: {
+      after,
+      before
     }
   };
 </script>
