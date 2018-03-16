@@ -9,8 +9,12 @@ export class WxSdk {
   private nonceStr = '';
   private signature = '';
   private jsApiList = ['chooseImage', 'getLocalImgData', 'openLocation', 'getLocation', 'onMenuShareTimeline', 'onMenuShareAppMessage'];
+  private serviceUrl = `${window.location.host}/coffeewx/toOauth?path=`;
 
   constructor(public storage: Storage, public factorys: Factorys) {
+    if (!this.factorys.getCookie('unionId')) {
+      window.location.href = factorys.escapeUrl(window.location.href).replace(`${window.location.host}/`, this.serviceUrl);
+    }
   }
 
   setConfig(data) {
@@ -39,16 +43,16 @@ export class WxSdk {
     window['wx'].ready(() => {
       window['wx'].onMenuShareTimeline({
         title: '咖啡码头运维系统',
-        link: `http://${window.location.host}/mobile/coffeeoa/index.html`,
-        imgUrl: 'http://org.oa.mattburg.cn/mobile/coffeewxapp/static/img/share.jpg',
+        link: `http://${window.location.host}/mobile/wxoa/index.html`,
+        imgUrl: `http://${window.location.host}/mobile/coffeewxapp/static/img/share.jpg`,
         success: () => {
         }
       });
       window['wx'].onMenuShareAppMessage({
         title: '咖啡码头运维系统',
-        link: `http://${window.location.host}/mobile/coffeeoa/index.html`,
+        link: `http://${window.location.host}/mobile/wxoa/index.html`,
         desc: '咖啡码头运维系统(微信端)',
-        imgUrl: 'http://org.oa.mattburg.cn/mobile/coffeewxapp/static/img/share.jpg',
+        imgUrl: `http://${window.location.host}/mobile/coffeewxapp/static/img/share.jpg`,
         success: () => {
         }
       });

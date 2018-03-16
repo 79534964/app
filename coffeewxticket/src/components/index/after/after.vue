@@ -3,7 +3,7 @@
     <div class="_wrapper fade-in" v-if="flag">
       <img class="background" :src="`${$store.state.imgUrl}after.jpg`"/>
       <transition name="top-in">
-        <div class="coupon top-in" v-if="coupon">
+        <div class="coupon top-in" v-if="coupon" @click="goCoupon">
           <div class="info">
             <div class="left">
               <div>{{coupon.ruleName}}</div>
@@ -67,6 +67,9 @@
             aid: selectObject[`qid${index + 1}`]
           });
         });
+      },
+      goCoupon() {
+        window.location.href = 'http://www.mattburg.com/go/coupon';
       }
     },
     computed: {

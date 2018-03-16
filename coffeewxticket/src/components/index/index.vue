@@ -144,9 +144,8 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .wrapper
     .number
-      padding-top: 1.5rem
       width: 30%
-      padding: 1.4rem 35% 0.1rem
+      padding: 1.2rem 35% 0.1rem
     .content
       position: relative
       margin: 0 0.7rem

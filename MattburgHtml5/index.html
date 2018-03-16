@@ -11,6 +11,42 @@
     <article>
         <p id="p1"></p>
         <section>
+            <i>3/13</i>
+            <i></i>
+            <p>3.14元喝奶茶 | 盆友，情人节攻略了解一下~</p>
+            <a href="https://mp.weixin.qq.com/s/wSUSRNEXsSCRoOYda434fQ">
+                <img src="http://api.mattburg.cn/static/appHuodongPic/58.jpg"/>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/wSUSRNEXsSCRoOYda434fQ">
+                <img src="images/icon.png"/ alt=""/>
+                <span>查看详情</span>
+            </a>
+        </section>
+        <section>
+            <i>3/06</i>
+            <i></i>
+            <p>仙女节买二赠一 | 每年一到三月七，只爱妹子不搞基</p>
+            <a href="https://mp.weixin.qq.com/s/JM8XD_j5QPOI1BRS0eWjmQ">
+                <img src="http://api.mattburg.cn/static/appHuodongPic/57.jpg"/>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/JM8XD_j5QPOI1BRS0eWjmQ">
+                <img src="images/icon.png"/ alt=""/>
+                <span>查看详情</span>
+            </a>
+        </section>
+        <section>
+            <i>2/28</i>
+            <i></i>
+            <p>推荐有礼 | 放假在家，同一个世界，同一个妈</p>
+            <a href="https://mp.weixin.qq.com/s/U4yTBX-h4SgyXgX6ojOeDQ">
+                <img src="http://api.mattburg.cn/static/appHuodongPic/56.jpg"/>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/U4yTBX-h4SgyXgX6ojOeDQ">
+                <img src="images/icon.png"/ alt=""/>
+                <span>查看详情</span>
+            </a>
+        </section>
+        <section>
             <i>2/07</i>
             <i></i>
             <p>推荐有礼 | 放假在家，同一个世界，同一个妈</p>
@@ -34,73 +70,49 @@
                 <span>查看详情</span>
             </a>
         </section>
-        <section>
-            <i>1/16</i>
-            <i></i>
-            <p>买套餐送电影票 | 考试周来了，我们的心里只有一件事——_________</p>
-            <a href="https://mp.weixin.qq.com/s/vCJ7It57rLl93qyTQbbqMQ">
-                <img src="http://api.mattburg.cn/static/appHuodongPic/53.jpg"/>
-            </a>
-            <a href="https://mp.weixin.qq.com/s/vCJ7It57rLl93qyTQbbqMQ">
-                <img src="images/icon.png"/ alt=""/>
-                <span>查看详情</span>
-            </a>
-        </section>
-        <section>
-            <i>1/09</i>
-            <i></i>
-            <p>30张咖啡券大礼包 | 年度总结晒完啦？今天再解锁一种装哔新姿势</p>
-            <a href="https://mp.weixin.qq.com/s/kBn3zUtI8NJfSD2SVcsPiA">
-                <img src="http://api.mattburg.cn/static/appHuodongPic/52.jpg"/>
-            </a>
-            <a href="https://mp.weixin.qq.com/s/kBn3zUtI8NJfSD2SVcsPiA">
-                <img src="images/icon.png"/ alt=""/>
-                <span>查看详情</span>
-            </a>
-        </section>
     </article>
 <script>
-    var object = {
-        node : {
-           pNode : document.getElementById('p1')
-        },
-        methods:{
-            parseQuery : function(query) {
-                var res = {};
+    // var object = {
+    //     node : {
+    //        pNode : document.getElementById('p1')
+    //     },
+    //     methods:{
+    //         parseQuery : function(query) {
+    //             var res = {};
 
-                query.split('?')[1] && (query = query.split('?')[1]);
-                query = query.trim().replace(/^(\?|#|&)/, '');
+    //             query.split('?')[1] && (query = query.split('?')[1]);
+    //             query = query.trim().replace(/^(\?|#|&)/, '');
 
-                if (!query) {
-                    return res;
-                }
+    //             if (!query) {
+    //                 return res;
+    //             }
 
-                query.split('&').forEach(function (param) {
-                    var parts = param.replace(/\+/g, ' ').split('=');
-                    var key = decodeURIComponent(parts.shift());
-                    var val = parts.length > 0 ? decodeURIComponent(parts.join('=')) : null;
+    //             query.split('&').forEach(function (param) {
+    //                 var parts = param.replace(/\+/g, ' ').split('=');
+    //                 var key = decodeURIComponent(parts.shift());
+    //                 var val = parts.length > 0 ? decodeURIComponent(parts.join('=')) : null;
 
-                    if (res[key] === undefined) {
-                      res[key] = val;
-                    } else if (Array.isArray(res[key])) {
-                      res[key].push(val);
-                    } else {
-                      res[key] = [res[key], val];
-                    }
-                });
+    //                 if (res[key] === undefined) {
+    //                   res[key] = val;
+    //                 } else if (Array.isArray(res[key])) {
+    //                   res[key].push(val);
+    //                 } else {
+    //                   res[key] = [res[key], val];
+    //                 }
+    //             });
 
-                return res
-            },
-            init : function() {
-                var mobile = object.methods.parseQuery(window.location.href).mobile;
-                if(mobile) { 
-                    object.node.pNode.innerHTML = mobile;
-                }
-            }
-        }
-    };
+    //             return res
+    //         },
+    //         init : function() {
+    //             var mobile = object.methods.parseQuery(window.location.href).mobile;
+    //             if(mobile) { 
+    //                 object.node.pNode.innerHTML = mobile;
+    //             }
+    //         }
+    //     }
+    // };
 
-    object.methods.init();
+    // object.methods.init();
 
 </script>
 </body>
