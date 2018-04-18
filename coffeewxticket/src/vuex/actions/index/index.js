@@ -15,13 +15,14 @@ const getters = {
 };
 
 const actions = {
-  [types.ACT_INDEX_QUES]({state, commit, rootState}, {Vue, mobile}) {
+  [types.ACT_INDEX_QUES]({state, commit, rootState}, {Vue, mobile, batch}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
         url: rootState.getQuesUrl,
         body: {
-          mobile
+          mobile,
+          batch
         }
       }).then((data) => {
         commit('index/set/QUES', data);

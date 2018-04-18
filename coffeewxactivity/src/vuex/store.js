@@ -38,8 +38,6 @@ const state = {
   // common
   // 获取token签名
   getUserTokenUrl: `${HOST}user/login`,
-  // 校验token
-  checkUserTokenUrl: `${HOST}user/checkToken`,
   // index
   getGroupInfoUrl: `${HOST}acc/info`,
   smsUrl: `${HOST}sms/send`,

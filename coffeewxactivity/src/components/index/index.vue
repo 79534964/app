@@ -51,10 +51,6 @@
           Toast('该活动暂未开始');
           return false;
         }
-        if (this.info.receive.length > 0) {
-          Toast('您已经参与过了');
-          return false;
-        }
         if (this.info.totalCoupon < this.info.usedCounpon) {
           // 表示没有可领优惠券
           Toast('该活动没有可领取的优惠券');
@@ -83,6 +79,7 @@
         this.checkToken();
         this.$refs.countNode.changWidth();
         this.$refs.luckyNode.initSwiper();
+        this.$store.dispatch('common/act/LOADING', {loading: false});
       });
     },
     computed: {

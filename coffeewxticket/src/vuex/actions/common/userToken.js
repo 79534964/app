@@ -1,4 +1,4 @@
-import * as types from '@/vuex/mutation-types/common';
+import * as types from '../../mutation-types/common';
 
 const state = {
   userToken: '',

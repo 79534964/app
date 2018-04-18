@@ -8,6 +8,10 @@ export class HttpService {
   // private HOST = 'http://test.wx.mattburg.cn/managerment/m/';
   // private WXHOST = 'http://test.wx.mattburg.cn/coffeewx/';
   // 正式
+  // private PCHOST = 'http://pro.massburg.net/managerment/';
+  // private HOST = 'http://pro.massburg.net/managerment/m/';
+  // private WXHOST = 'http://pro.massburg.net/coffeewx/';
+  // 正式
   private PCHOST = 'http://oa.managerment.mattburg.cn/managerment/';
   private HOST = 'http://oa.managerment.mattburg.cn/managerment/m/';
   private WXHOST = 'http://org.oa.mattburg.cn/coffeewx/';

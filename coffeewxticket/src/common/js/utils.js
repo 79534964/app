@@ -20,3 +20,7 @@ export function setCookie(name, value, days = 365) {
   exdate.setDate(exdate.getDate() + days);
   document.cookie = `${name}=${escape(value)};expires=${exdate.toGMTString()}`;
 }
+
+export function escapeUrl(url) {
+  return url.replace('#', window.escape('#')).replace('&', window.escape('&'));
+}

@@ -46,9 +46,11 @@
   import {Toast} from 'mint-ui';
   import before from './before/before';
   import after from './after/after';
+  import {userTypeMixin} from '@/common/js/mixins';
 
   export default {
     name: 'index',
+    mixins: [userTypeMixin],
     data() {
       return {
         quesFlag: false,
@@ -59,25 +61,18 @@
       };
     },
     methods: {
-      init() {
-        if (/^1[34578]\d{9}$/.test(this.$route.query.mobile)) {
-          window.setTimeout(() => {
-            this.quesFlag = true;
-          }, 500);
-          this.getQues();
-          return;
-        }
-        Toast({message: '手机号不正确~'});
-      },
       getQues() {
         this.$store.dispatch('common/act/LOADING', {loading: true});
+        let {mobile, batch} = this.$route.query;
         this.$store.dispatch('index/act/QUES', {
           Vue: this,
-          mobile: this.$route.query.mobile
+          mobile: mobile || '',
+          batch: batch || ''
         }).then(() => {
           this.$store.dispatch('common/act/LOADING', {loading: false});
           this.quesIterator = new Iterator(this.ques);
           this.goIterator('next');
+          this.quesFlag = true;
         });
       },
       goIterator(type) {
@@ -127,7 +122,9 @@
       }
     },
     created() {
-      this.init();
+      window.setTimeout(() => {
+        this.getQues();
+      }, 500);
     },
     computed: {
       ques() {
