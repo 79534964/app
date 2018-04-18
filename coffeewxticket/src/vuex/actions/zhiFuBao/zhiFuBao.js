@@ -22,7 +22,7 @@ const actions = {
     }
   },
   [types.ACT_ZHIFUBAO_LOCATION]({state, commit, rootState}, {Vue}) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       window.Ali.geolocation.getCurrentPosition({
         // 超时时间
         timeout: 5000

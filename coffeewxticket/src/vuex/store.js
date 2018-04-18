@@ -6,6 +6,8 @@ import Vuex from 'vuex';
 import loading from './actions/common/loading';
 // userToken
 import userToken from './actions/common/userToken';
+// location
+import location from './actions/common/location';
 // 微信
 import weiXin from './actions/weiXin/weiXin';
 // 支付宝
@@ -43,6 +45,7 @@ const state = {
   })(),
   // WeiXin
   getQuesUrl: `${HOST}asq/ques`,
+  getMachineUrl: `${HOST}asq/machine`,
   sumbitQuesUrl: `${HOST}asq/upload`
 };
 
@@ -54,6 +57,7 @@ export default new Vuex.Store({
   modules: {
     loading,
     userToken,
+    location,
     weiXin,
     zhiFuBao,
     index,

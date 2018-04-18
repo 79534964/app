@@ -46,11 +46,11 @@
   import {Toast} from 'mint-ui';
   import before from './before/before';
   import after from './after/after';
-  import {userTypeMixin} from '@/common/js/mixins';
+  import {userTypeMixin, locationMixin} from '@/common/js/mixins';
 
   export default {
     name: 'index',
-    mixins: [userTypeMixin],
+    mixins: [userTypeMixin, locationMixin],
     data() {
       return {
         quesFlag: false,
@@ -121,7 +121,10 @@
         this.curAnswer = this.selectObject[`qid${this.quesIterator.getCurrent()}`] || '';
       }
     },
-    created() {
+    async created() {
+      await this.mixin_location();
+      let {mobile} = this.$route.query;
+      await this.$store.dispatch('index/act/MACHINES', {Vue: this, mobile: mobile || ''});
       window.setTimeout(() => {
         this.getQues();
       }, 500);
@@ -129,6 +132,9 @@
     computed: {
       ques() {
         return this.$store.getters['index/get/QUES'];
+      },
+      machines() {
+        return this.$store.getters['index/get/MACHINES'];
       }
     },
     components: {

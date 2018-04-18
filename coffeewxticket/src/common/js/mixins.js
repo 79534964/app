@@ -20,16 +20,16 @@ export const userTypeMixin = {
 export const locationMixin = {
   methods: {
     async mixin_location() {
-      if (this.$route.query.mobile) {
+      let {mobile, latitude, longitude} = this.$route.query;
+      if (mobile) {
+        window.alert(latitude);
+        window.alert(longitude);
+        await this.$store.dispatch('common/act/LOCATION', {latitude, longitude});
+      } else if (this.$store.state.userType === 'WX') {
         await this.$store.dispatch('weiXin/act/LOCATION', {Vue: this});
-      }
-      if (this.$store.state.userType === 'WX') {
-        await this.$store.dispatch('weiXin/act/LOCATION', {Vue: this});
-      }
-      if (this.$store.state.userType === 'ZFB') {
+      } else if (this.$store.state.userType === 'ZFB') {
         await this.$store.dispatch('zhiFuBao/act/LOCATION', {Vue: this});
       }
-      return;
     }
   }
 };
