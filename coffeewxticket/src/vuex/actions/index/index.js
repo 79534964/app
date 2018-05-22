@@ -19,13 +19,12 @@ const getters = {
 };
 
 const actions = {
-  [types.ACT_INDEX_QUES]({state, commit, rootState}, {Vue, mobile, batch}) {
+  [types.ACT_INDEX_QUES]({state, commit, rootState}, {Vue, batch}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
         url: rootState.getQuesUrl,
         body: {
-          mobile,
           batch
         }
       }).then((data) => {
@@ -34,14 +33,15 @@ const actions = {
       });
     });
   },
-  [types.ACT_INDEX_COUPON]({state, commit, rootState}, {Vue, mobile, answer}) {
+  [types.ACT_INDEX_COUPON]({state, commit, rootState}, {Vue, answer, batch, machineId}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
         url: rootState.sumbitQuesUrl,
         body: {
-          mobile,
-          answer
+          answer,
+          batch,
+          machineId
         }
       }).then((data) => {
         commit('index/set/COUPON', data);
@@ -49,13 +49,12 @@ const actions = {
       });
     });
   },
-  [types.ACT_INDEX_MACHINES]({state, commit, rootState}, {Vue, mobile}) {
+  [types.ACT_INDEX_MACHINES]({state, commit, rootState}, {Vue}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
         url: rootState.getMachineUrl,
         body: {
-          mobile,
           lon: rootState.location.location.longitude || 0,
           lat: rootState.location.location.latitude || 0
         }
@@ -69,13 +68,15 @@ const actions = {
 
 const mutations = {
   [types.SET_INDEX_QUES](state, list) {
-    let answers = [];
-    state.machines.map(({machineName, id}) => {
-      answers.push({answer: machineName, id});
-    });
-    list.unshift({
-      question: '请选择您经常下单的咖啡机（未下单用户，系统将为您推荐附近20公里内的咖啡机）', id: 99999, answers
-    });
+    if (list.length !== 0) {
+      let answers = [];
+      state.machines.map(({machineName, id}) => {
+        answers.push({answer: machineName, id});
+      });
+      list.unshift({
+        question: '请选择您经常下单的咖啡机（未下单用户，系统将为您推荐附近20公里内的咖啡机）', id: 99999, answers
+      });
+    }
     state.ques = list;
   },
   [types.SET_INDEX_COUPON](state, info) {

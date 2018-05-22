@@ -17,20 +17,18 @@ const getters = {
 const actions = {
   [types.ACT_COMMON_USERTOKEN]({state, commit, rootState}, {Vue}) {
     return new Promise((resolve, reject) => {
-      let key, id, userType;
+      let id, userType;
       if (rootState.userType === 'WX') {
-        key = 'unionId';
         id = rootState.weiXin.openId;
         userType = 2;
       } else {
-        key = 'openId';
         id = rootState.zhiFuBao.userId;
         userType = 3;
       }
       Vue.$http({
         url: rootState.getUserTokenUrl,
         body: {
-          [key]: id,
+          openId: id,
           userType
         }
       }).then(({body}) => {
