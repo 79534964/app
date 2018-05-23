@@ -1,0 +1,38 @@
+.page-skip
+  transition: all .6s cubic-bezier(.55, 0, .1, 1)
+  &.page-skip-enter, &.page-skip-leave-active
+    opacity: 0
+    transform: translate(50px, 0)
+
+.fade-in
+  transition: all 0.5s
+  &.fade-in-enter, &.fade-in-leave-active
+    opacity: 0
+
+.left-in
+  transition: all 0.3s
+  transform: translate3d(0, 0, 0)
+  &.left-in-enter, &.left-in-leave-active
+    transform: translate3d(-100%, 0, 0)
+
+.top-in
+  transition: all 0.3s
+  opacity: 1
+  transform: translate3d(0, 0, 0)
+  &.top-in-enter, &.top-in-leave-active
+    opacity: 0
+    transform: translate3d(0, -30%, 0)
+
+.right-in
+  transition: all 0.3s
+  opacity: 1
+  transform: translate3d(0, 0, 0)
+  &.right-in-enter, &.right-in-leave-active
+    opacity: 0
+    transform: translate3d(30%, 0, 0)
+
+.bottom-in
+  transition: all 0.3s
+  transform: translate3d(0, 0, 0)
+  &.bottom-in-enter, &.bottom-in-leave-active
+    transform: translate3d(0, 100%, 0)
