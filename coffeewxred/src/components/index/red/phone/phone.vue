@@ -12,7 +12,7 @@
 
 <script type="text/ecmascript-6">
 
-  import {getCookie, setCookie} from '@/common/js/utils';
+  import {getLocalStorage, setLocalStorage} from '@/common/js/utils';
   import {Field, Button, Toast} from 'mint-ui';
 
   export default {
@@ -34,7 +34,7 @@
           Toast('请输入正确的手机号');
           return false;
         }
-        if (this.phone === getCookie('user_phone')) {
+        if (this.phone === getLocalStorage('user_phone')) {
           Toast('已经绑定为当前手机号');
           return false;
         }
@@ -68,10 +68,12 @@
           Toast('请输入4位验证码');
           return false;
         }
+        this.$store.dispatch('common/act/LOADING', {loading: true});
         this.$store.dispatch('index/act/SUMBIT', {Vue: this, phone: this.phone, code: this.captcha}).then(() => {
-          setCookie('user_phone', this.phone);
+          setLocalStorage('user_phone', this.phone);
           this.$emit('success');
           this.init();
+          this.$store.dispatch('common/act/LOADING', {loading: false});
         });
       }
     },

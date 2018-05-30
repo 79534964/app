@@ -24,7 +24,7 @@
   import {Popup, Button} from 'mint-ui';
   import phone from './phone/phone';
   import coupon from './coupon/coupon';
-  import {getCookie} from '@/common/js/utils';
+  import {getLocalStorage} from '@/common/js/utils';
 
   export default {
     name: 'index_red',
@@ -37,7 +37,7 @@
     },
     methods: {
       getPhone() {
-        this.cookiePhone = getCookie('user_phone');
+        this.cookiePhone = getLocalStorage('user_phone');
       },
       openPopup() {
         this.popupFlag = true;
