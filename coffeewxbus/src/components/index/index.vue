@@ -14,8 +14,8 @@
           <div class="right" @click="openCity"></div>
         </div>
         <mt-field label="联系人姓名：" v-model="form.name"></mt-field>
-        <mt-field label="联系电话：" type="tel" v-model="form.phone"></mt-field>
-        <mt-field label="预计投入资金：" placeholder="单位为万元" type="number" v-model="form.fund"></mt-field>
+        <mt-field label="联系电话：" type="tel" v-model="form.phone" :attr="{ maxlength: 11 }"></mt-field>
+        <mt-field label="预计投入资金：" placeholder="单位为万元" type="tel" v-model="form.fund"></mt-field>
         <div class="picker">
           <mt-field label="是否有投放点位：" v-model="form.hasPositionShow" placeholder="点击选择"></mt-field>
           <div class="right" @click="openGeneral"></div>
@@ -35,9 +35,11 @@
 
 <script type="text/ecmascript-6">
 
-  import {Field, Cell, Button, Toast} from 'mint-ui';
+  import {Field, Cell, Button, Toast, MessageBox} from 'mint-ui';
   import city from '@/components/common/city/city';
   import general from '@/components/common/general/general';
+
+  //  下拉框报错 是框架内部问题 无需修复
 
   export default {
     name: 'index',
@@ -123,6 +125,23 @@
             return;
           }
         }
+        this.http();
+      },
+      http() {
+        MessageBox({
+          message: '是否已阅读过合作须知，是否提交',
+          showCancelButton: true
+        }).then((data) => {
+          if (data === 'confirm') {
+            this.$store.dispatch('common/act/LOADING', {loading: true});
+            this.$store.dispatch('index/act/SUBMIT', Object.assign({Vue: this}, this.form)).then(() => {
+              this.$store.dispatch('common/act/LOADING', {loading: false});
+              MessageBox.alert('提交成功，我们会在3个工作日之内给您回复').then(() => {
+                window.location.reload();
+              });
+            });
+          }
+        });
       }
     },
     components: {

@@ -56,8 +56,8 @@
       close() {
         this.showFlag = false;
       },
-      change(picker, values) {
-        if (data[values[0]]) {
+      change(picker, values = []) {
+        if (values[0]) {
           picker.setSlotValues(1, data[values[0]]);
           this.form.divider = values[0];
           this.form.city = values[1];

@@ -53,11 +53,8 @@
     .content
       .title
         color: #444444
-        margin-bottom: 0.7rem
-      .text
-        color: #aaaaaa
-        margin-top: 0.2rem
-        margin-bottom: 0.7rem
+        margin-bottom: 0.5rem
+        line-height: 0.5rem
     .submit
       width: 35%
       margin-bottom: 1rem

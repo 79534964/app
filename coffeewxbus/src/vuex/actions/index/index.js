@@ -5,29 +5,19 @@ const state = {};
 const getters = {};
 
 const actions = {
-  [types.ACT_INDEX_SMS]({state, commit, rootState}, {Vue, phone}) {
+  [types.ACT_INDEX_SUBMIT]({state, commit, rootState}, {Vue, phone, city, area, name, fund, hasPosition, position}) {
     return new Promise((resolve, reject) => {
       Vue.$store.dispatch('common/act/HTTP', {
         Vue,
-        url: rootState.index_smsUrl,
-        proxy: false,
+        url: rootState.index_submitUrl,
         body: {
-          phone
-        }
-      }).then((data) => {
-        resolve();
-      });
-    });
-  },
-  [types.ACT_INDEX_SETRED]({state, commit, rootState}, {Vue, phone, code}) {
-    return new Promise((resolve, reject) => {
-      Vue.$store.dispatch('common/act/HTTP', {
-        Vue,
-        url: rootState.index_setRedUrl,
-        proxy: false,
-        body: {
-          code,
-          phone
+          phone,
+          city,
+          area,
+          name,
+          fund,
+          hasPosition,
+          position
         }
       }).then((data) => {
         resolve();

@@ -48,7 +48,7 @@
       close() {
         this.showFlag = false;
       },
-      change(picker, values) {
+      change(picker, values = []) {
         if (values[0]) {
           this.form.key = values[0];
           this.form.value = this.data[values[0]];

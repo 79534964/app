@@ -19,7 +19,6 @@
 .mint-button::after
   background-color: rgba(255, 255, 255, 0.6)
 
-
 // toast
 .mint-toast.is-placemiddle
   top: 30%
@@ -33,3 +32,35 @@
     background: none
   .mint-cell-wrapper
     background: none
+
+// 弹框
+.mint-msgbox
+  top: 40%
+  min-width: 280px
+  width: 80%
+  font-size: 0.27rem
+  .mint-msgbox-header
+    display: none
+  .mint-msgbox-content
+    padding: 0.45rem 0.4rem
+    min-height: inherit
+    .mint-msgbox-message
+      font-size: 0.3rem
+      line-height: 0.4rem
+      color: #606263
+    .mint-msgbox-input
+      padding-top: 0.2rem
+      input
+        padding: 0.13rem
+        width: 95%
+      .mint-msgbox-errormsg
+        min-height: 0.4rem
+        font-size: 0.2rem
+        margin-top: 0.05rem
+  button
+    font-size: 0.3rem
+  .mint-msgbox-btns
+    height: 0.8rem
+    line-height: 0.8rem
+    button
+      line-height: 0.8rem
