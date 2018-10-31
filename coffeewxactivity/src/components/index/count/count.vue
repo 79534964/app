@@ -1,6 +1,6 @@
 <template>
   <div class="__wrapper">
-    <p v-if="info && info.groupName">{{info.groupName}},每人限领一张</p>
+    <p v-if="info && info.groupName">{{info.groupName}}</p>
     <p v-if="info">发放张数：{{info.totalCoupon}}　剩余张数：{{info.totalCoupon - info.usedCoupon}}</p>
     <div class="box"><i :style="iStyle"></i></div>
   </div>

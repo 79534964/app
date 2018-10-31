@@ -4,7 +4,7 @@
       <img :src="`${$store.state.imgUrl}header.jpg`"/>
     </div>
     <div class="point">
-      好友邀您喝咖啡，送上一张半价券！
+      好友邀您喝咖啡，送上一张全免券！
     </div>
     <red></red>
     <div class="rule">

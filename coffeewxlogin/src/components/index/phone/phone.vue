@@ -40,7 +40,7 @@
         if (this.captchaFlag) {
           return;
         }
-        if (!/^1[34578]\d{9}$/.test(this.phone)) {
+        if (!/^1[123456789]\d{9}$/.test(this.phone)) {
           Toast({
             message: '请输入正确的手机号',
             duration: 700

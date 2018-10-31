@@ -1,7 +1,7 @@
 // 测试接口地址
-const HOST = 'http://test.wx.mattburg.cn/managerment/';
+// const HOST = 'http://test.wx.mattburg.cn/managerment/';
 // 正式接口地址
-// const HOST = 'http://oa.managerment.mattburg.cn/managerment/';
+const HOST = 'http://oa.managerment.mattburg.cn/managerment/';
 
 const state = {
   imgUrl: process.env.NODE_ENV === 'development' ? 'http://192.168.2.4:8080/static/img/' : `http://${window.location.host}/mobile/coffeewxbus/static/img/`,
