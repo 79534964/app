@@ -3,7 +3,6 @@ import router from '@/router';
 router.beforeEach((to, from, next) => {
   // 改变标头
   changeTitle(to.name);
-  isLine();
   next();
 });
 
@@ -20,20 +19,5 @@ function changeTitle(name) {
       }, 9);
     };
     document.body.appendChild(i);
-  }
-}
-
-// 判断网络
-import {MessageBox} from 'mint-ui';
-function isLine() {
-  if (!window.navigator.onLine) {
-    MessageBox({
-      message: '网络不稳定,刷新一下?',
-      showCancelButton: true
-    }).then((data) => {
-      if (data === 'confirm') {
-        window.location.reload();
-      }
-    });
   }
 }

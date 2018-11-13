@@ -4,7 +4,7 @@
 const HOST = 'http://org.oa.mattburg.cn/coffeewx/';
 
 const state = {
-  imgUrl: process.env.NODE_ENV === 'development' ? 'http://192.168.2.9:8080/static/img/' : `http://${window.location.host}/mobile/coffeewxlogin/static/img/`,
+  imgUrl: process.env.NODE_ENV === 'development' ? 'http://192.168.8.110:8080/static/img/' : `http://${window.location.host}/mobile/coffeewxlogin/static/img/`,
   proxyUrl: `${HOST}v1/`,
   // 正确
   ok: '01',
@@ -12,16 +12,7 @@ const state = {
   onToken: '300',
   // 判断微信支付宝
   userType: (() => {
-    if (process.env.NODE_ENV === 'development') {
-      return 'WX';
-    }
-    if (window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) {
-      return 'WX';
-    }
-    if (window.navigator.userAgent.toLowerCase().indexOf('alipay') !== -1) {
-      return 'ZFB';
-    }
-    return '';
+    return window.$utils.getUserType() || 'WX';
   })(),
   // weiXin
   // 微信获取签名接口

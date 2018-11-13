@@ -2,8 +2,11 @@
   <div class="wrapper">
     <img class="background" :src="`${$store.state.imgUrl}background.jpg`"/>
     <img class="logo" src="./logo.png"/>
-    <phone></phone>
-    <p class="point">18元优惠券请在 - 个人中心 - 我的礼券中查看</p>
+    <p class="system" v-if="systemFlag && userInfo && userInfo.mobile"><span style="font-size: 0.23rem;">您的号码:</span>{{this.userInfo.mobile}}
+    </p>
+    <phone v-else :systemFlag="systemFlag" @systemFlag="success"></phone>
+    <p v-if="systemFlag" class="point">绑定手机号成功后，返回OA继续注册账号</p>
+    <p v-else class="point">18元优惠券请在 - 个人中心 - 我的礼券中查看</p>
     <img class="text" src="./text.png"/>
   </div>
 </template>
@@ -18,17 +21,27 @@
   export default {
     name: 'index',
     mixins: [userTypeMixin],
-    components: {
-      phone
+    data() {
+      return {
+        systemFlag: false
+      };
     },
-    created() {
+    methods: {
+      success() {
+        this.$store.dispatch('common/act/USERTOKEN', {Vue: this});
+      },
+      getSystemFlag() {
+        this.systemFlag = this.$route.query.system;
+      }
+    },
+    mounted() {
+      this.getSystemFlag();
       this.$store.dispatch('common/act/USERTOKEN', {Vue: this}).then(() => {
         if (this.userInfo.mobile) {
           Toast({
             message: '您已经绑定过啦~',
             duration: 2000
           });
-          return;
         }
       });
     },
@@ -36,6 +49,9 @@
       userInfo() {
         return this.$store.getters['common/get/USERINFO'];
       }
+    },
+    components: {
+      phone
     }
   };
 </script>
@@ -45,6 +61,11 @@
     display: flex
     flex-direction: column
     align-items: center
+    .system
+      color: #fff
+      font-size: 0.6rem
+      margin-top: 0.7rem
+      margin-bottom: 0.8rem
     .background
       position: absolute
       left: 0

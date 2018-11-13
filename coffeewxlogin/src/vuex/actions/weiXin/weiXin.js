@@ -1,9 +1,8 @@
 import * as types from '@/vuex/mutation-types/weiXin';
-import {getCookie, escapeUrl} from '@/common/js/utils';
 
 const state = {
   openId: '',
-  serviceUrl: `${window.location.host}/coffeewx/toOauth?path=`,
+  serviceUrl: `${window.location.host}/mobile/base/auth.html?path=`,
   config: {
     appId: '',
     timestamp: '',
@@ -21,9 +20,8 @@ const getters = {
 
 const actions = {
   [types.ACT_WEIXIN_OPENID]({state, commit, rootState}, {Vue, reload = false}) {
-    if (!getCookie('openId') || reload) {
-      // 如果没有openId 如果reload就直接强制请求服务器
-      window.location.href = escapeUrl(window.location.href).replace(`${window.location.host}/`, state.serviceUrl);
+    if (!window.$utils.getCookie('openId')) {
+      window.location.href = window.location.href.replace(`${window.location.host}/`, state.serviceUrl);
     } else {
       Vue.$store.dispatch('weiXin/act/CONFIG', {Vue});
     }
@@ -35,7 +33,7 @@ const actions = {
         resolve();
         return;
       }
-      commit('weiXin/set/OPENID', getCookie('openId'));
+      commit('weiXin/set/OPENID', window.$utils.getCookie('openId'));
       // 然后设置签名
       Vue.$http({
         url: rootState.weiXinGetSignUrl,

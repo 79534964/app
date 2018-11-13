@@ -1,9 +1,8 @@
 import * as types from '@/vuex/mutation-types/zhiFuBao';
-import {getCookie, escapeUrl} from '@/common/js/utils';
 
 const state = {
   userId: '',
-  serviceUrl: `${window.location.host}/coffeewx/alitoOauth?path=`
+  serviceUrl: `${window.location.host}/mobile/base/auth.html?path=`
 };
 
 const getters = {
@@ -14,11 +13,10 @@ const getters = {
 
 const actions = {
   [types.ACT_ZHIFUBAO_USERID]({state, commit, rootState}, {Vue, reload = false}) {
-    if (!getCookie('alipayUserId') || reload) {
-      // 如果没有openId 如果reload就直接强制请求服务器
-      window.location.href = escapeUrl(window.location.href).replace(`${window.location.host}/`, state.serviceUrl);
+    if (!window.$utils.getCookie('alipayUserId')) {
+      window.location.href = window.location.href.replace(`${window.location.host}/`, state.serviceUrl);
     } else {
-      commit('zhiFuBao/set/USERID', getCookie('alipayUserId'));
+      commit('zhiFuBao/set/USERID', window.$utils.getCookie('alipayUserId'));
     }
   }
 };

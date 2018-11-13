@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import {MessageBox} from 'mint-ui';
 
 Vue.http.interceptors.push((request, next) => {
   config(request);
@@ -11,8 +12,6 @@ function config(request) {
   request.emulateJSON = true;
 }
 
-// 判断网络
-import {MessageBox} from 'mint-ui';
 function isLine(next) {
   if (window.navigator.onLine) {
     next();

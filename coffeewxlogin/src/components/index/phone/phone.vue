@@ -10,7 +10,7 @@
       </div>
     </div>
     <mt-button v-if="userInfo && userInfo.mobile" class="submit" @click="http()">快去下单吧~</mt-button>
-    <mt-button v-else class="submit" @click="submit()">绑定手机领取18元优惠券</mt-button>
+    <mt-button v-else class="submit" @click="submit()">{{systemFlag ? '绑定手机号注册账户' : '绑定手机领取18元优惠券'}}</mt-button>
   </div>
 </template>
 
@@ -20,6 +20,11 @@
 
   export default {
     name: 'index_phone',
+    props: {
+      systemFlag: {
+        type: Boolean
+      }
+    },
     data() {
       return {
         phone: '',
@@ -78,6 +83,10 @@
           return;
         }
         this.$store.dispatch('index/act/SETRED', {Vue: this, phone: this.phone, code: this.captcha}).then(() => {
+          if (this.systemFlag) {
+            this.$emit('systemFlag');
+            return;
+          }
           Toast({
             message: '领取成功！',
             duration: 700
